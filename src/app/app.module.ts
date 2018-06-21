@@ -10,6 +10,12 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
 import { ContactComponent } from './contact/contact.component';
 import {GalleryComponent} from './gallery/gallery.component';
 import { ServicesComponent } from './services/services.component';
+import { SaveTheDateComponent } from './save-the-date/save-the-date.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AngularMaterialModule} from './angular-material/angular-material.module';
+import { AdminComponent } from './admin/admin.component';
+import {ApiManagerService} from './api-manager.service';
+import {MatSnackBar} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -18,15 +24,20 @@ import { ServicesComponent } from './services/services.component';
     HomeComponent,
     ContactComponent,
     GalleryComponent,
-    ServicesComponent
+    ServicesComponent,
+    SaveTheDateComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    AngularMaterialModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [ApiManagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

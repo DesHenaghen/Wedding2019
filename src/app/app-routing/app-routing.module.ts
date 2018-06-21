@@ -5,6 +5,8 @@ import { AboutComponent } from '../about/about.component';
 import {ContactComponent} from '../contact/contact.component';
 import {GalleryComponent} from '../gallery/gallery.component';
 import {ServicesComponent} from '../services/services.component';
+import {SaveTheDateComponent} from '../save-the-date/save-the-date.component';
+import {AdminComponent} from "../admin/admin.component";
 
 const routes: Routes = [
   {
@@ -26,6 +28,14 @@ const routes: Routes = [
   {
     path: 'services',
     component: ServicesComponent
+  },
+  {
+    path: 'savethedate',
+    component: SaveTheDateComponent
+  },
+  {
+    path: 'admin',
+    component: AdminComponent
   }
 ];
 

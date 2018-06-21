@@ -1,0 +1,89 @@
+<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url(../../assets/images/img_bg_1.jpg); height: 120px;">
+</header>
+
+<button mat-fab color="primary" (click)="emailAll()">Email All</button>
+
+<div *ngFor="let guest of guests">
+  <mat-card>
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Name" [(ngModel)]="guest.name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="email" placeholder="Contact Email" [(ngModel)]="guest.contact_email" email>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Contact Phone No." [(ngModel)]="guest.contact_phone">
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="Extra Info" [(ngModel)]="guest.extra_info"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Food choice" [(value)]="guest.meal_choice" [compareWith]="compareFn">
+          <mat-option value="1">Steak</mat-option>
+          <mat-option value="2">Cheese</mat-option>
+          <mat-option value="3">Cake</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Main Contact" [(value)]="guest.main_contact">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let guest of guests" [value]="guest.id">{{guest.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-checkbox [(ngModel)]="guest.can_attend">Can Attend?</mat-checkbox>
+
+      <button (click)="removeGuest(guest.id)" mat-fab>Delete</button>
+
+      <button (click)="updateGuest(guest.id)" mat-fab>Update</button>
+
+      <button [disabled]="!guest.contact_email" (click)="emailGuest(guest.contact_email)" mat-fab>Email</button>
+    </div>
+  </mat-card>
+</div>
+
+<mat-card>
+  <mat-card-title>New Guest</mat-card-title>
+  <div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="Name" [(ngModel)]="newGuest.name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="email" placeholder="Contact Email" [(ngModel)]="newGuest.contact_email" email>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Contact Phone No." [(ngModel)]="newGuest.contact_phone">
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Extra Info" [(ngModel)]="newGuest.extra_info"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Food choice" [(ngModel)]="newGuest.meal_choice">
+        <mat-option value="1">Steak</mat-option>
+        <mat-option value="2">Cheese</mat-option>
+        <mat-option value="3">Cake</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Main Contact" [(value)]="newGuest.main_contact">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let guest of guests" [value]="guest.id">{{guest.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-checkbox [(ngModel)]="newGuest.can_attend">Can Attend?</mat-checkbox>
+    <button (click)="addGuest()" mat-fab>Add</button>
+  </div>
+</mat-card>
