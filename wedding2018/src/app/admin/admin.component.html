@@ -1,7 +1,7 @@
 <header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url(../../assets/images/img_bg_1.jpg); height: 120px;">
 </header>
 
-<button mat-fab color="primary" (click)="emailAll()">Email All</button>
+<button mat-fab color="primary" (click)="confirmAction(emailAll, [])">Email All</button>
 
 <div *ngFor="let guest of guests">
   <mat-card>
@@ -39,11 +39,11 @@
 
       <mat-checkbox [(ngModel)]="guest.can_attend">Can Attend?</mat-checkbox>
 
-      <button (click)="removeGuest(guest.id)" mat-fab>Delete</button>
+      <button (click)="confirmAction(removeGuest, [guest.id])" mat-fab>Delete</button>
 
-      <button (click)="updateGuest(guest.id)" mat-fab>Update</button>
+      <button (click)="confirmAction(updateGuest, [guest.id])" mat-fab>Update</button>
 
-      <button [disabled]="!guest.contact_email" (click)="emailGuest(guest.contact_email)" mat-fab>Email</button>
+      <button [disabled]="!guest.contact_email" (click)="confirmAction(emailGuest, [guest.contact_email])" mat-fab>Email</button>
     </div>
   </mat-card>
 </div>
@@ -81,7 +81,6 @@
         <mat-option *ngFor="let guest of guests" [value]="guest.id">{{guest.name}}</mat-option>
       </mat-select>
     </mat-form-field>
-
 
     <mat-checkbox [(ngModel)]="newGuest.can_attend">Can Attend?</mat-checkbox>
     <button (click)="addGuest()" mat-fab>Add</button>

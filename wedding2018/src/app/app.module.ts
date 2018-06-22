@@ -13,7 +13,7 @@ import { ServicesComponent } from './services/services.component';
 import { SaveTheDateComponent } from './save-the-date/save-the-date.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularMaterialModule} from './angular-material/angular-material.module';
-import { AdminComponent } from './admin/admin.component';
+import {AdminComponent, DialogOverviewExampleDialog} from './admin/admin.component';
 import {ApiManagerService} from './api-manager.service';
 import {MatSnackBar} from '@angular/material';
 
@@ -26,7 +26,8 @@ import {MatSnackBar} from '@angular/material';
     GalleryComponent,
     ServicesComponent,
     SaveTheDateComponent,
-    AdminComponent
+    AdminComponent,
+    DialogOverviewExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -38,6 +39,7 @@ import {MatSnackBar} from '@angular/material';
     HttpClientModule,
   ],
   providers: [ApiManagerService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogOverviewExampleDialog]
 })
 export class AppModule { }
