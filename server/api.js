@@ -187,12 +187,39 @@ router.post('/emailGuest', (req, res) => {
 
 router.post('/sendSTD', (req, res) => {
     const guest = req.body.guest;
-    client.query('INSERT INTO guests(name, contact_email, attending) VALUES($1, $2, $3)', [guest.name, guest.contact_email, guest.attending], (err, result) => {
+    const plusOne = req.body.plusOne;
+
+    // console.log(req.body);
+
+    let query = 'INSERT INTO guests(name, contact_email, attending, main_contact) VALUES($1, $2, $3, $4) RETURNING *';
+    let values = [guest.name, guest.contact_email, guest.attending, null];
+
+    // if (plusOne) {
+    //     query += ', ($5, $6, $7, $8)';
+    //     values.push(...[plusOne.name, plusOne.contact_email, plusOne.attending]);
+    // }
+
+    client.query(query, values, (err, result) => {
         if (err) {
             console.log(err);
             res.send(err);
         } else {
-            res.send({message: 'Logged Save the Date response'});
+            // console.log("result 1");
+            // console.log(result);
+            if (plusOne) {
+                client.query(query, [plusOne.name, plusOne.contact_email, plusOne.attending, (plusOne.main_contact)?result.rows[0].id:null], (err2, result2) => {
+                   if (err2) {
+                       console.log(err2);
+                       res.send(err2);
+                   } else {
+                       // console.log("result 2");
+                       // console.log(result2);
+                       res.send({message: 'Logged multiple save the date responses'});
+                   }
+                });
+            } else {
+                res.send({message: 'Logged Save the Date response'});
+            }
         }
     });
 });
