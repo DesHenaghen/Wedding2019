@@ -185,4 +185,16 @@ router.post('/emailGuest', (req, res) => {
     });
 });
 
+router.post('/sendSTD', (req, res) => {
+    const guest = req.body.guest;
+    client.query('INSERT INTO guests(name, contact_email, attending) VALUES($1, $2, $3)', [guest.name, guest.contact_email, guest.attending], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.send({message: 'Logged Save the Date response'});
+        }
+    });
+});
+
 module.exports = router;
