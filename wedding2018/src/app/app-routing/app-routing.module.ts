@@ -6,29 +6,29 @@ import {ContactComponent} from '../contact/contact.component';
 import {GalleryComponent} from '../gallery/gallery.component';
 import {ServicesComponent} from '../services/services.component';
 import {SaveTheDateComponent} from '../save-the-date/save-the-date.component';
-import {AdminComponent} from "../admin/admin.component";
+import {AdminComponent} from '../admin/admin.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
   },
-  {
-    path: 'about',
-    component: AboutComponent
-  },
-  {
-    path: 'contact',
-    component: ContactComponent
-  },
-  {
-    path: 'gallery',
-    component: GalleryComponent
-  },
-  {
-    path: 'services',
-    component: ServicesComponent
-  },
+  // {
+  //   path: 'about',
+  //   component: AboutComponent
+  // },
+  // {
+  //   path: 'contact',
+  //   component: ContactComponent
+  // },
+  // {
+  //   path: 'gallery',
+  //   component: GalleryComponent
+  // },
+  // {
+  //   path: 'services',
+  //   component: ServicesComponent
+  // },
   {
     path: 'savethedate',
     component: SaveTheDateComponent

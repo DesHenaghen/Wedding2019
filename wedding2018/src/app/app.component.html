@@ -7,27 +7,11 @@
         </div>
         <div class="col-xs-10 text-right menu-1">
           <ul>
-            <li class="active"><a routerLink="/">Home</a></li>
-            <li><a routerLink="/about">Story</a></li>
-            <li class="has-dropdown">
-              <a routerLink="/services">Services</a>
-              <ul class="dropdown">
-                <li><a href="#">Web Design</a></li>
-                <li><a href="#">eCommerce</a></li>
-                <li><a href="#">Branding</a></li>
-                <li><a href="#">API</a></li>
-              </ul>
-            </li>
-            <li class="has-dropdown">
-              <a routerLink="/gallery">Gallery</a>
-              <ul class="dropdown">
-                <li><a href="#">HTML5</a></li>
-                <li><a href="#">CSS3</a></li>
-                <li><a href="#">Sass</a></li>
-                <li><a href="#">jQuery</a></li>
-              </ul>
-            </li>
-            <li><a routerLink="/contact">Contact</a></li>
+            <li class="active"><a (click)="scrollToBlock('page')">Home</a></li>
+            <li><a (click)="scrollToBlock('fh5co-event')">Dates</a></li>
+            <li><a (click)="scrollToBlock('fh5co-couple-story')">Story</a></li>
+            <li><a (click)="scrollToBlock('fh5co-gallery')">Gallery</a></li>
+            <li><a (click)="scrollToBlock('fh5co-testimonial')">Wishes</a></li>
           </ul>
         </div>
       </div>

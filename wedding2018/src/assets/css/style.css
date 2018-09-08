@@ -7,7 +7,7 @@
 }
 /* =======================================================
 *
-* 	Template Style 
+* 	Template Style
 *
 * ======================================================= */
 body {
@@ -359,7 +359,12 @@ h1, h2, h3, h4, h5, h6, figure {
   float: left;
 }
 #fh5co-counter .display-t,
-#fh5co-counter .display-tc,
+#fh5co-counter .display-t {
+  height: 500px;
+  display: table;
+  width: 100%;
+}
+
 #fh5co-event .display-t,
 #fh5co-event .display-tc {
   height: 700px;

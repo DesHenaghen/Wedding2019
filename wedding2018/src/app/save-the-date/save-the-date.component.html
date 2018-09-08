@@ -1,27 +1,73 @@
 <header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url(../../assets/images/img_bg_1.jpg);">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center">
+        <div class="display-t">
+          <div class="display-tc animate-box" data-animate-effect="fadeIn">
+            <h1>Save the Date</h1>
+            <h2>Let us know if you can join us for our special day!</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
 
-<button mat-button [@activeCard]="activeCard" (click)="toggleActiveCard()">{{activeCard}}</button>
-
-<mat-card [@activeCard]="activeCard" (click)="toggleActiveCard()" class="example-card">
-  <div class="front">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
+<div style="text-align: center; margin: 30px 0;">
+  <div>
+    We would be honoured if you could join us for our wonderful day.
   </div>
-  <div class="back"></div>
+  <div>
+    Let us know if you can make it so we can plan th best wedding whaaetaayay...
+  </div>
+</div>
+
+<mat-card>
+  <div class="form-container">
+    <h1>Your Details</h1>
+    <mat-form-field>
+      <input matInput placeholder="Name" [(ngModel)]="guest.name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="email" placeholder="Contact Email" [(ngModel)]="guest.contact_email" email>
+    </mat-form-field>
+
+    <mat-form-field class="wide">
+      <mat-select placeholder="Will you be able to make it?" [(value)]="guest.attending">
+        <mat-option value="1">Definitely!</mat-option>
+        <mat-option value="2">Not sure</mat-option>
+        <mat-option value="3">Unfortunately not</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 </mat-card>
+
+<mat-card *ngIf="secondGuest">
+  <div class="form-container">
+    <h1>Plus One <mat-checkbox [(ngModel)]="displayPlusOneCard"></mat-checkbox></h1>
+
+    <mat-checkbox [disabled]="!displayPlusOneCard" [(ngModel)]="plusOne.main_contact">Use same contact info as main guest</mat-checkbox>
+    <br>
+    <mat-form-field>
+      <input [disabled]="!displayPlusOneCard" matInput placeholder="Name" [(ngModel)]="plusOne.name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input [disabled]="!displayPlusOneCard || plusOne.main_contact" matInput type="email" placeholder="Contact Email" [(ngModel)]="plusOne.contact_email" email>
+    </mat-form-field>
+
+    <mat-form-field class="wide">
+      <mat-select [disabled]=!displayPlusOneCard placeholder="Will you be able to make it?" [(value)]="plusOne.attending">
+        <mat-option value="1">Definitely!</mat-option>
+        <mat-option value="2">Not sure</mat-option>
+        <mat-option value="3">Unfortunately not</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</mat-card>
+
+<div  style="text-align: center; margin-top: 15px;">
+  <button mat-raised-button color="accent" [disabled]="!formComplete()" (click)="submit()">Submit</button>
+</div>

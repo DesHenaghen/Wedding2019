@@ -32,4 +32,8 @@ export class ApiManagerService {
   public emailAll() {
     return this.http.get('api/emailAll');
   }
+
+  public sendSTD(guest, plusOne) {
+    return this.http.post('api/sendSTD', {guest, plusOne});
+  }
 }

@@ -1,0 +1,11 @@
+.form-container {
+  text-align: center;
+}
+
+mat-form-field {
+  margin-left: 5vw;
+}
+
+mat-form-field.wide {
+  width: 240px;
+}

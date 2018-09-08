@@ -15,7 +15,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularMaterialModule} from './angular-material/angular-material.module';
 import {AdminComponent, DialogOverviewExampleDialog} from './admin/admin.component';
 import {ApiManagerService} from './api-manager.service';
-import {MatSnackBar} from '@angular/material';
+import {NgsRevealModule} from 'ng-scrollreveal';
 
 @NgModule({
   declarations: [
@@ -37,6 +37,7 @@ import {MatSnackBar} from '@angular/material';
     BrowserAnimationsModule,
     AngularMaterialModule,
     HttpClientModule,
+    NgsRevealModule.forRoot()
   ],
   providers: [ApiManagerService],
   bootstrap: [AppComponent],
