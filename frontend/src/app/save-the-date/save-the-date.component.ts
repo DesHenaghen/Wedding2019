@@ -10,6 +10,7 @@ import {ApiManagerService} from '../api-manager.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 import {ModalService} from '../services';
+import {ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-save-the-date',
@@ -24,7 +25,8 @@ import {ModalService} from '../services';
       transition('true => false', animate('100ms ease-in')),
       transition('false => true', animate('100ms ease-out'))
     ])
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class SaveTheDateComponent implements OnInit {
 
