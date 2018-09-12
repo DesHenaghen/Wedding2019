@@ -27,47 +27,28 @@
   <div class="form-container">
     <h1>Your Details</h1>
     <mat-form-field>
-      <input matInput placeholder="Name" [(ngModel)]="guest.name">
+      <input matInput placeholder="First Name" [(ngModel)]="guest.firstname">
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput type="email" placeholder="Contact Email" [(ngModel)]="guest.contact_email" email>
-    </mat-form-field>
-
-    <mat-form-field class="wide">
-      <mat-select placeholder="Will you be able to make it?" [(value)]="guest.attending">
-        <mat-option value="1">Definitely!</mat-option>
-        <mat-option value="2">Not sure</mat-option>
-        <mat-option value="3">Unfortunately not</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-</mat-card>
-
-<mat-card *ngIf="secondGuest">
-  <div class="form-container">
-    <h1>Plus One <mat-checkbox [(ngModel)]="displayPlusOneCard"></mat-checkbox></h1>
-
-    <mat-checkbox [disabled]="!displayPlusOneCard" [(ngModel)]="plusOne.main_contact">Use same contact info as main guest</mat-checkbox>
-    <br>
-    <mat-form-field>
-      <input [disabled]="!displayPlusOneCard" matInput placeholder="Name" [(ngModel)]="plusOne.name">
-    </mat-form-field>
-
-    <mat-form-field>
-      <input [disabled]="!displayPlusOneCard || plusOne.main_contact" matInput type="email" placeholder="Contact Email" [(ngModel)]="plusOne.contact_email" email>
-    </mat-form-field>
-
-    <mat-form-field class="wide">
-      <mat-select [disabled]=!displayPlusOneCard placeholder="Will you be able to make it?" [(value)]="plusOne.attending">
-        <mat-option value="1">Definitely!</mat-option>
-        <mat-option value="2">Not sure</mat-option>
-        <mat-option value="3">Unfortunately not</mat-option>
-      </mat-select>
+      <input matInput placeholder="Last Name" [(ngModel)]="guest.lastname">
     </mat-form-field>
   </div>
 </mat-card>
 
 <div  style="text-align: center; margin-top: 15px;">
-  <button mat-raised-button color="accent" [disabled]="!formComplete()" (click)="submit()">Submit</button>
+  <button mat-raised-button color="accent" [disabled]="!formComplete()" (click)="submit()">Find My Invitation</button>
 </div>
+
+<modal id="custom-modal-1">
+  <div class="modal">
+    <div class="modal-body">
+      <h1>A Custom Modal!</h1>
+      <p>
+        Home page text: <input type="text" [(ngModel)]="bodyText" />
+      </p>
+      <button (click)="closeModal('custom-modal-1');">Close</button>
+    </div>
+  </div>
+  <div class="modal-background"></div>
+</modal>

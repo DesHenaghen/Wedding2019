@@ -6,14 +6,15 @@ import {
   animate,
   transition
 } from '@angular/animations';
-import {ApiManagerService} from "../api-manager.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material";
+import {ApiManagerService} from '../api-manager.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material';
+import {ModalService} from '../services';
 
 @Component({
   selector: 'app-save-the-date',
   templateUrl: './save-the-date.component.html',
-  styleUrls: ['./save-the-date.component.css'],
+  styleUrls: ['./save-the-date.component.css', '../directives/modal.less'],
   animations: [
     trigger('activeCard', [
       state('true', style({})),
@@ -34,6 +35,7 @@ export class SaveTheDateComponent implements OnInit {
   public displayPlusOneCard = true;
 
   constructor(
+    private modalService: ModalService,
     private apiManager: ApiManagerService,
     private router: Router,
     public snackBar: MatSnackBar,
@@ -51,9 +53,33 @@ export class SaveTheDateComponent implements OnInit {
   }
 
   public formComplete() {
-    return (this.guest.name && this.guest.contact_email && this.guest.attending)
-      && (!this.secondGuest || !this.displayPlusOneCard || (this.plusOne.name && (this.plusOne.contact_email || this.plusOne.main_contact) && this.plusOne.attending));
+    return (this.guest.firstname && this.guest.lastname);
   }
+
+  public findMyInvitation() {
+    const plusOne = (this.displayPlusOneCard) ? this.plusOne : {};
+    this.apiManager.sendSTD(this.guest, plusOne)
+      .subscribe(
+        res => {
+          this.router.navigate(['/']);
+        },
+        err => {
+          this.snackBar.open('Something went wrong. Reload the page and try again', 'Dismiss', {
+            duration: 5000,
+          });
+        }
+      );
+  }
+
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
+  }
+
 
   public submit() {
     const plusOne = (this.displayPlusOneCard) ? this.plusOne : {};

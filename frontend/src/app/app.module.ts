@@ -9,13 +9,14 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import { ContactComponent } from './contact/contact.component';
 import {GalleryComponent} from './gallery/gallery.component';
-import { ServicesComponent } from './services/services.component';
 import { SaveTheDateComponent } from './save-the-date/save-the-date.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularMaterialModule} from './angular-material/angular-material.module';
 import {AdminComponent, DialogOverviewExampleDialog} from './admin/admin.component';
 import {ApiManagerService} from './api-manager.service';
 import {NgsRevealModule} from 'ng-scrollreveal';
+import {ModalComponent} from './directives';
+import {ModalService} from './services';
 
 @NgModule({
   declarations: [
@@ -24,9 +25,9 @@ import {NgsRevealModule} from 'ng-scrollreveal';
     HomeComponent,
     ContactComponent,
     GalleryComponent,
-    ServicesComponent,
     SaveTheDateComponent,
     AdminComponent,
+    ModalComponent,
     DialogOverviewExampleDialog
   ],
   imports: [
@@ -39,7 +40,10 @@ import {NgsRevealModule} from 'ng-scrollreveal';
     HttpClientModule,
     NgsRevealModule.forRoot()
   ],
-  providers: [ApiManagerService],
+  providers: [
+    ApiManagerService,
+    ModalService
+  ],
   bootstrap: [AppComponent],
   entryComponents: [DialogOverviewExampleDialog]
 })
