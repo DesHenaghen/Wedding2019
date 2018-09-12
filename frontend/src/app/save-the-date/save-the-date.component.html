@@ -37,18 +37,11 @@
 </mat-card>
 
 <div  style="text-align: center; margin-top: 15px;">
-  <button mat-raised-button color="accent" [disabled]="!formComplete()" (click)="submit()">Find My Invitation</button>
+  <button mat-raised-button color="accent" [disabled]="!formComplete()" (click)="findMyInvitation()">Find My Invitation</button>
 </div>
 
-<modal id="custom-modal-1">
-  <div class="modal">
-    <div class="modal-body">
-      <h1>A Custom Modal!</h1>
-      <p>
-        Home page text: <input type="text" [(ngModel)]="bodyText" />
-      </p>
-      <button (click)="closeModal('custom-modal-1');">Close</button>
-    </div>
-  </div>
-  <div class="modal-background"></div>
-</modal>
+<jw-modal id='rsvp-form'>
+  <h1>A Custom Modal!</h1>
+  <p>Home page text: </p>
+  <button (click)="closeModal('rsvp-form');">Close</button>
+</jw-modal>

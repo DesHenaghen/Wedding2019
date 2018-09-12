@@ -14,7 +14,7 @@ import {ModalService} from '../services';
 @Component({
   selector: 'app-save-the-date',
   templateUrl: './save-the-date.component.html',
-  styleUrls: ['./save-the-date.component.css', '../directives/modal.less'],
+  styleUrls: ['./save-the-date.component.css', '../directives/modal.component.css'],
   animations: [
     trigger('activeCard', [
       state('true', style({})),
@@ -57,20 +57,9 @@ export class SaveTheDateComponent implements OnInit {
   }
 
   public findMyInvitation() {
-    const plusOne = (this.displayPlusOneCard) ? this.plusOne : {};
-    this.apiManager.sendSTD(this.guest, plusOne)
-      .subscribe(
-        res => {
-          this.router.navigate(['/']);
-        },
-        err => {
-          this.snackBar.open('Something went wrong. Reload the page and try again', 'Dismiss', {
-            duration: 5000,
-          });
-        }
-      );
+    // add logic for looking up person in db
+    this.openModal('rsvp-form');
   }
-
 
   openModal(id: string) {
     this.modalService.open(id);

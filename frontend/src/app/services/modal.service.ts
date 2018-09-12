@@ -3,6 +3,7 @@ export class ModalService {
 
   add(modal: any) {
     // add modal to array of active modals
+    console.log("adding modal to stack"+ modal);
     this.modals.push(modal);
   }
 
@@ -12,8 +13,10 @@ export class ModalService {
   }
 
   open(id: string) {
+    console.log('opening '+ id);
     // open modal specified by id
     let modal: any = this.modals.filter(x => x.id === id)[0];
+    console.log('found modal');
     modal.open();
   }
 
