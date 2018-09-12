@@ -11,13 +11,13 @@ console.log('——————————- Run on port '+ port);
 
 /****************************** Router ***************************/
 router.get('*', function(req, res){
-    res.sendFile('index.html', { root: __dirname + '/../wedding2018/dist/wedding2018/' });
+    res.sendFile('index.html', { root: __dirname + '/dist/wedding2018/' });
 });
 
 /****************************** /Router ***************************/
 
 //app.use(morgan('dev')); // log every request to the console
-app.use(express.static(__dirname + '/../wedding2018/dist/wedding2018')); // Static (public) folder
+app.use(express.static(__dirname + '/dist/wedding2018')); // Static (public) folder
 
 app.use(bodyParser.urlencoded({extended:true}));// get information from html forms
 app.use(bodyParser.json());
