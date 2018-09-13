@@ -27,11 +27,11 @@
   <div class="form-container">
     <h1>Your Details</h1>
     <mat-form-field>
-      <input matInput placeholder="First Name" [(ngModel)]="guest.firstname">
+      <input matInput placeholder="First Name" [(ngModel)]="firstname">
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Last Name" [(ngModel)]="guest.lastname">
+      <input matInput placeholder="Last Name" [(ngModel)]="lastname">
     </mat-form-field>
   </div>
 </mat-card>
@@ -61,50 +61,46 @@
       <span *ngIf="guest.attending && guest.attending !== 3">
       <mat-form-field>
         <mat-label>Phone Number</mat-label>
-        <input matInput [(ngModel)]="guest.phone_number">
+        <input placeholder="Please add country code" matInput [(ngModel)]="guest.phone_number">
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Contact Email</mat-label>
         <input matInput type="email"  [(ngModel)]="guest.contact_email" email>
       </mat-form-field>
-
       <br>
-      <mat-form-field class="wide">
-        <mat-select placeholder="Are you bringing a plus one?" [(ngModel)]="guest.plusOne">
-          <mat-option value=false>No</mat-option>
-          <mat-option value=true>Yes</mat-option>
+      <mat-form-field class="wide" *ngIf="guest.plusOneOffered">
+        <mat-select placeholder="Are you bringing a plus one?" [(ngModel)]="guest.plusOneNeeded">
+          <mat-option [value]="false" (onSelectionChange)="clearPlusOne()">No</mat-option>
+          <mat-option [value]="true">Yes</mat-option>
         </mat-select>
       </mat-form-field>
       </span>
     </div>
-
   </mat-card>
-
-  <mat-card *ngIf="guest.plusOne">
+<span *ngIf="guest.plusOneNeeded">
+  <mat-card>
     <div class="form-container">
-
       <mat-form-field>
-        <input matInput placeholder="First Name" [(ngModel)]="plusOne.firstname">
+        <input matInput placeholder="Partner's First Name" [(ngModel)]="plusOne.firstname">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Last Name" [(ngModel)]="plusOne.lastname">
+        <input matInput placeholder="Partner's Last Name" [(ngModel)]="plusOne.lastname">
       </mat-form-field>
-
-      <mat-checkbox [(ngModel)]="plusOne.main_contact">Use same contact info as main guest</mat-checkbox>
       <br>
-
+      <mat-checkbox [(ngModel)]="contactCheckbox" (change)="copyContactDetails()">Use my contact info </mat-checkbox>
+      <br>
       <mat-form-field>
         <mat-label>Phone Number</mat-label>
         <input matInput [(ngModel)]="plusOne.phone_number">
       </mat-form-field>
-
       <mat-form-field>
         <mat-label>Contact Email</mat-label>
         <input matInput type="email"  [(ngModel)]="plusOne.contact_email" email>
       </mat-form-field>
     </div>
   </mat-card>
+</span>
 
   <div  style="text-align: center; margin-top: 15px;">
     <button mat-raised-button color="accent" [disabled]="!rsvpComplete()" (click)="submit()">Send RSVP</button>

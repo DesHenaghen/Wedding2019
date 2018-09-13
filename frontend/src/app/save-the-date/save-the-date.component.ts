@@ -28,34 +28,24 @@ import {Guest, PlusOne} from '../models';
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class SaveTheDateComponent implements OnInit {
+export class SaveTheDateComponent {
 
   public activeCard = true;
-  public guest: Guest = new Guest();
-  public secondGuest = false;
+  public firstname: string;
+  public lastname: string;
+  public guest: Guest;
+  public contactCheckbox = false;
   public plusOne: PlusOne = new PlusOne();
-  public displayPlusOneCard = true;
 
   constructor(
     private modalService: ModalService,
     private apiManager: ApiManagerService,
     private router: Router,
-    public snackBar: MatSnackBar,
-    public activatedRoute: ActivatedRoute) {
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.secondGuest = (params['sg']);
-    });
-  }
-
-  ngOnInit() {
-  }
-
-  public toggleActiveCard() {
-    this.activeCard = !this.activeCard;
+    public snackBar: MatSnackBar) {
   }
 
   public formComplete() {
-    return (this.guest.firstname && this.guest.lastname);
+    return (this.firstname && this.lastname);
   }
 
   public rsvpComplete() {
@@ -64,11 +54,24 @@ export class SaveTheDateComponent implements OnInit {
   }
 
   public guestFormComplete() {
-    return ( this.guest.phone_number && this.guest.contact_email);
+    return (this.guest.phone_number && this.guest.contact_email );
   }
 
   public plusOneFormComplete() {
-    return (this.plusOne.phone_number && this.plusOne.contact_email);
+    return (!this.guest.plusOneOffered || this.guest.plusOneNeeded === false ||
+      (this.plusOne.firstname && this.plusOne.lastname && this.plusOne.phone_number && this.plusOne.contact_email));
+  }
+
+  public copyContactDetails() {
+    if(this.contactCheckbox) {
+      this.plusOne.phone_number = this.guest.phone_number;
+      this.plusOne.contact_email = this.guest.contact_email;
+    }
+  }
+
+  public clearPlusOne() {
+    this.plusOne = new PlusOne();
+    this.contactCheckbox = false;
   }
 
   public findMyInvitation() {
@@ -90,9 +93,8 @@ export class SaveTheDateComponent implements OnInit {
     this.modalService.close(id);
   }
 
-
   public submit() {
-    const plusOne = (this.displayPlusOneCard) ? this.plusOne : new PlusOne();
+    const plusOne = new PlusOne();
     this.apiManager.sendSTD(this.guest, plusOne)
       .subscribe(
         res => {
@@ -108,7 +110,7 @@ export class SaveTheDateComponent implements OnInit {
 
   private displayInvalidGuestSnackBar() {
     this.snackBar.open(
-      'Sorry, we don\'t have a guest with that name on our list. Please try again.\n' +
+      'Sorry, we can\'t find you. Please try again. The name is likely as on facebook.\n' +
       'If you still can\'t find yourself please get in touch with us!',
       'Dismiss', {
       duration: 5000,
