@@ -189,31 +189,26 @@ router.post('/sendSTD', (req, res) => {
     const guest = req.body.guest;
     const plusOne = req.body.plusOne;
 
-    // console.log(req.body);
-
-    let query = 'INSERT INTO guests(name, contact_email, attending, main_contact) VALUES($1, $2, $3, $4) RETURNING *';
-    let values = [guest.name, guest.contact_email, guest.attending, null];
-
-    // if (plusOne) {
-    //     query += ', ($5, $6, $7, $8)';
-    //     values.push(...[plusOne.name, plusOne.contact_email, plusOne.attending]);
-    // }
+    let query =
+        'UPDATE guests ' +
+        'SET contact_email=$1, contact_phone=$2, attending=$3 ' +
+        'WHERE id=$4';
+    let values = [guest.contact_email, guest.contact_phone, guest.attending, guest.id];
 
     client.query(query, values, (err, result) => {
         if (err) {
             console.log(err);
             res.send(err);
         } else {
-            // console.log("result 1");
-            // console.log(result);
             if (plusOne) {
-                client.query(query, [plusOne.name, plusOne.contact_email, plusOne.attending, (plusOne.main_contact)?result.rows[0].id:null], (err2, result2) => {
+                client.query(
+                    'INSERT INTO plus_ones(first_name, last_name, contact_email, contact_phone, main_guest_id, use_main_contact_info) ' +
+                    'VALUES ($1, $2, $3, $4, $5, $6)',
+                    [plusOne.firstname, plusOne.lastname, plusOne.contact_email, plusOne.contact_phone, plusOne.main_guest_id, plusOne.use_main_contact_info], (err2, result2) => {
                    if (err2) {
                        console.log(err2);
                        res.send(err2);
                    } else {
-                       // console.log("result 2");
-                       // console.log(result2);
                        res.send({message: 'Logged multiple save the date responses'});
                    }
                 });
@@ -227,22 +222,27 @@ router.post('/sendSTD', (req, res) => {
 router.post('/guestExists', (req, res) => {
     let guest = req.body.guest;
     client.query(
-        'SELECT 1 ' +
+        'SELECT id ' +
         'FROM guests ' +
-        'WHERE first_name=$1 AND last_name=$2',
-        [guest.firstname, guest.lastname], (err, result) => {
+        'WHERE lower(first_name)=$1 AND lower(last_name)=$2 ' +
+        'LIMIT 1',
+        [cleanString(guest.firstname), cleanString(guest.lastname)], (err, result) => {
         if (err) {
             console.error(err.stack);
             res.send("Failed");
         } else {
-            console.log(result.rows);
+            console.log(result.rows[0]);
             if (result.rows.length > 0) {
-                res.send(true);
+                res.send({id: result.rows[0].id});
             } else {
-                res.send(false);
+                res.send({id: 0});
             }
         }
     });
 });
+
+function cleanString(string) {
+    return string.trim().toLowerCase();
+}
 
 module.exports = router;

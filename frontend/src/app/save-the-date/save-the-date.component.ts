@@ -54,7 +54,7 @@ export class SaveTheDateComponent {
   }
 
   public guestFormComplete() {
-    return (this.guest.phone_number && this.guest.contact_email );
+    return ( this.guest.contact_phone && this.guest.contact_email);
   }
 
   public plusOneFormComplete() {
@@ -76,8 +76,11 @@ export class SaveTheDateComponent {
 
   public findMyInvitation() {
     // add logic for looking up person in db
-    this.apiManager.guestExists(this.guest).subscribe((exists: boolean) => {
-      if (exists) {
+    this.apiManager.guestExists(this.guest).subscribe((result: any) => {
+      if (result.id > 0) {
+        this.guest.id = result.id;
+        this.plusOne.main_guest_id = result.id;
+
         this.openModal('rsvp-form');
       } else {
         this.displayInvalidGuestSnackBar();
