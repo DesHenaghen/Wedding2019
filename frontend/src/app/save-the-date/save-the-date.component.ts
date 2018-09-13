@@ -76,6 +76,8 @@ export class SaveTheDateComponent implements OnInit {
     this.apiManager.guestExists(this.guest).subscribe((result: any) => {
       if (result.id > 0) {
         this.guest.id = result.id;
+        this.plusOne.main_guest_id = result.id;
+
         this.openModal('rsvp-form');
       } else {
         this.displayInvalidGuestSnackBar();

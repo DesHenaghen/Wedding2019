@@ -187,9 +187,7 @@ router.post('/emailGuest', (req, res) => {
 
 router.post('/sendSTD', (req, res) => {
     const guest = req.body.guest;
-    const plusOne = false;//req.body.plusOne;
-
-    // console.log(req.body);
+    const plusOne = req.body.plusOne;
 
     let query =
         'UPDATE guests ' +
@@ -197,26 +195,20 @@ router.post('/sendSTD', (req, res) => {
         'WHERE id=$4';
     let values = [guest.contact_email, guest.contact_phone, guest.attending, guest.id];
 
-    // if (plusOne) {
-    //     query += ', ($5, $6, $7, $8)';
-    //     values.push(...[plusOne.name, plusOne.contact_email, plusOne.attending]);
-    // }
-
     client.query(query, values, (err, result) => {
         if (err) {
             console.log(err);
             res.send(err);
         } else {
-            // console.log("result 1");
-            // console.log(result);
             if (plusOne) {
-                client.query(query, [plusOne.name, plusOne.contact_email, plusOne.attending, (plusOne.main_contact)?result.rows[0].id:null], (err2, result2) => {
+                client.query(
+                    'INSERT INTO plus_ones(first_name, last_name, contact_email, contact_phone, main_guest_id, use_main_contact_info) ' +
+                    'VALUES ($1, $2, $3, $4, $5, $6)',
+                    [plusOne.firstname, plusOne.lastname, plusOne.contact_email, plusOne.contact_phone, plusOne.main_guest_id, plusOne.use_main_contact_info], (err2, result2) => {
                    if (err2) {
                        console.log(err2);
                        res.send(err2);
                    } else {
-                       // console.log("result 2");
-                       // console.log(result2);
                        res.send({message: 'Logged multiple save the date responses'});
                    }
                 });
