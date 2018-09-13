@@ -33,7 +33,7 @@ export class SaveTheDateComponent {
   public activeCard = true;
   public firstname: string;
   public lastname: string;
-  public guest: Guest;
+  public guest: Guest = new Guest();
   public contactCheckbox = false;
   public plusOne: PlusOne = new PlusOne();
 
