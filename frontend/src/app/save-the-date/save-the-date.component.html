@@ -1,4 +1,4 @@
-<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url(../../assets/images/img_bg_1.jpg);">
+<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url(../../assets/images/saveTheDate.jpg);">
   <div class="overlay"></div>
   <div class="container">
     <div class="row">
@@ -41,7 +41,74 @@
 </div>
 
 <jw-modal id='rsvp-form'>
-  <h1>A Custom Modal!</h1>
-  <p>Home page text: </p>
+  <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
+    <h2>RSVP</h2>
+    <h3> Hey {{guest.firstname }} :) Can you make it on the <br> <i> 16th June 2019? </i></h3>
+  </div>
+
+  <mat-card>
+    <div class="form-container">
+      <h1>{{guest.firstname }} {{guest.lastname }} </h1>
+
+      <mat-form-field class="wide">
+        <mat-select placeholder="Will you be able to make it?" [(ngModel)]="guest.attending">
+          <mat-option [value]="1">Definitely!</mat-option>
+          <mat-option [value]="2">Not sure</mat-option>
+          <mat-option [value]="3">Unfortunately not</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <span *ngIf="guest.attending && guest.attending !== 3">
+      <mat-form-field>
+        <mat-label>Phone Number</mat-label>
+        <input matInput [(ngModel)]="guest.phone_number">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Contact Email</mat-label>
+        <input matInput type="email"  [(ngModel)]="guest.contact_email" email>
+      </mat-form-field>
+
+      <br>
+      <mat-form-field class="wide">
+        <mat-select placeholder="Are you bringing a plus one?" [(ngModel)]="guest.plusOne">
+          <mat-option value=false>No</mat-option>
+          <mat-option value=true>Yes</mat-option>
+        </mat-select>
+      </mat-form-field>
+      </span>
+    </div>
+
+  </mat-card>
+
+  <mat-card *ngIf="guest.plusOne">
+    <div class="form-container">
+
+      <mat-form-field>
+        <input matInput placeholder="First Name" [(ngModel)]="plusOne.firstname">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Last Name" [(ngModel)]="plusOne.lastname">
+      </mat-form-field>
+
+      <mat-checkbox [(ngModel)]="plusOne.main_contact">Use same contact info as main guest</mat-checkbox>
+      <br>
+
+      <mat-form-field>
+        <mat-label>Phone Number</mat-label>
+        <input matInput [(ngModel)]="plusOne.phone_number">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Contact Email</mat-label>
+        <input matInput type="email"  [(ngModel)]="plusOne.contact_email" email>
+      </mat-form-field>
+    </div>
+  </mat-card>
+
+  <div  style="text-align: center; margin-top: 15px;">
+    <button mat-raised-button color="accent" [disabled]="!rsvpComplete()" (click)="submit()">Send RSVP</button>
+  </div>
+
   <button (click)="closeModal('rsvp-form');">Close</button>
 </jw-modal>

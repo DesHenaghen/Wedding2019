@@ -11,6 +11,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 import {ModalService} from '../services';
 import {ViewEncapsulation} from '@angular/core';
+import {Guest} from '../models/guest';
 
 @Component({
   selector: 'app-save-the-date',
@@ -31,7 +32,7 @@ import {ViewEncapsulation} from '@angular/core';
 export class SaveTheDateComponent implements OnInit {
 
   public activeCard = true;
-  public guest: any = {};
+  public guest: Guest = new Guest();
   public secondGuest = false;
   public plusOne: any = {};
   public displayPlusOneCard = true;
@@ -56,6 +57,18 @@ export class SaveTheDateComponent implements OnInit {
 
   public formComplete() {
     return (this.guest.firstname && this.guest.lastname);
+  }
+
+  public rsvpComplete() {
+    return (this.guestFormComplete() && this.plusOneFormComplete());
+  }
+
+  public guestFormComplete() {
+    return (this.guest.phone_number && this.guest.contact_email);
+  }
+
+  public plusOneFormComplete() {
+    return (this.plusOne.phone_number && this.plusOne.contact_email);
   }
 
   public findMyInvitation() {
