@@ -59,11 +59,12 @@ export class SaveTheDateComponent implements OnInit {
   }
 
   public rsvpComplete() {
-    return (this.guestFormComplete() && this.plusOneFormComplete());
+    // Attending is an enum, where 3 evaluates to Not attending.
+    return (this.guest.attending === 3 || this.guestFormComplete() && this.plusOneFormComplete());
   }
 
   public guestFormComplete() {
-    return (this.guest.phone_number && this.guest.contact_email);
+    return ( this.guest.phone_number && this.guest.contact_email);
   }
 
   public plusOneFormComplete() {
