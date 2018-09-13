@@ -59,12 +59,12 @@ export class SaveTheDateComponent {
 
   public plusOneFormComplete() {
     return (!this.guest.plusOneOffered || this.guest.plusOneNeeded === false ||
-      (this.plusOne.firstname && this.plusOne.lastname && this.plusOne.phone_number && this.plusOne.contact_email));
+      (this.plusOne.firstname && this.plusOne.lastname && this.plusOne.contact_phone && this.plusOne.contact_email));
   }
 
   public copyContactDetails() {
-    if(this.contactCheckbox) {
-      this.plusOne.phone_number = this.guest.phone_number;
+    if (this.contactCheckbox) {
+      this.plusOne.contact_phone = this.guest.contact_phone;
       this.plusOne.contact_email = this.guest.contact_email;
     }
   }
