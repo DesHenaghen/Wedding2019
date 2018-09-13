@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Guest} from "../models/guest";
+import {PlusOne} from "../models/plusOne";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class ApiManagerService {
     return this.http.get('api/guests');
   }
 
-  public addGuest(guest) {
+  public addGuest(guest: Guest) {
     return this.http.post('api/addGuest', {guest});
   }
 
@@ -21,11 +23,11 @@ export class ApiManagerService {
     return this.http.post('api/removeGuest', {id});
   }
 
-  public updateGuest(guest) {
+  public updateGuest(guest: Guest) {
     return this.http.post('api/updateGuest', {guest});
   }
 
-  public emailGuest(email) {
+  public emailGuest(email: String) {
     return this.http.post('api/emailGuest', {email});
   }
 
@@ -33,7 +35,11 @@ export class ApiManagerService {
     return this.http.get('api/emailAll');
   }
 
-  public sendSTD(guest, plusOne) {
+  public sendSTD(guest: Guest, plusOne: PlusOne) {
     return this.http.post('api/sendSTD', {guest, plusOne});
+  }
+
+  public guestExists(guest: Guest) {
+    return this.http.post('api/guestExists', {guest});
   }
 }

@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {ApiManagerService} from '../api-manager.service';
+import {ApiManagerService} from '../services/api-manager.service';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
+import {Guest} from '../models';
 
 @Component({
   selector: 'app-admin',
@@ -10,7 +11,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/ma
 export class AdminComponent implements OnInit {
 
   public guests;
-  public newGuest = {};
+  public newGuest: Guest = new Guest();
 
   constructor(private apiManager: ApiManagerService,
               public snackBar: MatSnackBar,
@@ -49,7 +50,7 @@ export class AdminComponent implements OnInit {
         res => {
           console.log(res);
           this.guests.push(this.newGuest);
-          this.newGuest = {};
+          this.newGuest = new Guest();
 
           this.snackBar.open('Added guest successfully', 'Dismiss', {
             duration: 2000,

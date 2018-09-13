@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
   trigger,
   state,
@@ -6,12 +6,11 @@ import {
   animate,
   transition
 } from '@angular/animations';
-import {ApiManagerService} from '../api-manager.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
-import {ModalService} from '../services';
-import {ViewEncapsulation} from '@angular/core';
-import {Guest} from '../models/guest';
+
+import {ApiManagerService, ModalService} from '../services';
+import {Guest, PlusOne} from '../models';
 
 @Component({
   selector: 'app-save-the-date',
@@ -34,7 +33,7 @@ export class SaveTheDateComponent implements OnInit {
   public activeCard = true;
   public guest: Guest = new Guest();
   public secondGuest = false;
-  public plusOne: any = {};
+  public plusOne: PlusOne = new PlusOne();
   public displayPlusOneCard = true;
 
   constructor(
@@ -74,7 +73,13 @@ export class SaveTheDateComponent implements OnInit {
 
   public findMyInvitation() {
     // add logic for looking up person in db
-    this.openModal('rsvp-form');
+    this.apiManager.guestExists(this.guest).subscribe((exists: boolean) => {
+      if (exists) {
+        this.openModal('rsvp-form');
+      } else {
+        this.displayInvalidGuestSnackBar();
+      }
+    });
   }
 
   openModal(id: string) {
@@ -87,7 +92,7 @@ export class SaveTheDateComponent implements OnInit {
 
 
   public submit() {
-    const plusOne = (this.displayPlusOneCard) ? this.plusOne : {};
+    const plusOne = (this.displayPlusOneCard) ? this.plusOne : new PlusOne();
     this.apiManager.sendSTD(this.guest, plusOne)
       .subscribe(
         res => {
@@ -101,4 +106,12 @@ export class SaveTheDateComponent implements OnInit {
       );
   }
 
+  private displayInvalidGuestSnackBar() {
+    this.snackBar.open(
+      'Sorry, we don\'t have a guest with that name on our list. Please try again.\n' +
+      'If you still can\'t find yourself please get in touch with us!',
+      'Dismiss', {
+      duration: 5000,
+    });
+  }
 }
