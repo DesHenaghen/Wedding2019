@@ -224,4 +224,25 @@ router.post('/sendSTD', (req, res) => {
     });
 });
 
+router.post('/guestExists', (req, res) => {
+    let guest = req.body.guest;
+    client.query(
+        'SELECT 1 ' +
+        'FROM guests ' +
+        'WHERE first_name=$1 AND last_name=$2',
+        [guest.firstname, guest.lastname], (err, result) => {
+        if (err) {
+            console.error(err.stack);
+            res.send("Failed");
+        } else {
+            console.log(result.rows);
+            if (result.rows.length > 0) {
+                res.send(true);
+            } else {
+                res.send(false);
+            }
+        }
+    });
+});
+
 module.exports = router;
