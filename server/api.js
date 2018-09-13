@@ -229,8 +229,8 @@ router.post('/guestExists', (req, res) => {
     client.query(
         'SELECT 1 ' +
         'FROM guests ' +
-        'WHERE first_name=$1 AND last_name=$2',
-        [guest.firstname, guest.lastname], (err, result) => {
+        'WHERE lower(first_name)=$1 AND lower(last_name)=$2',
+        [cleanString(guest.firstname), cleanString(guest.lastname)], (err, result) => {
         if (err) {
             console.error(err.stack);
             res.send("Failed");
@@ -244,5 +244,9 @@ router.post('/guestExists', (req, res) => {
         }
     });
 });
+
+function cleanString(string) {
+    return string.trim().toLowerCase();
+}
 
 module.exports = router;
