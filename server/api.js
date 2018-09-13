@@ -187,12 +187,15 @@ router.post('/emailGuest', (req, res) => {
 
 router.post('/sendSTD', (req, res) => {
     const guest = req.body.guest;
-    const plusOne = req.body.plusOne;
+    const plusOne = false;//req.body.plusOne;
 
     // console.log(req.body);
 
-    let query = 'INSERT INTO guests(name, contact_email, attending, main_contact) VALUES($1, $2, $3, $4) RETURNING *';
-    let values = [guest.name, guest.contact_email, guest.attending, null];
+    let query =
+        'UPDATE guests ' +
+        'SET contact_email=$1, contact_phone=$2, attending=$3 ' +
+        'WHERE id=$4';
+    let values = [guest.contact_email, guest.contact_phone, guest.attending, guest.id];
 
     // if (plusOne) {
     //     query += ', ($5, $6, $7, $8)';
@@ -227,19 +230,20 @@ router.post('/sendSTD', (req, res) => {
 router.post('/guestExists', (req, res) => {
     let guest = req.body.guest;
     client.query(
-        'SELECT 1 ' +
+        'SELECT id ' +
         'FROM guests ' +
-        'WHERE lower(first_name)=$1 AND lower(last_name)=$2',
+        'WHERE lower(first_name)=$1 AND lower(last_name)=$2 ' +
+        'LIMIT 1',
         [cleanString(guest.firstname), cleanString(guest.lastname)], (err, result) => {
         if (err) {
             console.error(err.stack);
             res.send("Failed");
         } else {
-            console.log(result.rows);
+            console.log(result.rows[0]);
             if (result.rows.length > 0) {
-                res.send(true);
+                res.send({id: result.rows[0].id});
             } else {
-                res.send(false);
+                res.send({id: 0});
             }
         }
     });

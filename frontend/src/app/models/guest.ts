@@ -4,10 +4,11 @@ enum Attending {
   No
 }
 export class Guest {
+  id: number;
   firstname: string;
   lastname: string;
   attending: Attending;
-  phone_number: string;
+  contact_phone: string;
   contact_email: string;
   plusOneOffered: boolean;
   plusOneNeeded: boolean;
