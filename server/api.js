@@ -6,11 +6,11 @@ const fs = require('fs');
 const mustache = require('mustache');
 
 const client = new Client({
-    user: 'postgres',
-    host: 'localhost',
+    host: 'weddingdb.cszk7qzakguv.eu-west-2.rds.amazonaws.com',
     database: 'wedding',
-    password: 'postgres',
     port: 5432,
+    user: 'db_user',
+    password: 'yH39R6dRy',
 });
 
 let poolConfig = {
@@ -228,7 +228,7 @@ router.post('/guestExists', (req, res) => {
     let guest = req.body.guest;
     console.log(guest);
     client.query(
-        'SELECT id, plus_one_offered ' +
+        'SELECT id, plus_one_offered, first_name, last_name ' +
         'FROM guests ' +
         'WHERE lower(first_name)=$1 AND lower(last_name)=$2 ' +
         'LIMIT 1',
@@ -237,6 +237,7 @@ router.post('/guestExists', (req, res) => {
             console.error(err.stack);
             res.send("Failed");
         } else {
+            console.log(result);
             console.log(result.rows[0]);
             if (result.rows.length > 0) {
                 res.send(result.rows[0]);

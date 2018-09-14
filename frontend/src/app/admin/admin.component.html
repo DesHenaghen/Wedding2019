@@ -7,7 +7,7 @@
   <mat-card>
     <div class="example-container">
       <mat-form-field>
-        <input matInput placeholder="Name" [(ngModel)]="guest.name">
+        <input matInput placeholder="Name" [(ngModel)]="guest.firstname">
       </mat-form-field>
 
       <mat-form-field>
@@ -30,14 +30,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field>
-        <mat-select placeholder="Main Contact" [(value)]="guest.main_contact">
-          <mat-option>None</mat-option>
-          <mat-option *ngFor="let guest of guests" [value]="guest.id">{{guest.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-checkbox [(ngModel)]="guest.can_attend">Can Attend?</mat-checkbox>
+      <mat-checkbox [(ngModel)]="guest.attending">Can Attend?</mat-checkbox>
 
       <button (click)="confirmAction(removeGuest, [guest.id])" mat-fab>Delete</button>
 
@@ -52,7 +45,7 @@
   <mat-card-title>New Guest</mat-card-title>
   <div class="example-container">
     <mat-form-field>
-      <input matInput placeholder="Name" [(ngModel)]="newGuest.name">
+      <input matInput placeholder="Name" [(ngModel)]="newGuest.firstname">
     </mat-form-field>
 
     <mat-form-field>
@@ -75,14 +68,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-select placeholder="Main Contact" [(value)]="newGuest.main_contact">
-        <mat-option>None</mat-option>
-        <mat-option *ngFor="let guest of guests" [value]="guest.id">{{guest.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-checkbox [(ngModel)]="newGuest.can_attend">Can Attend?</mat-checkbox>
+    <mat-checkbox [(ngModel)]="newGuest.attending">Can Attend?</mat-checkbox>
     <button (click)="addGuest()" mat-fab>Add</button>
   </div>
 </mat-card>

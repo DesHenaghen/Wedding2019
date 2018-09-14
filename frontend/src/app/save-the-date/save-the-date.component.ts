@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import {
   trigger,
   state,
@@ -6,7 +6,7 @@ import {
   animate,
   transition
 } from '@angular/animations';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 
 import {ApiManagerService, ModalService} from '../services';
@@ -31,8 +31,6 @@ import {Guest, PlusOne} from '../models';
 export class SaveTheDateComponent {
 
   public activeCard = true;
-  public firstname: string;
-  public lastname: string;
   public guest: Guest = new Guest();
   public contactCheckbox = false;
   public plusOne: PlusOne = new PlusOne();
@@ -45,7 +43,7 @@ export class SaveTheDateComponent {
   }
 
   public formComplete() {
-    return (this.firstname && this.lastname);
+    return (this.guest.firstname && this.guest.lastname);
   }
 
   public rsvpComplete() {
@@ -76,10 +74,9 @@ export class SaveTheDateComponent {
 
   public findMyInvitation() {
     // add logic for looking up person in db
-    this.apiManager.guestExists({firstname: this.firstname, lastname: this.lastname}).subscribe((result: any) => {
+    this.apiManager.guestExists(this.guest).subscribe((result: any) => {
       if (result.id > 0) {
-        this.guest.id = result.id;
-        this.guest.plusOneOffered = result.plus_one_offered;
+        this.updateGuestValues(result);
         this.plusOne.main_guest_id = result.id;
 
         this.openModal('rsvp-form');
@@ -87,6 +84,13 @@ export class SaveTheDateComponent {
         this.displayInvalidGuestSnackBar();
       }
     });
+  }
+
+  private updateGuestValues(result: any) {
+    this.guest.id = result.id;
+    this.guest.plusOneOffered = result.plus_one_offered;
+    this.guest.firstname = result.first_name;
+    this.guest.lastname = result.last_name;
   }
 
   openModal(id: string) {
@@ -100,10 +104,10 @@ export class SaveTheDateComponent {
   public submit() {
     this.apiManager.sendSTD(this.guest, this.plusOne)
       .subscribe(
-        res => {
+        () => {
           this.router.navigate(['/']);
         },
-        err => {
+        () => {
           this.snackBar.open('Something went wrong. Reload the page and try again', 'Dismiss', {
             duration: 5000,
           });
