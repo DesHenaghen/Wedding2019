@@ -76,9 +76,10 @@ export class SaveTheDateComponent {
 
   public findMyInvitation() {
     // add logic for looking up person in db
-    this.apiManager.guestExists(this.guest).subscribe((result: any) => {
+    this.apiManager.guestExists({firstname: this.firstname, lastname: this.lastname}).subscribe((result: any) => {
       if (result.id > 0) {
         this.guest.id = result.id;
+        this.guest.plusOneOffered = result.plus_one_offered;
         this.plusOne.main_guest_id = result.id;
 
         this.openModal('rsvp-form');
@@ -97,8 +98,7 @@ export class SaveTheDateComponent {
   }
 
   public submit() {
-    const plusOne = new PlusOne();
-    this.apiManager.sendSTD(this.guest, plusOne)
+    this.apiManager.sendSTD(this.guest, this.plusOne)
       .subscribe(
         res => {
           this.router.navigate(['/']);

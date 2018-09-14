@@ -189,11 +189,14 @@ router.post('/sendSTD', (req, res) => {
     const guest = req.body.guest;
     const plusOne = req.body.plusOne;
 
+    console.log("PLUSONE");
+    console.log(plusOne);
+
     let query =
         'UPDATE guests ' +
-        'SET contact_email=$1, contact_phone=$2, attending=$3 ' +
-        'WHERE id=$4';
-    let values = [guest.contact_email, guest.contact_phone, guest.attending, guest.id];
+        'SET contact_email=$1, contact_phone=$2, attending=$3, plus_one_needed=$4 ' +
+        'WHERE id=$5';
+    let values = [guest.contact_email, guest.contact_phone, guest.attending, guest.plusOneNeeded, guest.id];
 
     client.query(query, values, (err, result) => {
         if (err) {
@@ -203,7 +206,9 @@ router.post('/sendSTD', (req, res) => {
             if (plusOne) {
                 client.query(
                     'INSERT INTO plus_ones(first_name, last_name, contact_email, contact_phone, main_guest_id, use_main_contact_info) ' +
-                    'VALUES ($1, $2, $3, $4, $5, $6)',
+                    'VALUES ($1, $2, $3, $4, $5, $6) ' +
+                    'ON CONFLICT (main_guest_id) DO UPDATE ' +
+                    'SET first_name=$1, last_name=$2, contact_email=$3, contact_phone=$4, use_main_contact_info=$6',
                     [plusOne.firstname, plusOne.lastname, plusOne.contact_email, plusOne.contact_phone, plusOne.main_guest_id, plusOne.use_main_contact_info], (err2, result2) => {
                    if (err2) {
                        console.log(err2);
@@ -221,8 +226,9 @@ router.post('/sendSTD', (req, res) => {
 
 router.post('/guestExists', (req, res) => {
     let guest = req.body.guest;
+    console.log(guest);
     client.query(
-        'SELECT id ' +
+        'SELECT id, plus_one_offered ' +
         'FROM guests ' +
         'WHERE lower(first_name)=$1 AND lower(last_name)=$2 ' +
         'LIMIT 1',
@@ -233,7 +239,7 @@ router.post('/guestExists', (req, res) => {
         } else {
             console.log(result.rows[0]);
             if (result.rows.length > 0) {
-                res.send({id: result.rows[0].id});
+                res.send(result.rows[0]);
             } else {
                 res.send({id: 0});
             }
