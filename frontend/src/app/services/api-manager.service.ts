@@ -39,7 +39,7 @@ export class ApiManagerService {
     return this.http.post('api/sendSTD', {guest, plusOne});
   }
 
-  public guestExists(guest: Guest) {
-    return this.http.post('api/guestExists', {guest});
+  public guestExists(name: any) {
+    return this.http.post('api/guestExists', {guest: name});
   }
 }
