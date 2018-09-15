@@ -224,8 +224,6 @@
 		testimonialCarousel();
 		goToTop();
 		loaderPage();
-		counter();
-		counterWayPoint();
 	});
 
 
