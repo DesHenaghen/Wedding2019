@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
@@ -24,7 +24,7 @@ import {Guest, PlusOne} from '../models';
 export class SaveTheDateComponent {
 
   public activeCard = true;
-  public firstname = 'test';
+  public firstname: string;
   public lastname: string;
   public guest: Guest = new Guest();
   public contactCheckbox = false;
