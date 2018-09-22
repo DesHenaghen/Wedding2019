@@ -12,4 +12,6 @@ export class Guest {
   contact_email: string;
   plusOneOffered: boolean;
   plusOneNeeded: boolean;
+  meal_choice: number;
+  extra_info: string;
 }

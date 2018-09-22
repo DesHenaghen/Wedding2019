@@ -68,18 +68,24 @@ export class SaveTheDateComponent {
   }
 
   public findMyInvitation() {
-    this.openModal('rsvp-form');
     // add logic for looking up person in db
-    this.apiManager.guestExists({firstname: this.firstname, lastname: this.lastname}).subscribe((result: any) => {
+    this.apiManager.guestExists(this.guest).subscribe((result: any) => {
       if (result.id > 0) {
-        this.guest.id = result.id;
-        this.guest.plusOneOffered = result.plus_one_offered;
+        this.updateGuestValues(result);
         this.plusOne.main_guest_id = result.id;
 
+        this.openModal('rsvp-form');
       } else {
         this.displayInvalidGuestSnackBar();
       }
     });
+  }
+
+  private updateGuestValues(result: any) {
+    this.guest.id = result.id;
+    this.guest.plusOneOffered = result.plus_one_offered;
+    this.guest.firstname = result.first_name;
+    this.guest.lastname = result.last_name;
   }
 
   openModal(id: string) {
@@ -93,10 +99,10 @@ export class SaveTheDateComponent {
   public submit() {
     this.apiManager.sendSTD(this.guest, this.plusOne)
       .subscribe(
-        res => {
+        () => {
           this.router.navigate(['/']);
         },
-        err => {
+        () => {
           this.snackBar.open('Something went wrong. Reload the page and try again', 'Dismiss', {
             duration: 5000,
           });
