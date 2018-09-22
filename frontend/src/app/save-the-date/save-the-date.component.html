@@ -1,46 +1,37 @@
-<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner"
-        style="background-image:url(../../assets/images/saveTheDate.jpg);">
+
+<div id="fh5co-started" class="fh5co-bg" style="background-image:url(../../assets/images/saveTheDate.jpg);">
   <div class="overlay"></div>
   <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2 text-center">
-        <div class="display-t">
-          <div class="display-tc animate-box" data-animate-effect="fadeIn">
-            <h1>Save the Date</h1>
-            <h2>Let us know if you can join us for our special day!</h2>
+    <div class="row animate-box">
+      <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+        <h2>Save the Date</h2>
+        <p>Let us know if you can join us for our special day!</p>
+      </div>
+    </div>
+    <div class="row animate-box">
+      <div class="col-md-11 col-md-offset-1">
+        <div class="form-inline">
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <label for="name" class="sr-only">First Name</label>
+              <input type="text" class="form-control" id="name" placeholder="First Name" [(ngModel)]="firstname">
+            </div>
           </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+              <label for="lastname" class="sr-only">Last Name</label>
+              <input type="text" class="form-control" id="lastname" placeholder="Last Name" [(ngModel)]="lastname">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <button class="btn btn-default btn-block" [disabled]="!formComplete()" (click)="findMyInvitation()">Find My
+            Invitation
+          </button>
         </div>
       </div>
     </div>
   </div>
-</header>
-
-<div style="text-align: center; margin: 30px 0;">
-  <div>
-    We would be honoured if you could join us for our wonderful day.
-  </div>
-  <div>
-    Let us know if you can make it so we can plan th best wedding whaaetaayay...
-  </div>
-</div>
-
-<mat-card>
-  <div class="form-container">
-    <h1>Your Details</h1>
-    <mat-form-field>
-      <input matInput placeholder="First Name" [(ngModel)]="guest.firstname">
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="Last Name" [(ngModel)]="guest.lastname">
-    </mat-form-field>
-  </div>
-</mat-card>
-
-<div style="text-align: center; margin-top: 15px;">
-  <button mat-raised-button color="accent" [disabled]="!formComplete()" (click)="findMyInvitation()">Find My
-    Invitation
-  </button>
 </div>
 
 <jw-modal id='rsvp-form'>

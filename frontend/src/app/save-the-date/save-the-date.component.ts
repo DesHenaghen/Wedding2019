@@ -1,14 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from '@angular/animations';
-import {Router} from '@angular/router';
-import {MatSnackBar} from '@angular/material';
-
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 import {ApiManagerService, ModalService} from '../services';
 import {Guest, PlusOne} from '../models';
 
@@ -31,6 +24,8 @@ import {Guest, PlusOne} from '../models';
 export class SaveTheDateComponent {
 
   public activeCard = true;
+  public firstname: string;
+  public lastname: string;
   public guest: Guest = new Guest();
   public contactCheckbox = false;
   public plusOne: PlusOne = new PlusOne();
@@ -43,7 +38,7 @@ export class SaveTheDateComponent {
   }
 
   public formComplete() {
-    return (this.guest.firstname && this.guest.lastname);
+    return (this.firstname && this.lastname);
   }
 
   public rsvpComplete() {

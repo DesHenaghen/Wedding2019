@@ -8,7 +8,6 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import { ContactComponent } from './contact/contact.component';
-import {GalleryComponent} from './gallery/gallery.component';
 import { SaveTheDateComponent } from './save-the-date/save-the-date.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularMaterialModule} from './angular-material/angular-material.module';
@@ -17,18 +16,25 @@ import {ApiManagerService} from './services/api-manager.service';
 import {NgsRevealModule} from 'ng-scrollreveal';
 import {ModalComponent} from './directives';
 import {ModalService} from './services';
+import {OurStoryComponent} from './our-story/our-story.component';
+import {EventsComponent} from './events/events.component';
+import {AccommodationComponent} from './accomodation/accommodation.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
     HomeComponent,
+    EventsComponent,
     ContactComponent,
-    GalleryComponent,
+    OurStoryComponent,
+    AccommodationComponent,
     SaveTheDateComponent,
     AdminComponent,
     ModalComponent,
-    DialogOverviewExampleDialog
+    DialogOverviewExampleDialog,
+
   ],
   imports: [
     BrowserModule,
