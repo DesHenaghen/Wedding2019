@@ -15,7 +15,8 @@ export class AppComponent {
     config.easing = 'cubic-bezier(0.645, 0.045, 0.355, 1)';
   }
 
-  scrollToBlock(id: String): void {
+  scrollToBlock(id: String, mobile: boolean=false): void {
+    if (mobile) document.getElementById("nav-toggle").click();
     const element = document.querySelector('#' + id);
     if (element) { element.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   }
