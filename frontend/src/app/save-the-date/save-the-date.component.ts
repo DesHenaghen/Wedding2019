@@ -68,6 +68,7 @@ export class SaveTheDateComponent {
   }
 
   public findMyInvitation() {
+    this.openModal('rsvp-form');
     // add logic for looking up person in db
     this.apiManager.guestExists({firstname: this.firstname, lastname: this.lastname}).subscribe((result: any) => {
       if (result.id > 0) {
@@ -75,7 +76,6 @@ export class SaveTheDateComponent {
         this.guest.plusOneOffered = result.plus_one_offered;
         this.plusOne.main_guest_id = result.id;
 
-        this.openModal('rsvp-form');
       } else {
         this.displayInvalidGuestSnackBar();
       }

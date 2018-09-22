@@ -4,14 +4,14 @@ import {
   MatCardModule,
   MatCheckboxModule, MatDialogModule,
   MatFormFieldModule, MatInputModule,
-  MatSelectModule, MatSnackBarModule
+  MatSelectModule, MatSnackBarModule, MatExpansionModule
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [MatInputModule, MatButtonModule, MatCheckboxModule, MatCardModule, MatFormFieldModule, MatSelectModule,
-    MatSnackBarModule, MatDialogModule, FormsModule],
+    MatSnackBarModule, MatDialogModule, FormsModule, MatExpansionModule],
   exports: [MatInputModule, MatButtonModule, MatCheckboxModule, MatCardModule, MatFormFieldModule, MatSelectModule,
-    MatSnackBarModule, MatDialogModule, FormsModule],
+    MatSnackBarModule, MatDialogModule, FormsModule, MatExpansionModule],
 })
 export class AngularMaterialModule { }
