@@ -12,11 +12,11 @@ const routes: Routes = [
   {
     path: 'savethedate',
     component: SaveTheDateComponent
-  },
-  {
-    path: 'admin',
-    component: AdminComponent
   }
+  // {
+  //   path: 'admin',
+  //   component: AdminComponent
+  // }
 ];
 
 @NgModule({
