@@ -1,5 +1,16 @@
 <div id="page">
-  <nav class="fh5co-nav" role="navigation">
+  <a href="#" id="nav-toggle" class="js-fh5co-nav-toggle fh5co-nav-toggle fh5co-nav-white"><i></i></a>
+  <div id="fh5co-offcanvas">
+    <ul>
+      <li class="active"><a (click)="scrollToBlock('page', true)">Home</a></li>
+      <li><a (click)="scrollToBlock('fh5co-event', true)">Dates</a></li>
+      <li><a (click)="scrollToBlock('fh5co-couple-story', true)">Story</a></li>
+      <li><a (click)="scrollToBlock('accommodation', true)">Accommodation</a></li>
+      <li><a (click)="scrollToBlock('fh5co-started', true)">Save The Date</a></li>
+      <li><a (click)="scrollToBlock('contact', true)">Contact</a></li>
+    </ul>
+  </div>
+  <nav class="fh5co-nav sticky" role="navigation">
     <div class="container">
       <div class="row">
         <div class="col-xs-2">
@@ -10,8 +21,9 @@
             <li class="active"><a (click)="scrollToBlock('page')">Home</a></li>
             <li><a (click)="scrollToBlock('fh5co-event')">Dates</a></li>
             <li><a (click)="scrollToBlock('fh5co-couple-story')">Story</a></li>
-            <li><a (click)="scrollToBlock('fh5co-gallery')">Gallery</a></li>
-            <li><a (click)="scrollToBlock('fh5co-testimonial')">Wishes</a></li>
+            <li><a (click)="scrollToBlock('accommodation')">Accommodation</a></li>
+            <li><a (click)="scrollToBlock('fh5co-started')">Save The Date</a></li>
+            <li><a (click)="scrollToBlock('contact')">Contact</a></li>
           </ul>
         </div>
       </div>
@@ -19,25 +31,12 @@
     </div>
   </nav>
   <router-outlet></router-outlet>
+  <app-events></app-events>
   <app-our-story></app-our-story>
   <app-accomodation></app-accomodation>
-  <app-events></app-events>
   <app-save-the-date></app-save-the-date>
   <app-contact></app-contact>F
 </div>
 <div class="gototop js-top">
   <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 </div>
-
-<footer id="fh5co-footer" role="contentinfo">
-  <div class="container">
-      <div class="col-md-12 text-center">
-        <ul class="fh5co-social-icons">
-            <li><a href="#"><i class="icon-twitter"></i></a></li>
-            <li><a href="#"><i class="icon-facebook"></i></a></li>
-            <li><a href="#"><i class="icon-linkedin"></i></a></li>
-            <li><a href="#"><i class="icon-dribbble"></i></a></li>
-        </ul>
-    </div>
-  </div>
-</footer>

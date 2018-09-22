@@ -2,3 +2,8 @@ a,
 a label {
   cursor: pointer;
 }
+
+#nav-toggle {
+  position: fixed;
+}
+
