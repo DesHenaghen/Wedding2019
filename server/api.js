@@ -6,11 +6,11 @@ const fs = require('fs');
 const mustache = require('mustache');
 
 const client = new Client({
-    host: 'weddingdb.cszk7qzakguv.eu-west-2.rds.amazonaws.com',
+    host: 'localhost',
     database: 'wedding',
     port: 5432,
-    user: 'db_user',
-    password: 'yH39R6dRy',
+    user: 'postgres',
+    password: 'postgres',
 });
 
 let poolConfig = {
