@@ -26,6 +26,7 @@
               <ul>
                 <li class="address"> <p class="text"> Western House Hotel, Craigie Road, Ayr, Scotland KA8 0HA </p> </li>
                 <li class="speech"> <p class="text"> Accommodation rate for wedding guests (on the night of the wedding only) is discounted. Call and mention our names when booking. </p> </li>
+                <li class="icon-price-tag"> <a style="cursor: pointer; font-size: 14px; font-family: Roboto, 'Helvetica Neue', sans-serif;" (click)="openModal('hotel-prices')"> Click to view wedding rates </a> </li>
                 <li class="phone"><a href="tel://1234567920"> +44 1292 294990</a></li>
                 <li class="email"><a href="https://www.westernhousehotel.co.uk/about-us/contact-us/">Click to email via website</a></li>
                 <li class="url"><a href="https://www.westernhousehotel.co.uk/">https://www.westernhousehotel.co.uk/</a></li>
@@ -61,3 +62,42 @@
     </div>
   </div>
 </div>
+
+<jw-modal id='hotel-prices'>
+  <div class="text-center fh5co-heading animate-box">
+    <h2>Hotel Accommodation Rates</h2>
+    <h3>Exclusive Western House Hotel Wedding Rates</h3>
+  </div>
+
+  <table mat-table [dataSource]="roomRates" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="room">
+      <th mat-header-cell *matHeaderCellDef> Room </th>
+      <td mat-cell *matCellDef="let element"> {{element.room}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="standardPrice">
+      <th mat-header-cell *matHeaderCellDef> Room Only* </th>
+      <td mat-cell *matCellDef="let element"> {{element.standardPrice}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="breakfastPrice">
+      <th mat-header-cell *matHeaderCellDef> Room & Full Scottish Breakfast </th>
+      <td mat-cell *matCellDef="let element"> {{element.breakfastPrice}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+  </table>
+<br>
+  <div>
+    <p>
+      These may not be the best prices for the rooms, however, with prices expected to fall the closer to the wedding date we get.
+      <br>
+      <br>
+      Check the Western House Hotel website for their public rates before booking with these special rates.
+    </p>
+  </div>
+
+  <button (click)="closeModal('hotel-prices');">Close</button>
+</jw-modal>
