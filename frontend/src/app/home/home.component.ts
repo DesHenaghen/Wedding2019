@@ -23,4 +23,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
+
+  scrollToBlock(id: String, mobile: boolean= false): void {
+    if (mobile) { document.getElementById('nav-toggle').click(); }
+    const element = document.querySelector('#' + id);
+    if (element) { element.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  }
+
 }
