@@ -10,3 +10,15 @@
   line-height: 1.7;
   color: #828282;
 }
+
+#hotel-prices div {
+  margin-bottom: 0;
+}
+
+#hotel-prices table {
+  width: 100%;
+}
+
+.icon-price-tag {
+  font-size: 25px;
+}
