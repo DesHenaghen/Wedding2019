@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var simplyCountdown: any;
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+    const d = new Date('2019-06-16T12:00:00-00:00');
+
+    console.log(d);
+
+    simplyCountdown('.simply-countdown-one', {
+      year: d.getFullYear(),
+      month: d.getMonth() + 1,
+      day: d.getDate(),
+      hours: d.getHours()
+    });
   }
 
 }
