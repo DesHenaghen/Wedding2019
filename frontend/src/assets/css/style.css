@@ -91,8 +91,9 @@ h1, h2, h3, h4, h5, h6, figure {
   margin: 0;
   padding: 0;
   width: 100%;
-  padding: 40px 0;
+  padding: 20px 0;
   z-index: 1001;
+  background-color: rgba(50, 50, 50, 0.3);
 }
 @media screen and (max-width: 768px) {
   .fh5co-nav {
@@ -363,7 +364,7 @@ h1, h2, h3, h4, h5, h6, figure {
 #fh5co-counter .display-tc,
 #fh5co-event .display-t,
 #fh5co-event .display-tc {
-  height: 700px;
+  height: 500px;
   display: table;
   width: 100%;
 }
@@ -1426,8 +1427,14 @@ form label {
   border: 2px solid #b828cc;
 }
 
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 #fh5co-offcanvas {
-  position: absolute;
+  position: fixed;
   z-index: 1901;
   width: 270px;
   background: black;

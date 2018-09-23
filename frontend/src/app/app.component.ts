@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {NgsRevealConfig} from 'ng-scrollreveal';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,10 +9,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'app';
 
-  constructor(config: NgsRevealConfig, private router: Router) {
-    // customize default values of ng-scrollreveal directives used by this component tree
-    config.duration = 500;
-    config.easing = 'cubic-bezier(0.645, 0.045, 0.355, 1)';
+  constructor(private router: Router) {
   }
 
   scrollToBlock(id: String, mobile: boolean= false): void {
