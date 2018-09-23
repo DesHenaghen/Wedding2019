@@ -1,0 +1,47 @@
+<div id="travel" class="fh5co-section">
+  <div class="container">
+    <div class="row" ngsReveal>
+      <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
+        <h2>Travel and Transportation </h2>
+        <p>If you are looking for a place to stay on the night of the wedding, we would recommend either Western House Hotel - which is the wedding venue hotel itself or Premier Inn - it is conveniently a short taxi down the road.</p>
+        <p>The venue is in Ayr - a small seaside town. It is 45 min travel from Glasgow - Scotland's largest city. If you plan to stay longer, it might be best to stay more centrally other nights. We are here if you have questions :)  </p>
+
+      </div>
+    </div>
+    <div class="row">
+      <mat-tab-group>
+        <mat-tab label="Map">
+          <ng-template matTabContent>
+            <agm-map [latitude]="latCentre" [longitude]="lngCentre" [zoom]=8.7>
+              <agm-marker [iconUrl]="homeIcon" [latitude]="latHome" [longitude]="lngHome" [label]="'Our Home'"></agm-marker>
+              <agm-marker [iconUrl]="airportIcon" [latitude]="latPrestwickAirport" [longitude]="lngPrestwickAirport" [label]="'Prestwick Airport'"></agm-marker>
+              <agm-marker [iconUrl]="airportIcon" [latitude]="latGlasgowAirport" [longitude]="lngGlasgowAirport" [label]="'Glasgow Airport'"></agm-marker>
+              <agm-marker [iconUrl]="airportIcon" [latitude]="latEdinburghAirport" [longitude]="lngEdinburghAirport" [label]="'Edinburgh Airport'"></agm-marker>
+              <agm-marker [iconUrl]="venueIcon" [latitude]="latVenue" [longitude]="lngVenue" [label]="'Wedding Venue'"></agm-marker>
+            </agm-map>
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Travelling from Malta">
+          <ng-template matTabContent>
+            The Second Content
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Travelling from Munich">
+          <ng-template matTabContent>
+            The Second Content
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Travelling from Glasgow">
+          <ng-template matTabContent>
+            If you lot don't manage to find Ayr, you owe us shots on the day :p Travel advice over.
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Travelling from Other Locations">
+          <ng-template matTabContent>
+            If you need any help planning how to get here, feel free to msg us and we can give suggestions and research :)
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
