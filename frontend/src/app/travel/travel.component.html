@@ -1,0 +1,57 @@
+<div id="travel" class="fh5co-section">
+  <div class="container">
+    <div class="row" ngsReveal>
+      <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
+        <h2>Travel and Transportation </h2>
+        <p>Below is some information to help some of you with the logistics of travelling to Scotland and where things are in relation to our venue. We will also create Facebook groups to help discussion and planning.</p>
+      </div>
+    </div>
+    <div class="row">
+      <mat-tab-group>
+        <mat-tab label="Map">
+          <ng-template matTabContent>
+            <agm-map [latitude]="latCentre" [longitude]="lngCentre" [zoom]=8.7>
+              <agm-marker [iconUrl]="homeIcon" [latitude]="latHome" [longitude]="lngHome" [label]="'Our Home'"></agm-marker>
+              <agm-marker [iconUrl]="airportIcon" [latitude]="latPrestwickAirport" [longitude]="lngPrestwickAirport" [label]="'Prestwick Airport'"></agm-marker>
+              <agm-marker [iconUrl]="airportIcon" [latitude]="latGlasgowAirport" [longitude]="lngGlasgowAirport" [label]="'Glasgow Airport'"></agm-marker>
+              <agm-marker [iconUrl]="airportIcon" [latitude]="latEdinburghAirport" [longitude]="lngEdinburghAirport" [label]="'Edinburgh Airport'"></agm-marker>
+              <agm-marker [iconUrl]="venueIcon" [latitude]="latVenue" [longitude]="lngVenue" [label]="'Wedding Venue'"></agm-marker>
+            </agm-map>
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Travelling from Malta">
+          <ng-template matTabContent>
+            <ul class="text">
+              <li> <a href="https://www.jet2.com/"> Jet2 </a> has flights directly to/from Glasgow Airport on Mondays and Thursdays</li>
+              <li> <a href="https://www.ryanair.com/"> Ryanair </a> has flights directly to/from Glasgow Prestwick Airport on Saturdays</li>
+              <li> <a href="https://www.ryanair.com/"> Ryanair </a> also has flights directly to/from Edinburgh Airport on Tuesday, Thursday, Saturday and Sunday. There is a frequent bus link from Edinburgh airport to Glasgow city centre (£12.00 single, £20.00 return)</li>
+              <li> Although other routes may have layover, it's also worth checking <a href="https://www.skyscanner.net/"> Scyscanner </a> if it's cheaper. </li>
+              <li> If you find a good alternative, please let us know and we can recommend it to other guests. </li>
+            </ul>
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Travelling from Munich">
+          <ng-template matTabContent>
+            <ul class="text">
+              <li> <a href="https://www.easyjet.com/"> Easyjet </a> has flights directly to/from Edinburgh Airport almost daily. There is a frequent bus link from Edinburgh airport to Glasgow city centre (£12.00 single, £20.00 return).
+                The only problem we find is that they usually land late and the bus link is until 23:30, so if flights are delayed, it's hard to get to Glasgow in the middle of the night.</li>
+              <li> <a href="https://www.ryanair.com/"> Ryanair </a> does not have direct flights, but we found even with the connection, it could be cheaper!</li>
+              <li> Although other routes may have layover, it's also worth checking <a href="https://www.skyscanner.net/"> Scyscanner </a> if it's cheaper. </li>
+              <li> If you find a good alternative, please let us know and we can recommend it to other guests. </li>
+            </ul>
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Travelling from Glasgow">
+          <ng-template matTabContent>
+            If you lot don't manage to find Ayr, you owe us shots on the day :p Travel advice over.
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Travelling from Other Locations">
+          <ng-template matTabContent>
+            If you need any help planning how to get here, feel free to msg us and we can give suggestions and research :)
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
