@@ -38,7 +38,7 @@ export class SaveTheDateComponent {
   }
 
   public formComplete() {
-    return (this.firstname && this.lastname);
+    return (this.guest.firstname && this.guest.lastname);
   }
 
   public rsvpComplete() {
@@ -101,6 +101,8 @@ export class SaveTheDateComponent {
       .subscribe(
         () => {
           this.router.navigate(['/']);
+          this.closeModal('rsvp-form');
+          this.snackBar.open('Thanks for letting us know if you can attend!', 'Ok', {duration: 5000});
         },
         () => {
           this.snackBar.open('Something went wrong. Reload the page and try again', 'Dismiss', {
