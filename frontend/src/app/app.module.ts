@@ -19,7 +19,8 @@ import {ModalService} from './services';
 import {OurStoryComponent} from './our-story/our-story.component';
 import {EventsComponent} from './events/events.component';
 import {AccommodationComponent} from './accomodation/accommodation.component';
-
+import {TravelComponent} from './travel/travel.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {AccommodationComponent} from './accomodation/accommodation.component';
     OurStoryComponent,
     AccommodationComponent,
     SaveTheDateComponent,
+    TravelComponent,
     AdminComponent,
     ModalComponent,
     DialogOverviewExampleDialog,
@@ -43,6 +45,9 @@ import {AccommodationComponent} from './accomodation/accommodation.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBhB29axwu1F0PUWMEx33YIS5RwaNGjs0A'
+    }),
     HttpClientModule,
     NgsRevealModule.forRoot()
   ],
