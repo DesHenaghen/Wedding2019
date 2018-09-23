@@ -13,7 +13,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularMaterialModule} from './angular-material/angular-material.module';
 import {AdminComponent, DialogOverviewExampleDialog} from './admin/admin.component';
 import {ApiManagerService} from './services/api-manager.service';
-import {NgsRevealModule} from 'ng-scrollreveal';
 import {ModalComponent} from './directives';
 import {ModalService} from './services';
 import {OurStoryComponent} from './our-story/our-story.component';
@@ -48,8 +47,7 @@ import { AgmCoreModule } from '@agm/core';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBhB29axwu1F0PUWMEx33YIS5RwaNGjs0A'
     }),
-    HttpClientModule,
-    NgsRevealModule.forRoot()
+    HttpClientModule
   ],
   providers: [
     ApiManagerService,
