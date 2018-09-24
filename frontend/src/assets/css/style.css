@@ -31,7 +31,6 @@ body {
 }
 .offcanvas #page {
   overflow: hidden;
-  position: absolute;
 }
 .offcanvas #page:after {
   -webkit-transition: 2s;
@@ -1437,7 +1436,7 @@ form label {
   position: fixed;
   z-index: 1901;
   width: 270px;
-  background: black;
+  background: rgba(83, 77, 89, 0.85);
   top: 0;
   right: 0;
   top: 0;
@@ -1461,7 +1460,7 @@ form label {
   transform: translateX(0px);
 }
 #fh5co-offcanvas a {
-  color: rgba(255, 255, 255, 0.5);
+  color: white;
 }
 #fh5co-offcanvas a:hover {
   color: rgba(255, 255, 255, 0.8);

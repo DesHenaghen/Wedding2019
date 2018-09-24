@@ -122,7 +122,6 @@ body {
 	@include transition(.5s);
 	.offcanvas & {
 		overflow: hidden;
-		position: absolute;
 
 		&:after {
 			@include transition(2s);
@@ -1440,7 +1439,7 @@ form {
 	position: fixed;
 	z-index: 1901;
 	width: 270px;
-	background: lighten($brand-black, 0%);
+	background: rgba(83, 77, 89, 0.85);
 	top: 0;
 	right: 0;
 	top: 0;
@@ -1453,7 +1452,7 @@ form {
 		@include translateX(0px);
 	}
 	a {
-		color: rgba(255,255,255,.5);
+		color: rgba(255,255,255,1);
 		&:hover {
 			color: rgba(255,255,255,.8);
 		}
