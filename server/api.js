@@ -230,7 +230,7 @@ router.post('/guestExists', (req, res) => {
     client.query(
         'SELECT id, plus_one_offered, first_name, last_name ' +
         'FROM guests ' +
-        'WHERE lower(first_name)=$1 AND lower(last_name)=$2 ' +
+        'WHERE lower(trim(first_name))=$1 AND lower(trim(last_name))=$2 ' +
         'LIMIT 1',
         [cleanString(guest.firstname), cleanString(guest.lastname)], (err, result) => {
         if (err) {
