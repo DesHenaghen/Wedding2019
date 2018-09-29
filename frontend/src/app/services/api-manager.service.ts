@@ -31,6 +31,10 @@ export class ApiManagerService {
     return this.http.post('api/emailGuest', {email});
   }
 
+  public emailGuestRSVPResponse(email: String) {
+    return this.http.post('api/emailGuestRSVPResponse', {email});
+  }
+
   public emailAll() {
     return this.http.get('api/emailAll');
   }
@@ -41,5 +45,10 @@ export class ApiManagerService {
 
   public guestExists(guest: Guest) {
     return this.http.post('api/guestExists', {guest});
+  }
+
+  public emailGuestSTDResponse(email: String) {
+    console.log(email);
+    return this.http.post('api/emailGuestSTDResponse', {email});
   }
 }

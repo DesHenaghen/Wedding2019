@@ -36,7 +36,7 @@ export class SaveTheDateComponent {
   }
 
   public formComplete() {
-    return (this.guest.firstname && this.guest.lastname);
+    return (this.guest.first_name && this.guest.last_name);
   }
 
   public rsvpComplete() {
@@ -82,8 +82,8 @@ export class SaveTheDateComponent {
   private updateGuestValues(result: any) {
     this.guest.id = result.id;
     this.guest.plusOneOffered = result.plus_one_offered;
-    this.guest.firstname = result.first_name;
-    this.guest.lastname = result.last_name;
+    this.guest.first_name = result.first_name;
+    this.guest.last_name = result.last_name;
   }
 
   openModal(id: string) {
@@ -101,6 +101,15 @@ export class SaveTheDateComponent {
           this.router.navigate(['/']);
           this.closeModal('rsvp-form');
           this.snackBar.open('Thanks for letting us know if you can attend!', 'Ok', {duration: 5000});
+
+          console.log(this.guest);
+          this.apiManager.emailGuestSTDResponse(this.guest.contact_email).subscribe(() => {
+            console.log("bullshit");
+          });
+          console.log(this.plusOne);
+          if (this.guest.plusOneNeeded) { this.apiManager.emailGuestSTDResponse(this.plusOne.contact_email).subscribe(() => {
+            console.log("bullshit");
+          }); }
         },
         () => {
           this.snackBar.open('Something went wrong. Reload the page and try again', 'Dismiss', {

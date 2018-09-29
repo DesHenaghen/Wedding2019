@@ -5,8 +5,8 @@ enum Attending {
 }
 export class Guest {
   id: number;
-  firstname: string;
-  lastname: string;
+  first_name: string;
+  last_name: string;
   attending: Attending;
   contact_phone: string;
   contact_email: string;
