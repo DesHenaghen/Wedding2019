@@ -7,7 +7,11 @@
   <mat-card>
     <div class="example-container">
       <mat-form-field>
-        <input matInput placeholder="Name" [(ngModel)]="guest.firstname">
+        <input matInput placeholder="First Name" [(ngModel)]="guest.first_name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Last Name" [(ngModel)]="guest.last_name">
       </mat-form-field>
 
       <mat-form-field>
@@ -37,6 +41,8 @@
       <button (click)="confirmAction(updateGuest, [guest.id])" mat-fab>Update</button>
 
       <button [disabled]="!guest.contact_email" (click)="confirmAction(emailGuest, [guest.contact_email])" mat-fab>Email</button>
+
+      <button [disabled]="!guest.contact_email" (click)="confirmAction(emailGuestRSVPResponse, [guest.contact_email])" mat-fab>Email RSVP Resp.</button>
     </div>
   </mat-card>
 </div>
@@ -45,7 +51,7 @@
   <mat-card-title>New Guest</mat-card-title>
   <div class="example-container">
     <mat-form-field>
-      <input matInput placeholder="Name" [(ngModel)]="newGuest.firstname">
+      <input matInput placeholder="Name" [(ngModel)]="newGuest.first_name">
     </mat-form-field>
 
     <mat-form-field>

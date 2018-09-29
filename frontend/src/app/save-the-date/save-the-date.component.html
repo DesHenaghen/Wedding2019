@@ -14,13 +14,13 @@
           <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <label for="name" class="sr-only">First Name</label>
-              <input type="text" class="form-control" id="name" placeholder="First Name" [(ngModel)]="guest.firstname">
+              <input type="text" class="form-control" id="name" placeholder="First Name" [(ngModel)]="guest.first_name">
             </div>
           </div>
           <div class="col-md-4 col-sm-4">
             <div class="form-group">
               <label for="lastname" class="sr-only">Last Name</label>
-              <input type="text" class="form-control" id="lastname" placeholder="Last Name" [(ngModel)]="guest.lastname">
+              <input type="text" class="form-control" id="lastname" placeholder="Last Name" [(ngModel)]="guest.last_name">
             </div>
           </div>
         </div>
@@ -37,12 +37,12 @@
 <jw-modal id='rsvp-form'>
   <div class="text-center fh5co-heading animate-box">
     <h2>RSVP</h2>
-    <h3> Hey {{guest.firstname }} :) Can you make it on the <i>16th June 2019?</i><br> We might need your contact details for the formal invitation to follow.</h3>
+    <h3> Hey {{guest.first_name }} :) Can you make it on the <i>16th June 2019?</i><br> We might need your contact details for the formal invitation to follow.</h3>
   </div>
 
   <mat-card>
     <div class="form-container">
-      <h1>{{guest.firstname }} {{guest.lastname }} </h1>
+      <h1>{{guest.first_name }} {{guest.last_name }} </h1>
 
       <mat-form-field class="wide">
         <mat-select placeholder="Will you be able to make it?" [(ngModel)]="guest.attending">

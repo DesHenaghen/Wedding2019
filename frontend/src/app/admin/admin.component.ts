@@ -10,7 +10,7 @@ import {Guest} from '../models';
 })
 export class AdminComponent implements OnInit {
 
-  public guests;
+  public guests: Guest[];
   public newGuest: Guest = new Guest();
 
   constructor(private apiManager: ApiManagerService,
@@ -20,6 +20,7 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.apiManager.getGuests()
       .subscribe((data: any[]) => {
+        console.log(data);
         this.guests = data.sort((g1, g2) => g1.id - g2.id);
       });
   }
@@ -125,6 +126,24 @@ export class AdminComponent implements OnInit {
 
   public emailGuest(email) {
     this.apiManager.emailGuest(email)
+      .subscribe(
+        res => {
+          this.snackBar.open('Successfully emailed guest', 'Dismiss', {
+            duration: 2000,
+          });
+          console.log(res);
+        },
+        err => {
+          this.snackBar.open('Error occurred emailing guest', 'Dismiss', {
+            duration: 2000,
+          });
+          console.error(err);
+        }
+      );
+  }
+
+  public emailGuestRSVPResponse(email) {
+    this.apiManager.emailGuestRSVPResponse(email)
       .subscribe(
         res => {
           this.snackBar.open('Successfully emailed guest', 'Dismiss', {

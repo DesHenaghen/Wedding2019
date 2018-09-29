@@ -44,8 +44,8 @@ router.use(function timeLog (req, res, next) {
 
 // define the home page route
 router.get('/guests', function (req, res) {
-    client.query('SELECT * FROM guests', (err, response) => {
-        // console.log(err, response);
+    client.query('SELECT * FROM guests WHERE attending IS NOT NULL', (err, response) => {
+        console.log(err, response);
         res.send(response.rows);
     });
 });
@@ -97,19 +97,14 @@ router.post('/updateGuest', (req, res) => {
        });
 });
 
-function sendEmail(email, data, res) {
-    let view = {
-        guests: [
-            {name: email},
-            {name: 'tester'}
-        ]
-    };
-    const html = mustache.render(data, view);
+function sendEmail(email, template, subject, res, view) {
+    console.log("Sedning email to " + email);
+    const html = mustache.render(template, view);
 
     const message = {
         from: 'irinadesmond@gmail.com',
         to: email,
-        subject: 'Wedding Invite',
+        subject: subject,
         // text: 'Plaintext version of the message',
         html
     };
@@ -163,7 +158,7 @@ router.get('/emailAll', (req, res) => {
                 for(let guest of Object.values(guests)) {
                     console.log(guest);
                     if (guest.contact_email) {
-                        sendEmail(guest.contact_email, data, null);
+                        sendEmail(guest.contact_email, data, "Wedding Invite");
                     }
                 }
 
@@ -175,22 +170,50 @@ router.get('/emailAll', (req, res) => {
 
 router.post('/emailGuest', (req, res) => {
     const email = req.body.email;
-    fs.readFile(__dirname + '/email.html', 'utf8', function (err,data) {
+    fs.readFile(__dirname + '/emails/email.html', 'utf8', function (err,data) {
         if (err) {
             return console.log(err);
         }
 
         // console.log(data);
-        sendEmail(email, data, res);
+        sendEmail(email, data, "Wedding Invite", res);
     });
 });
+
+
+router.post('/emailGuestRSVPResponse', (req, res) => {
+    const email = req.body.email;
+    fs.readFile(__dirname + '/emails/RSVPResponse.html', 'utf8', function (err,data) {
+        if (err) {
+            return console.log(err);
+        }
+
+        // console.log(data);
+        sendEmail(email, data, "Thanks for RSVPing", res);
+    });
+});
+
+
+router.post('/emailGuestSTDResponse', (req, res) => {
+    const email = req.body.email;
+    console.log("Trying to email "+email+" STD");
+    fs.readFile(__dirname + '/emails/STDResponse.html', 'utf8', function (err,data) {
+        if (err) {
+            return console.log(err);
+        }
+
+        // console.log(data);
+        sendEmail(email, data, "Thanks for letting us know if you could make it", res);
+    });
+});
+
 
 router.post('/sendSTD', (req, res) => {
     const guest = req.body.guest;
     const plusOne = req.body.plusOne;
 
-    console.log("PLUSONE");
-    console.log(plusOne);
+    // console.log("PLUSONE");
+    // console.log(plusOne);
 
     let query =
         'UPDATE guests ' +
@@ -230,9 +253,9 @@ router.post('/guestExists', (req, res) => {
     client.query(
         'SELECT id, plus_one_offered, first_name, last_name ' +
         'FROM guests ' +
-        'WHERE lower(trim(first_name))=$1 AND lower(trim(last_name))=$2 ' +
+        'WHERE trim(lower(first_name))=$1 AND trim(lower(last_name))=$2 ' +
         'LIMIT 1',
-        [cleanString(guest.firstname), cleanString(guest.lastname)], (err, result) => {
+        [cleanString(guest.first_name), cleanString(guest.last_name)], (err, result) => {
         if (err) {
             console.error(err.stack);
             res.send("Failed");

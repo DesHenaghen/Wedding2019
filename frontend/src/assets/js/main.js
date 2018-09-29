@@ -210,13 +210,13 @@
 
 	// Parallax
 	var parallax = function() {
-		$(window).stellar();
+		// $(window).stellar();
 	};
 
 
 	$(function(){
 		mobileMenuOutsideClick();
-		parallax();
+		//parallax();
 		offcanvasMenu();
 		burgerMenu();
 		contentWayPoint();
