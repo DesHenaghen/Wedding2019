@@ -5,13 +5,13 @@ import {SaveTheDateComponent} from '../save-the-date/save-the-date.component';
 import {AdminComponent} from '../admin/admin.component';
 
 const routes: Routes = [
+  // {
+  //   path: 'savethedate',
+  //   component: SaveTheDateComponent
+  // },
   {
-    path: '',
+    path: '**',
     component: HomeComponent,
-  },
-  {
-    path: 'savethedate',
-    component: SaveTheDateComponent
   }
   // {
   //   path: 'admin',

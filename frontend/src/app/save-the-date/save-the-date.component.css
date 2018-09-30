@@ -13,6 +13,16 @@ mat-form-field.wide {
 jw-modal {
   /* modals are hidden by default */
   display: none;
+
+  z-index: 9999;
+  position: relative;
+}
+
+.cdk-overlay-container {
+
+  position: fixed;
+  z-index: 9999;
+
 }
 
 jw-modal .jw-modal-background {

@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     const d = new Date('2019-06-16T12:00:00-00:00');
 
-    console.log(d);
+    // console.log(d);
 
     simplyCountdown('.simply-countdown-one', {
       year: d.getFullYear(),
