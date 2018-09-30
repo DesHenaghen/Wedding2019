@@ -11,7 +11,7 @@ const client = new Client({
     database: 'wedding',
     port: 5432,
     user: 'db_user',
-    password: 'yH39R6dRy',
+    password: 'YOU KNOW THIS',
 });
 
 let poolConfig = {
@@ -21,7 +21,7 @@ let poolConfig = {
     secure: true, // use TLS
     auth: {
         user: 'irinadesmond@gmail.com',
-        pass: 'Montoya87.'
+        pass: 'YOU KNOW THIS'
     }
 };
 
@@ -213,15 +213,33 @@ router.post('/emailGuestRSVPResponse', (req, res) => {
 
 
 router.post('/emailGuestSTDResponse', (req, res) => {
-    const email = req.body.email;
-    console.log("Trying to email "+email+" STD");
+    const emailAddress = req.body.email;
+    console.log("Trying to email "+emailAddress+" STD");
     fs.readFile(__dirname + '/emails/STDResponse.html', 'utf8', function (err,data) {
         if (err) {
             return console.log(err);
         }
 
-        // console.log(data);
-        sendEmail(email, data, "Thanks for letting us know if you could make it", res);
+
+        styliner.processHTML(data)
+            .then((email) => {
+                let mailOptions = {
+                    attachments: [
+                        {
+                            filename: 'RSVP_heart.png',
+                            path: 'frontend/src/assets/images/RSVP_heart.png',
+                            cid: 'unique1@kreata.ee'
+                        },
+                        {
+                            filename: 'HenaghenEverAfter.png',
+                            path: 'frontend/src/assets/images/HenaghenEverAfter.png',
+                            cid: 'unique2@kreata.ee'
+                        }]
+                };
+
+                // console.log(data);
+                sendEmail(emailAddress, email, "Thanks for letting us know if you could make it", res, mailOptions);
+            });
     });
 });
 

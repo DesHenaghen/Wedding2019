@@ -103,13 +103,13 @@ export class SaveTheDateComponent {
           this.snackBar.open('Thanks for letting us know if you can attend!', 'Ok', {duration: 5000});
 
           // console.log(this.guest);
-          // this.apiManager.emailGuestSTDResponse(this.guest.contact_email).subscribe(() => {
-          //   console.log("bullshit");
-          // });
+          this.apiManager.emailGuestSTDResponse(this.guest.contact_email).subscribe(() => {
+            console.log(" ");
+          });
           // console.log(this.plusOne);
-          // if (this.guest.plusOneNeeded) { this.apiManager.emailGuestSTDResponse(this.plusOne.contact_email).subscribe(() => {
-          //   console.log("bullshit");
-          // }); }
+          if (this.guest.plusOneNeeded) { this.apiManager.emailGuestSTDResponse(this.plusOne.contact_email).subscribe(() => {
+            console.log(" ");
+          }); }
         },
         () => {
           this.snackBar.open('Something went wrong. Reload the page and try again', 'Dismiss', {

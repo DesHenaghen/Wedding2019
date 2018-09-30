@@ -48,7 +48,6 @@ export class ApiManagerService {
   }
 
   public emailGuestSTDResponse(email: String) {
-    console.log(email);
     return this.http.post('api/emailGuestSTDResponse', {email});
   }
 }
