@@ -4,6 +4,7 @@ const nodemailer = require('nodemailer');
 const { Client } = require('pg');
 const fs = require('fs');
 const mustache = require('mustache');
+const Styliner = require('styliner');
 
 const client = new Client({
     host: 'weddingdb.cszk7qzakguv.eu-west-2.rds.amazonaws.com',
@@ -24,6 +25,7 @@ let poolConfig = {
     }
 };
 
+let styliner = new Styliner(__dirname + '/emails');
 let transporter = nodemailer.createTransport(poolConfig);
 
 transporter.verify(function(error, success) {
@@ -97,18 +99,17 @@ router.post('/updateGuest', (req, res) => {
        });
 });
 
-function sendEmail(email, template, subject, res, view) {
-    console.log("Sedning email to " + email);
+function sendEmail(email, template, subject, res, options, view) {
+    let mailOptions = options || {};
+    console.log("Sending email to " + email);
     const html = mustache.render(template, view);
 
-    const message = {
-        from: 'irinadesmond@gmail.com',
-        to: email,
-        subject: subject,
-        // text: 'Plaintext version of the message',
-        html
-    };
-    transporter.sendMail(message, function(error, success) {
+    mailOptions.from = 'irinadesmond@gmail.com';
+    mailOptions.to = email;
+    mailOptions.subject = subject;
+    mailOptions.html = html;
+
+    transporter.sendMail(mailOptions, function(error, success) {
         if (error) {
             console.log(error);
             if (res) res.send("nope");
@@ -182,14 +183,31 @@ router.post('/emailGuest', (req, res) => {
 
 
 router.post('/emailGuestRSVPResponse', (req, res) => {
-    const email = req.body.email;
-    fs.readFile(__dirname + '/emails/RSVPResponse.html', 'utf8', function (err,data) {
+    const emailAddress = req.body.email;
+    fs.readFile(__dirname + '/emails/rsvpThankYou.html', 'utf8', function (err,data) {
         if (err) {
             return console.log(err);
         }
 
-        // console.log(data);
-        sendEmail(email, data, "Thanks for RSVPing", res);
+        styliner.processHTML(data)
+            .then((email) => {
+                let mailOptions = {
+                    attachments: [
+                        {
+                            filename: 'RSVP_heart.png',
+                            path: 'frontend/src/assets/images/RSVP_heart.png',
+                            cid: 'unique1@kreata.ee'
+                        },
+                        {
+                            filename: 'HenaghenEverAfter.png',
+                            path: 'frontend/src/assets/images/HenaghenEverAfter.png',
+                            cid: 'unique2@kreata.ee'
+                        }]
+                };
+
+                // console.log(data);
+                sendEmail(emailAddress, email, "Thanks for RSVPing", res, mailOptions);
+            });
     });
 });
 

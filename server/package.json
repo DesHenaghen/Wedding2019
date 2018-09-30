@@ -16,6 +16,7 @@
     "morgan": "latest",
     "mustache": "latest",
     "nodemailer": "latest",
-    "pg": "latest"
+    "pg": "latest",
+    "styliner": "^1.0.4"
   }
 }
