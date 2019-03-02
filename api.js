@@ -7,11 +7,8 @@ const mustache = require('mustache');
 const Styliner = require('styliner');
 
 const client = new Client({
-    host: 'weddingdb.cszk7qzakguv.eu-west-2.rds.amazonaws.com',
-    database: 'wedding',
-    port: 5432,
-    user: 'db_user',
-    password: 'YOU KNOW THIS',
+   connectionString: process.env.DATABASE_URL,
+   ssl: true
 });
 
 let poolConfig = {
@@ -21,7 +18,7 @@ let poolConfig = {
     secure: true, // use TLS
     auth: {
         user: 'irinadesmond@gmail.com',
-        pass: 'YOU KNOW THIS'
+        pass: 'Montoya87.'
     }
 };
 
