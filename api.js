@@ -13,14 +13,22 @@ const client = new Client({
 
 let poolConfig = {
     pool: true,
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // use TLS
+    service: 'gmail',
     auth: {
         user: 'irinadesmond@gmail.com',
         pass: 'Montoya87.'
     }
 };
+//     {
+//     pool: true,
+//     host: 'smtp.gmail.com',
+//     port: 465,
+//     secure: true, // use TLS
+//     auth: {
+//         user: 'irinadesmond@gmail.com',
+//         pass: 'Montoya87.'
+//     }
+// };
 
 let styliner = new Styliner(__dirname + '/emails');
 let transporter = nodemailer.createTransport(poolConfig);
