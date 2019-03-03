@@ -5,10 +5,17 @@ const { Client } = require('pg');
 const fs = require('fs');
 const mustache = require('mustache');
 const Styliner = require('styliner');
+const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
+const expressJwt = require('express-jwt');
 
-const client = new Client({
-   connectionString: process.env.DATABASE_URL,
-   ssl: true
+const client = new Client({  user: 'postgres',
+    host: 'localhost',
+    database: 'postgres',
+    password: 'postgres',
+    port: 5432
+   // connectionString: process.env.DATABASE_URL,
+   // ssl: true
 });
 
 let poolConfig = {
@@ -19,16 +26,6 @@ let poolConfig = {
         pass: 'Montoya87.'
     }
 };
-//     {
-//     pool: true,
-//     host: 'smtp.gmail.com',
-//     port: 465,
-//     secure: true, // use TLS
-//     auth: {
-//         user: 'irinadesmond@gmail.com',
-//         pass: 'Montoya87.'
-//     }
-// };
 
 let styliner = new Styliner(__dirname + '/emails');
 let transporter = nodemailer.createTransport(poolConfig);
@@ -49,9 +46,21 @@ router.use(function timeLog (req, res, next) {
     next()
 });
 
+router.post('/auth', function(req, res) {
+    const body = req.body;
+    client.query('SELECT * FROM admin where username=$1 AND password=$2',[body.username, body.password], (err, response) => {
+        if (response.rows  && response.rows.length > 0) {
+            const token = jwt.sign({username: body.username}, 'wedding-secret', {expiresIn: '2h'});
+            res.send({token});
+        } else {
+            res.sendStatus(401);
+        }
+    });
+});
+
 // define the home page route
 router.get('/guests', function (req, res) {
-    client.query('SELECT * FROM guests WHERE attending IS NOT NULL', (err, response) => {
+    client.query('SELECT * FROM guests', (err, response) => {
         console.log(err, response);
         res.send(response.rows);
     });
@@ -61,9 +70,9 @@ router.get('/guests', function (req, res) {
 router.post('/addGuest', (req, res) => {
     let guest = req.body.guest;
 
-    client.query('INSERT INTO guests VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING *', [
-        guest.name, guest.contact_email, guest.can_attend, guest.meal_choice,
-        guest.extra_info, guest.contact_phone, guest.main_contact
+    client.query('INSERT INTO guests (first_name, last_name, contact_email, attending, meal_choice, extra_info, contact_phone, plus_one_offered, plus_one_needed) VALUES($1,$2,$3,$4,$5,$6,$7, $8, $9) RETURNING *', [
+        guest.first_name, guest.last_name, guest.contact_email, guest.attending, guest.meal_choice,
+        guest.extra_info, guest.contact_phone, guest.plus_one_offered, guest.plus_one_needed
     ], (err, result) => {
         if (err) {
             console.error(err.stack)
@@ -90,10 +99,10 @@ router.post('/updateGuest', (req, res) => {
     let guest = req.body.guest;
 
    client.query('UPDATE guests ' +
-       'SET name=$1, contact_email=$2, can_attend=$3, meal_choice=$4, extra_info=$5, contact_phone=$6, main_contact=$7 ' +
-       'WHERE id=$8',
-       [ guest.name, guest.contact_email, guest.can_attend, guest.meal_choice,
-           guest.extra_info, guest.contact_phone, guest.main_contact, guest.id ], (err, result) => {
+       'SET first_name=$1, contact_email=$2, attending=$3, meal_choice=$4, extra_info=$5, contact_phone=$6, last_name=$7, plus_one_offered=$8, plus_one_needed=$9 ' +
+       'WHERE id=$10',
+       [ guest.first_name, guest.contact_email, guest.attending, guest.meal_choice, guest.extra_info, guest.contact_phone,
+           guest.last_name, guest.plus_one_offered, guest.plus_one_needed, guest.id ], (err, result) => {
            if (err) {
                console.error(err.stack);
                res.send("Failed");
@@ -128,7 +137,7 @@ function sendEmail(email, template, subject, res, options, view) {
 }
 
 router.get('/emailAll', (req, res) => {
-    fs.readFile(__dirname + '/email.html', 'utf8', function (err,data) {
+    fs.readFile(__dirname + '/emails/email.html', 'utf8', function (err,data) {
         if (err) {
             return console.log(err);
         }
@@ -143,25 +152,7 @@ router.get('/emailAll', (req, res) => {
                 res.send("Failed");
             } else {
                 // console.log(result);
-                result.rows.forEach(row => {
-                    if (row.main_contact) {
-                        if (!guests[row.main_contact]) {
-                            guests[row.main_contact] = {others: []};
-                        }
-
-                        guests[row.main_contact].others.push(row);
-                    } else {
-                        if (!guests[row.id]) {
-                            row.others = [];
-                        } else {
-                            row.others = guests[row.id].others;
-                        }
-
-                        guests[row.id] = row;
-                    }
-                });
-
-                for(let guest of Object.values(guests)) {
+                for(let guest of Object.values(result.rows)) {
                     console.log(guest);
                     if (guest.contact_email) {
                         sendEmail(guest.contact_email, data, "Wedding Invite");
@@ -185,7 +176,6 @@ router.post('/emailGuest', (req, res) => {
         sendEmail(email, data, "Wedding Invite", res);
     });
 });
-
 
 router.post('/emailGuestRSVPResponse', (req, res) => {
     const emailAddress = req.body.email;
@@ -215,7 +205,6 @@ router.post('/emailGuestRSVPResponse', (req, res) => {
             });
     });
 });
-
 
 router.post('/emailGuestSTDResponse', (req, res) => {
     const emailAddress = req.body.email;
@@ -248,7 +237,6 @@ router.post('/emailGuestSTDResponse', (req, res) => {
     });
 });
 
-
 router.post('/sendSTD', (req, res) => {
     const guest = req.body.guest;
     const plusOne = req.body.plusOne;
@@ -260,7 +248,7 @@ router.post('/sendSTD', (req, res) => {
         'UPDATE guests ' +
         'SET contact_email=$1, contact_phone=$2, attending=$3, plus_one_needed=$4 ' +
         'WHERE id=$5';
-    let values = [guest.contact_email, guest.contact_phone, guest.attending, guest.plusOneNeeded, guest.id];
+    let values = [guest.contact_email, guest.contact_phone, guest.attending, guest.plus_one_needed, guest.id];
 
     client.query(query, values, (err, result) => {
         if (err) {

@@ -34,7 +34,17 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-checkbox [(ngModel)]="guest.attending">Can Attend?</mat-checkbox>
+      <mat-form-field>
+        <mat-select placeholder="Attending?" [(value)]="guest.attending" [compareWith]="compareFn">
+          <mat-option value="1">Yes</mat-option>
+          <mat-option value="2">Maybe</mat-option>
+          <mat-option value="3">No</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-checkbox [(ngModel)]="guest.plus_one_offered">Plus One Offered</mat-checkbox>
+
+      <mat-checkbox [(ngModel)]="guest.plus_one_needed">Plus One Needed</mat-checkbox>
 
       <button (click)="confirmAction(removeGuest, [guest.id])" mat-fab>Delete</button>
 
@@ -51,7 +61,11 @@
   <mat-card-title>New Guest</mat-card-title>
   <div class="example-container">
     <mat-form-field>
-      <input matInput placeholder="Name" [(ngModel)]="newGuest.first_name">
+      <input matInput placeholder="First Name" [(ngModel)]="newGuest.first_name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Last Name" [(ngModel)]="newGuest.last_name">
     </mat-form-field>
 
     <mat-form-field>
@@ -74,7 +88,19 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-checkbox [(ngModel)]="newGuest.attending">Can Attend?</mat-checkbox>
+
+    <mat-form-field>
+      <mat-select placeholder="Attending?" [(value)]="newGuest.attending" [compareWith]="compareFn">
+        <mat-option value="1">Yes</mat-option>
+        <mat-option value="2">Maybe</mat-option>
+        <mat-option value="3">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-checkbox [(ngModel)]="newGuest.plus_one_offered">Plus One Offered</mat-checkbox>
+
+    <mat-checkbox [(ngModel)]="newGuest.plus_one_needed">Plus One Needed</mat-checkbox>
+
     <button (click)="addGuest()" mat-fab>Add</button>
   </div>
 </mat-card>

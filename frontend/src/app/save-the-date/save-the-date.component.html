@@ -62,8 +62,8 @@
         <input matInput type="email" [(ngModel)]="guest.contact_email" email>
       </mat-form-field>
       <br>
-      <mat-form-field class="wide" *ngIf="guest.plusOneOffered">
-        <mat-select placeholder="Are you bringing a plus one?" [(ngModel)]="guest.plusOneNeeded">
+      <mat-form-field class="wide" *ngIf="guest.plus_one_offered">
+        <mat-select placeholder="Are you bringing a plus one?" [(ngModel)]="guest.plus_one_needed">
           <mat-option [value]="false" (onSelectionChange)="clearPlusOne()">No</mat-option>
           <mat-option [value]="true">Yes</mat-option>
         </mat-select>
@@ -71,7 +71,7 @@
       </span>
     </div>
   </mat-card>
-  <span *ngIf="guest.plusOneNeeded">
+  <span *ngIf="guest.plus_one_needed">
   <mat-card>
     <div class="form-container">
       <mat-form-field>

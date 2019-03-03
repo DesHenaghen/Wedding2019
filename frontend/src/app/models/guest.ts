@@ -10,8 +10,8 @@ export class Guest {
   attending: Attending;
   contact_phone: string;
   contact_email: string;
-  plusOneOffered: boolean;
-  plusOneNeeded: boolean;
+  plus_one_offered: boolean;
+  plus_one_needed: boolean;
   meal_choice: number;
   extra_info: string;
 }

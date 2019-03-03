@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { JwtModule } from "@auth0/angular-jwt";
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
@@ -20,6 +21,14 @@ import {EventsComponent} from './events/events.component';
 import {AccommodationComponent} from './accomodation/accommodation.component';
 import {TravelComponent} from './travel/travel.component';
 import { AgmCoreModule } from '@agm/core';
+import { MealsComponent } from './meals/meals.component';
+import {AuthService} from "./services/auth.service";
+import {AuthGuard} from "./guards/auth.guard";
+import { LoginComponent } from './login/login.component';
+
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -35,6 +44,8 @@ import { AgmCoreModule } from '@agm/core';
     AdminComponent,
     ModalComponent,
     DialogOverviewExampleDialog,
+    MealsComponent,
+    LoginComponent,
 
   ],
   imports: [
@@ -47,11 +58,20 @@ import { AgmCoreModule } from '@agm/core';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBhB29axwu1F0PUWMEx33YIS5RwaNGjs0A'
     }),
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:4000'],
+        blacklistedRoutes: ['localhost:4000/api/auth']
+      }
+    })
   ],
   providers: [
     ApiManagerService,
-    ModalService
+    ModalService,
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogOverviewExampleDialog]
