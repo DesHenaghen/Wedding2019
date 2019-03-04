@@ -70,9 +70,9 @@ router.get('/guests', function (req, res) {
 router.post('/addGuest', (req, res) => {
     let guest = req.body.guest;
 
-    client.query('INSERT INTO guests (first_name, last_name, contact_email, attending, meal_choice, extra_info, contact_phone, plus_one_offered, plus_one_needed) VALUES($1,$2,$3,$4,$5,$6,$7, $8, $9) RETURNING *', [
+    client.query('INSERT INTO guests (first_name, last_name, contact_email, attending, meal_choice, extra_info, contact_phone, plus_one_offered, plus_one_needed, attending_ceremony) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *', [
         guest.first_name, guest.last_name, guest.contact_email, guest.attending, guest.meal_choice,
-        guest.extra_info, guest.contact_phone, guest.plus_one_offered, guest.plus_one_needed
+        guest.extra_info, guest.contact_phone, guest.plus_one_offered, guest.plus_one_needed, guest.attending_ceremony
     ], (err, result) => {
         if (err) {
             console.error(err.stack)
@@ -99,10 +99,10 @@ router.post('/updateGuest', (req, res) => {
     let guest = req.body.guest;
 
    client.query('UPDATE guests ' +
-       'SET first_name=$1, contact_email=$2, attending=$3, meal_choice=$4, extra_info=$5, contact_phone=$6, last_name=$7, plus_one_offered=$8, plus_one_needed=$9 ' +
-       'WHERE id=$10',
+       'SET first_name=$1, contact_email=$2, attending=$3, meal_choice=$4, extra_info=$5, contact_phone=$6, last_name=$7, plus_one_offered=$8, plus_one_needed=$9, attending_ceremony=$10 ' +
+       'WHERE id=$11',
        [ guest.first_name, guest.contact_email, guest.attending, guest.meal_choice, guest.extra_info, guest.contact_phone,
-           guest.last_name, guest.plus_one_offered, guest.plus_one_needed, guest.id ], (err, result) => {
+           guest.last_name, guest.plus_one_offered, guest.plus_one_needed, guest.attending_ceremony, guest.id ], (err, result) => {
            if (err) {
                console.error(err.stack);
                res.send("Failed");

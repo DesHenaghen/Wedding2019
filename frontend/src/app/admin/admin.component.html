@@ -3,60 +3,6 @@
 
 <button mat-fab color="primary" (click)="confirmAction(emailAll, [])">Email All</button>
 
-<div *ngFor="let guest of guests">
-  <mat-card>
-    <div class="example-container">
-      <mat-form-field>
-        <input matInput placeholder="First Name" [(ngModel)]="guest.first_name">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="Last Name" [(ngModel)]="guest.last_name">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput type="email" placeholder="Contact Email" [(ngModel)]="guest.contact_email" email>
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="Contact Phone No." [(ngModel)]="guest.contact_phone">
-      </mat-form-field>
-
-      <mat-form-field>
-        <textarea matInput placeholder="Extra Info" [(ngModel)]="guest.extra_info"></textarea>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-select placeholder="Food choice" [(value)]="guest.meal_choice" [compareWith]="compareFn">
-          <mat-option value="1">Steak</mat-option>
-          <mat-option value="2">Cheese</mat-option>
-          <mat-option value="3">Cake</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-select placeholder="Attending?" [(value)]="guest.attending" [compareWith]="compareFn">
-          <mat-option value="1">Yes</mat-option>
-          <mat-option value="2">Maybe</mat-option>
-          <mat-option value="3">No</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-checkbox [(ngModel)]="guest.plus_one_offered">Plus One Offered</mat-checkbox>
-
-      <mat-checkbox [(ngModel)]="guest.plus_one_needed">Plus One Needed</mat-checkbox>
-
-      <button (click)="confirmAction(removeGuest, [guest.id])" mat-fab>Delete</button>
-
-      <button (click)="confirmAction(updateGuest, [guest.id])" mat-fab>Update</button>
-
-      <button [disabled]="!guest.contact_email" (click)="confirmAction(emailGuest, [guest.contact_email])" mat-fab>Email</button>
-
-      <button [disabled]="!guest.contact_email" (click)="confirmAction(emailGuestRSVPResponse, [guest.contact_email])" mat-fab>Email RSVP Resp.</button>
-    </div>
-  </mat-card>
-</div>
-
 <mat-card>
   <mat-card-title>New Guest</mat-card-title>
   <div class="example-container">
@@ -101,6 +47,64 @@
 
     <mat-checkbox [(ngModel)]="newGuest.plus_one_needed">Plus One Needed</mat-checkbox>
 
+    <mat-checkbox [(ngModel)]="newGuest.attending_ceremony">Ceremony?</mat-checkbox>
+
     <button (click)="addGuest()" mat-fab>Add</button>
   </div>
 </mat-card>
+
+<div *ngFor="let guest of guests">
+  <mat-card>
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="First Name" [(ngModel)]="guest.first_name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Last Name" [(ngModel)]="guest.last_name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="email" placeholder="Contact Email" [(ngModel)]="guest.contact_email" email>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Contact Phone No." [(ngModel)]="guest.contact_phone">
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="Extra Info" [(ngModel)]="guest.extra_info"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Food choice" [(value)]="guest.meal_choice" [compareWith]="compareFn">
+          <mat-option value="1">Steak</mat-option>
+          <mat-option value="2">Cheese</mat-option>
+          <mat-option value="3">Cake</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Attending?" [(value)]="guest.attending" [compareWith]="compareFn">
+          <mat-option value="1">Yes</mat-option>
+          <mat-option value="2">Maybe</mat-option>
+          <mat-option value="3">No</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-checkbox [(ngModel)]="guest.plus_one_offered">Plus One Offered</mat-checkbox>
+
+      <mat-checkbox [(ngModel)]="guest.plus_one_needed">Plus One Needed</mat-checkbox>
+
+      <mat-checkbox [(ngModel)]="guest.attending_ceremony">Ceremony?</mat-checkbox>
+
+      <button (click)="confirmAction(removeGuest, [guest.id])" mat-fab>Delete</button>
+
+      <button (click)="confirmAction(updateGuest, [guest.id])" mat-fab>Update</button>
+
+      <button [disabled]="!guest.contact_email" (click)="confirmAction(emailGuest, [guest.contact_email])" mat-fab>Email</button>
+
+      <button [disabled]="!guest.contact_email" (click)="confirmAction(emailGuestRSVPResponse, [guest.contact_email])" mat-fab>Email RSVP Resp.</button>
+    </div>
+  </mat-card>
+</div>
