@@ -49,7 +49,7 @@ export class SaveTheDateComponent {
   }
 
   public plusOneFormComplete() {
-    return (!this.guest.plusOneOffered || this.guest.plusOneNeeded === false ||
+    return (!this.guest.plus_one_offered || this.guest.plus_one_needed === false ||
       (this.plusOne.firstname && this.plusOne.lastname && this.plusOne.contact_phone && this.plusOne.contact_email));
   }
 
@@ -81,7 +81,7 @@ export class SaveTheDateComponent {
 
   private updateGuestValues(result: any) {
     this.guest.id = result.id;
-    this.guest.plusOneOffered = result.plus_one_offered;
+    this.guest.plus_one_offered = result.plus_one_offered;
     this.guest.first_name = result.first_name;
     this.guest.last_name = result.last_name;
   }
@@ -107,7 +107,7 @@ export class SaveTheDateComponent {
             console.log(" ");
           });
           // console.log(this.plusOne);
-          if (this.guest.plusOneNeeded) { this.apiManager.emailGuestSTDResponse(this.plusOne.contact_email).subscribe(() => {
+          if (this.guest.plus_one_needed) { this.apiManager.emailGuestSTDResponse(this.plusOne.contact_email).subscribe(() => {
             console.log(" ");
           }); }
         },
