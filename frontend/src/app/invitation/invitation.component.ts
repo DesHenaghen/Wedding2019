@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
-
+import {ActivatedRoute} from "@angular/router";
+import {ApiManagerService} from "../services";
 
 @Component({
   selector: 'app-invitation',
@@ -27,9 +28,13 @@ export class InvitationComponent implements OnInit {
     'menu'];
 
   icon = '../../assets/images/main-meal.svg';
+  firstName: string;
+  lastName: string;
   constructor(private _formBuilder: FormBuilder,
               private matIconRegistry: MatIconRegistry,
-              private domSanitizer: DomSanitizer) {
+              private domSanitizer: DomSanitizer,
+              private route: ActivatedRoute,
+              private apiManager: ApiManagerService) {
 
     this.matIconRegistry.addSvgIcon(
       `soup`,
@@ -58,6 +63,33 @@ export class InvitationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.params
+      .subscribe(params => {
+        console.log(params);
+        if (params.id) {
+          if (params.extra) {
+            // fetch plusone details of id
+            this.apiManager.getPlusOne(params.id)
+              .subscribe((data: any) => {
+                if (data) {
+                  console.log(data);
+                  this.firstName = data.first_name;
+                  this.lastName = data.last_name;
+                }
+              });
+          } else {
+            // fetch guest details of id
+            this.apiManager.getGuest(params.id)
+              .subscribe((data: any) => {
+                if (data) {
+                  console.log(data);
+                  this.firstName = data.first_name;
+                  this.lastName = data.last_name;
+                }
+              });
+          }
+        }
+      });
 
     this.formGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required],

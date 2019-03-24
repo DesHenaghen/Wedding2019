@@ -15,4 +15,5 @@ export class Guest {
   meal_choice: number;
   extra_info: string;
   attending_ceremony: boolean;
+  guest: any;
 }

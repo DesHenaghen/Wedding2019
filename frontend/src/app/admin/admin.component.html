@@ -54,7 +54,8 @@
 </mat-card>
 
 <div *ngFor="let guest of guests">
-  <mat-card>
+  <mat-card
+    [ngStyle]="{'background-color':guest.guest == 'true' ? '' : '#f8e9d5' }">
     <div class="example-container">
       <mat-form-field>
         <input matInput placeholder="First Name" [(ngModel)]="guest.first_name">
@@ -104,7 +105,7 @@
 
       <button [disabled]="!guest.contact_email" (click)="confirmAction(emailGuest, [guest.contact_email])" mat-fab>Email</button>
 
-      <button [disabled]="!guest.contact_email" (click)="confirmAction(emailGuestRSVPResponse, [guest.contact_email])" mat-fab>Email RSVP Resp.</button>
+      <button [disabled]="!guest.contact_email" (click)="confirmAction(goToInvite, [guest.id, guest.guest])" mat-fab>Invite</button>
     </div>
   </mat-card>
 </div>

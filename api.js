@@ -58,11 +58,45 @@ router.post('/auth', function(req, res) {
     });
 });
 
-// define the home page route
 router.get('/guests', function (req, res) {
-    client.query('SELECT * FROM guests', (err, response) => {
-        console.log(err, response);
-        res.send(response.rows);
+    client.query('SELECT \'true\' guest, * FROM guests', (error, response) => {
+        //console.log(err, response);
+        if (error) {
+            console.error(error);
+            response.err(error);
+        } else {
+            client.query('SELECT \'false\' guest, * FROM plus_ones', (err, response2) => {
+                //console.log(err, response);
+                if (err) {
+                    console.error(err);
+                    res.err(err);
+                } else {
+                    res.send(response2.rows.concat(response.rows));
+                }
+            });
+        }
+    });
+});
+
+router.get('/guest', function (req, res) {
+    console.log("GUEST", req.query);
+    client.query('SELECT first_name, last_name FROM guests where id = $1', [req.query.id], (err, response) => {
+        if (err) {
+            console.error(err);
+            res.err(err);
+        }
+        res.send(response.rows[0]);
+    });
+});
+
+router.get('/plusOne', function (req, res) {
+    console.log("PLUS ONE", req.query);
+    client.query('SELECT first_name, last_name FROM plus_ones where id = $1', [req.query.id], (err, response) => {
+        if (err) {
+            console.error(err);
+            res.err(err);
+        }
+        res.send(response.rows[0]);
     });
 });
 
