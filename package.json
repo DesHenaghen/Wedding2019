@@ -10,9 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@angular/animations": "^7.2.10",
+    "@angular/cdk": "^7.3.5",
+    "@angular/material": "^7.3.5",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "express-jwt": "^5.3.1",
+    "hammerjs": "^2.0.8",
     "jsonwebtoken": "^8.5.0",
     "method-override": "latest",
     "morgan": "latest",

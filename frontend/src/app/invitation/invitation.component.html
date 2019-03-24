@@ -1,0 +1,64 @@
+<br>
+<br>
+<br>
+<br>
+
+<form [formGroup]="formGroup">
+  <mat-vertical-stepper [linear]="false" #stepper>
+    <mat-step label="  Starter" class="background-none">
+        <mat-form-field>
+          <input matInput placeholder="Starter">
+        </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious type="button">Back</button>
+        <button mat-button matStepperNext type="button">Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="  Soup">
+      <mat-form-field>
+        <input matInput placeholder="Soup">
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious type="button">Back</button>
+        <button mat-button matStepperNext type="button">Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="  Main">
+      <mat-form-field>
+        <input matInput placeholder="Main">
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious type="button">Back</button>
+        <button mat-button matStepperNext type="button">Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="  Dessert">
+      <mat-form-field>
+        <input matInput placeholder="Dessert" >
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious type="button">Back</button>
+        <button mat-button matStepperNext type="button">Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="  Menu Review">
+      <mat-form-field>
+        <input matInput placeholder="Menu Review">
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious type="button">Back</button>
+      </div>
+    </mat-step>
+
+    <!-- Icon overrides. -->
+    <ng-template matStepperIcon="number" let-index="index">
+      <mat-icon svgIcon="{{icons[index]}}"></mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="edit" let-index="index">
+    <mat-icon svgIcon="{{icons[index]}}"></mat-icon>
+  </ng-template>
+    <ng-template matStepperIcon="done" let-index="index">
+      <mat-icon svgIcon="{{icons[index]}}"></mat-icon>
+    </ng-template>
+  </mat-vertical-stepper>
+</form>

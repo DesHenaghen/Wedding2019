@@ -25,6 +25,7 @@ import { MealsComponent } from './meals/meals.component';
 import {AuthService} from "./services/auth.service";
 import {AuthGuard} from "./guards/auth.guard";
 import { LoginComponent } from './login/login.component';
+import {InvitationComponent} from "./invitation/invitation.component";
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -46,7 +47,7 @@ export function tokenGetter() {
     DialogOverviewExampleDialog,
     MealsComponent,
     LoginComponent,
-
+    InvitationComponent
   ],
   imports: [
     BrowserModule,
