@@ -50,4 +50,12 @@ export class ApiManagerService {
   public emailGuestSTDResponse(email: String) {
     return this.http.post('api/emailGuestSTDResponse', {email});
   }
+
+  public getGuest(id: any) {
+    return this.http.get('api/guest', {params: {id}});
+  }
+
+  public getPlusOne(id: any) {
+    return this.http.get('api/plusOne', {params: {id}});
+  }
 }

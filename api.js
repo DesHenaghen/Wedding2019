@@ -58,11 +58,32 @@ router.post('/auth', function(req, res) {
     });
 });
 
-// define the home page route
 router.get('/guests', function (req, res) {
     client.query('SELECT * FROM guests', (err, response) => {
-        console.log(err, response);
+        //console.log(err, response);
         res.send(response.rows);
+    });
+});
+
+router.get('/guest', function (req, res) {
+    console.log("GUEST", req.query);
+    client.query('SELECT first_name, last_name FROM guests where id = $1', [req.query.id], (err, response) => {
+        if (err) {
+            console.error(err);
+            res.err(err);
+        }
+        res.send(response.rows[0]);
+    });
+});
+
+router.get('/plusOne', function (req, res) {
+    console.log("PLUS ONE", req.query);
+    client.query('SELECT first_name, last_name FROM plus_ones where id = $1', [req.query.id], (err, response) => {
+        if (err) {
+            console.error(err);
+            res.err(err);
+        }
+        res.send(response.rows[0]);
     });
 });
 
