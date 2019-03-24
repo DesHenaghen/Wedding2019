@@ -54,7 +54,8 @@
 </mat-card>
 
 <div *ngFor="let guest of guests">
-  <mat-card>
+  <mat-card
+    [ngStyle]="{'background-color':guest.guest == 'true' ? '' : '#f8e9d5' }">
     <div class="example-container">
       <mat-form-field>
         <input matInput placeholder="First Name" [(ngModel)]="guest.first_name">
