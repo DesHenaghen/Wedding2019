@@ -245,19 +245,22 @@ var AdminComponent = /** @class */ (function () {
         this.apiManager.getGuests()
             .subscribe(function (data) {
             // console.log(data);
-            _this.guests = data.sort(function (g1, g2) {
+            var filteredData = data.filter(function (guest) { return guest.first_name; });
+            _this.guests = filteredData.sort(function (g1, g2) {
                 var id1 = g1.main_guest_id | g1.id;
                 var id2 = g2.main_guest_id | g2.id;
                 return id1 - id2;
             });
-            data.forEach(function (guest) {
+            filteredData.forEach(function (guest) {
                 console.log(guest.attending, _models__WEBPACK_IMPORTED_MODULE_3__["Attending"].Yes);
                 if (guest.attending == _models__WEBPACK_IMPORTED_MODULE_3__["Attending"].Yes)
                     _this.attendingGuests++;
-                else
-                    _this.nonAttendingGuests++;
-                if (guest.guest == 'false')
-                    _this.plusOnes++;
+                else {
+                    if (guest.guest == 'false')
+                        _this.plusOnes++;
+                    else
+                        _this.nonAttendingGuests++;
+                }
             });
             console.log(_this.nonAttendingGuests, _this.attendingGuests, _this.plusOnes);
         });
@@ -1418,7 +1421,7 @@ var Guest = /** @class */ (function () {
 /*!*********************************!*\
   !*** ./src/app/models/index.ts ***!
   \*********************************/
-/*! exports provided: PlusOne, Attending, Guest */
+/*! exports provided: Attending, Guest, PlusOne */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

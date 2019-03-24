@@ -26,17 +26,20 @@ export class AdminComponent implements OnInit {
     this.apiManager.getGuests()
       .subscribe((data: any[]) => {
         // console.log(data);
-        this.guests = data.sort((g1, g2) => {
+        let filteredData = data.filter(guest => guest.first_name);
+        this.guests = filteredData.sort((g1, g2) => {
           const id1 = g1.main_guest_id | g1.id;
           const id2 = g2.main_guest_id | g2.id;
           return id1 - id2
         });
-        data.forEach((guest)=> {
+        filteredData.forEach((guest)=> {
           console.log(guest.attending, Attending.Yes);
           if (guest.attending == Attending.Yes) this.attendingGuests++;
-          else this.nonAttendingGuests++;
-          if (guest.guest=='false') this.plusOnes++;
-        })
+          else {
+            if (guest.guest=='false') this.plusOnes++;
+            else this.nonAttendingGuests++;
+          }
+        });
         console.log(this.nonAttendingGuests, this.attendingGuests, this.plusOnes)
       });
   }
