@@ -10,12 +10,12 @@ const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 
 const client = new Client({  user: 'postgres',
-    // host: 'localhost',
-    // database: 'postgres',
-    // password: 'postgres',
-    // port: 5432
-   connectionString: process.env.DATABASE_URL,
-   ssl: true
+    host: 'localhost',
+    database: 'postgres',
+    password: 'postgres',
+    port: 5432
+   // connectionString: process.env.DATABASE_URL,
+   // ssl: true
 });
 
 let poolConfig = {
@@ -59,9 +59,22 @@ router.post('/auth', function(req, res) {
 });
 
 router.get('/guests', function (req, res) {
-    client.query('SELECT * FROM guests', (err, response) => {
+    client.query('SELECT \'true\' guest, * FROM guests', (error, response) => {
         //console.log(err, response);
-        res.send(response.rows);
+        if (error) {
+            console.error(error);
+            response.err(error);
+        } else {
+            client.query('SELECT \'false\' guest, * FROM plus_ones', (err, response2) => {
+                //console.log(err, response);
+                if (err) {
+                    console.error(err);
+                    res.err(err);
+                } else {
+                    res.send(response2.rows.concat(response.rows));
+                }
+            });
+        }
     });
 });
 

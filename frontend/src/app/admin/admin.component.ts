@@ -41,8 +41,12 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  goToInvite(id: any) {
-    this.router.navigate(['/invitation', {id}]);
+  goToInvite(id: any, guest: any) {
+    if (guest == "true") {
+      this.router.navigate(['/invitation', {id}]);
+    } else {
+      this.router.navigate(['/invitation', {id, extra: true}]);
+    }
   }
 
   compareFn(op1, op2) {
