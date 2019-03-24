@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ApiManagerService} from '../services/api-manager.service';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
-import {Guest} from '../models';
+import {Attending, Guest} from '../models';
 import {Router} from "@angular/router";
 
 @Component({
@@ -13,6 +13,9 @@ export class AdminComponent implements OnInit {
 
   public guests: Guest[];
   public newGuest: Guest = new Guest();
+  plusOnes: number = 0;
+  attendingGuests: number = 0;
+  nonAttendingGuests: number = 0;
 
   constructor(private apiManager: ApiManagerService,
               public snackBar: MatSnackBar,
@@ -22,8 +25,19 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.apiManager.getGuests()
       .subscribe((data: any[]) => {
-        console.log(data);
-        this.guests = data.sort((g1, g2) => g1.id - g2.id);
+        // console.log(data);
+        this.guests = data.sort((g1, g2) => {
+          const id1 = g1.main_guest_id | g1.id;
+          const id2 = g2.main_guest_id | g2.id;
+          return id1 - id2
+        });
+        data.forEach((guest)=> {
+          console.log(guest.attending, Attending.Yes);
+          if (guest.attending == Attending.Yes) this.attendingGuests++;
+          else this.nonAttendingGuests++;
+          if (guest.guest=='false') this.plusOnes++;
+        })
+        console.log(this.nonAttendingGuests, this.attendingGuests, this.plusOnes)
       });
   }
 

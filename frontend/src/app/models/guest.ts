@@ -1,4 +1,5 @@
-enum Attending {
+export enum Attending {
+  zero,
   Yes,
   Maybe,
   No
