@@ -63,7 +63,7 @@ export class InvitationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.queryParams
+    this.route.params
       .subscribe(params => {
         console.log(params);
         if (params.id) {

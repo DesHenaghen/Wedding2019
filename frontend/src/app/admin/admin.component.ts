@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {ApiManagerService} from '../services/api-manager.service';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import {Guest} from '../models';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-admin',
@@ -15,7 +16,8 @@ export class AdminComponent implements OnInit {
 
   constructor(private apiManager: ApiManagerService,
               public snackBar: MatSnackBar,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              private router: Router) { }
 
   ngOnInit() {
     this.apiManager.getGuests()
@@ -37,6 +39,10 @@ export class AdminComponent implements OnInit {
         next(...parameters);
       }
     });
+  }
+
+  goToInvite(id: any) {
+    this.router.navigate(['/invitation', {id}]);
   }
 
   compareFn(op1, op2) {
