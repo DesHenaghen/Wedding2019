@@ -18,6 +18,7 @@ export class AdminComponent implements OnInit {
   nonAttendingGuests: number = 0;
   maybeAttendingGuests: number = 0;
   notRepliedGuests: number = 0;
+  filter: any = {filter: false, attending: Attending.Yes};
 
   constructor(private apiManager: ApiManagerService,
               public snackBar: MatSnackBar,
@@ -189,6 +190,11 @@ export class AdminComponent implements OnInit {
           console.error(err);
         }
       );
+  }
+
+  updateFilter(filter: boolean, attending: Attending) {
+    this.filter.filter = filter;
+    this.filter.attending = attending;
   }
 }
 

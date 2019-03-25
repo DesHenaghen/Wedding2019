@@ -1,7 +1,12 @@
 <header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url(../../assets/images/img_bg_1.jpg); height: 120px;">
 </header>
 
-<button mat-fab color="primary" (click)="confirmAction(emailAll, [])">Email All</button>
+<!--<button mat-fab color="primary" (click)="confirmAction(emailAll, [])">Email All</button>-->
+<button [ngStyle]="{'background-color':filter.filter == false ? 'green' : '' }" mat-fab color="primary" (click)="updateFilter(false, 1)">All</button>
+<button  [ngStyle]="{'background-color':filter.filter == true && filter.attending == 1 ? 'green' : '' }" mat-fab color="primary" (click)="updateFilter(true, 1)">Attending</button>
+<button  [ngStyle]="{'background-color':filter.filter == true && filter.attending == 2 ? 'green' : '' }" mat-fab color="primary" (click)="updateFilter(true, 2)">Maybe</button>
+<button [ngStyle]="{'background-color':filter.filter == true && filter.attending == 3 ? 'green' : '' }"  mat-fab color="primary" (click)="updateFilter(true, 3)">Not</button>
+<button  [ngStyle]="{'background-color':filter.filter == true && filter.attending == null ? 'green' : '' }" mat-fab color="primary" (click)="updateFilter(true, null)">No Reply</button>
 <h3>Attending: {{attendingGuests}}</h3>
 <h3>PlusOnes: {{plusOnes}}</h3>
 <h3>Maybe Attending: {{maybeAttendingGuests}}</h3>
@@ -57,7 +62,7 @@
   </div>
 </mat-card>
 
-<div *ngFor="let guest of guests">
+<div *ngFor="let guest of guests | attendingFilter:filter">
   <mat-card
     [ngStyle]="{'background-color':guest.guest == 'true' ? '' : '#f8e9d5' }">
     <div class="example-container">
@@ -107,7 +112,7 @@
 
       <button (click)="confirmAction(updateGuest, [guest.id])" mat-fab>Update</button>
 
-      <button [disabled]="!guest.contact_email" (click)="confirmAction(emailGuest, [guest.contact_email])" mat-fab>Email</button>
+      <!--<button [disabled]="!guest.contact_email" (click)="confirmAction(emailGuest, [guest.contact_email])" mat-fab>Email</button>-->
 
       <button [disabled]="!guest.contact_email" (click)="confirmAction(goToInvite, [guest.id, guest.guest])" mat-fab>Invite</button>
     </div>
