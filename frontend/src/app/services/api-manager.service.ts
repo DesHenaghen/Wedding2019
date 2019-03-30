@@ -58,4 +58,8 @@ export class ApiManagerService {
   public getPlusOne(id: any) {
     return this.http.get('api/plusOne', {params: {id}});
   }
+
+  public sendInvite(url: string, name: string, email: string) {
+    return this.http.post('api/sendInvite', {url, name, email})
+  }
 }

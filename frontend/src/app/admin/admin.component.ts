@@ -63,12 +63,21 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  goToInvite(id: any, guest: any) {
-    if (guest == "true") {
-      this.router.navigate(['/invitation', {id}]);
-    } else {
-      this.router.navigate(['/invitation', {id, extra: true}]);
-    }
+  goToInvite(guest: any, extra: any) {
+    this.router.navigate(['/invitation', {id: guest.id, extra: (extra === "true") ? "false" : "true"}]);
+  }
+
+  sendInvite(guest: Guest, extra: any) {
+    var inviteUrl = `http://www.desmondirinawedding.co.uk/invitation;id=${guest.id};extra=${(extra === "true") ? "false" : "true"}`;
+    this.apiManager.sendInvite(inviteUrl, guest.first_name, guest.contact_email)
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log(err);
+        }
+      )
   }
 
   compareFn(op1, op2) {

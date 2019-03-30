@@ -67,7 +67,7 @@ export class InvitationComponent implements OnInit {
       .subscribe(params => {
         console.log(params);
         if (params.id) {
-          if (params.extra) {
+          if (params.extra === "true") {
             // fetch plusone details of id
             this.apiManager.getPlusOne(params.id)
               .subscribe((data: any) => {
