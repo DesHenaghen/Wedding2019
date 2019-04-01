@@ -10,12 +10,12 @@ const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 
 const client = new Client({  user: 'postgres',
-    host: 'localhost',
-    database: 'postgres',
-    password: 'postgres',
-    port: 5432
-    // connectionString: process.env.DATABASE_URL,
-    // ssl: true
+    // host: 'localhost',
+    // database: 'postgres',
+    // password: 'postgres',
+    // port: 5432
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
 });
 
 let poolConfig = {
