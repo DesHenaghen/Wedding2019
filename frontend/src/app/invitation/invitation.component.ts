@@ -40,7 +40,7 @@ export class InvitationComponent implements OnInit {
 
   isSelectedStarter: number;
   private guest: any;
-  attending = "1";
+  attending = "3";
 
 
   constructor(private _formBuilder: FormBuilder,
