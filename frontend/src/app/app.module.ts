@@ -26,6 +26,7 @@ import {AuthService} from "./services/auth.service";
 import {AuthGuard} from "./guards/auth.guard";
 import { LoginComponent } from './login/login.component';
 import {InvitationComponent} from "./invitation/invitation.component";
+import {AttendingFilterPipe} from "./attending-filter.pipe";
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -47,7 +48,8 @@ export function tokenGetter() {
     DialogOverviewExampleDialog,
     MealsComponent,
     LoginComponent,
-    InvitationComponent
+    InvitationComponent,
+    AttendingFilterPipe
   ],
   imports: [
     BrowserModule,

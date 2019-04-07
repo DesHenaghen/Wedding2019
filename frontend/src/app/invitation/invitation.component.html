@@ -4,6 +4,12 @@
 <br>
 {{firstName}}
 {{lastName}}
+<label id="example-radio-group-label">Can you attend our Wedding? </label>
+<mat-radio-group [(ngModel)]="attending" aria-labelledby="example-radio-group-label" aria-label="Can you attend our wedding?">
+  <mat-radio-button value="1">Yes</mat-radio-button>
+  <mat-radio-button value="3">No</mat-radio-button>
+</mat-radio-group>
+
 <form [formGroup]="formGroup">
   <mat-vertical-stepper [linear]="false" #stepper>
     <mat-step label="  Starter">

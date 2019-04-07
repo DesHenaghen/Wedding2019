@@ -192,7 +192,7 @@ module.exports = ".mat-form-field {\r\n  margin: 10px;\r\n}\r\n\r\n.mat-card {\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header id=\"fh5co-header\" class=\"fh5co-cover fh5co-cover-sm\" role=\"banner\" style=\"background-image:url(../../assets/images/img_bg_1.jpg); height: 120px;\">\r\n</header>\r\n\r\n<button mat-fab color=\"primary\" (click)=\"confirmAction(emailAll, [])\">Email All</button>\r\n<h3>Attending: {{attendingGuests}}</h3>\r\n<h3>PlusOnes: {{plusOnes}}</h3>\r\n<h3>Not Attending: {{nonAttendingGuests}}</h3>\r\n<mat-card>\r\n  <mat-card-title>New Guest</mat-card-title>\r\n  <div class=\"example-container\">\r\n    <mat-form-field>\r\n      <input matInput placeholder=\"First Name\" [(ngModel)]=\"newGuest.first_name\">\r\n    </mat-form-field>\r\n\r\n    <mat-form-field>\r\n      <input matInput placeholder=\"Last Name\" [(ngModel)]=\"newGuest.last_name\">\r\n    </mat-form-field>\r\n\r\n    <mat-form-field>\r\n      <input matInput type=\"email\" placeholder=\"Contact Email\" [(ngModel)]=\"newGuest.contact_email\" email>\r\n    </mat-form-field>\r\n\r\n    <mat-form-field>\r\n      <input matInput placeholder=\"Contact Phone No.\" [(ngModel)]=\"newGuest.contact_phone\">\r\n    </mat-form-field>\r\n\r\n    <mat-form-field>\r\n      <textarea matInput placeholder=\"Extra Info\" [(ngModel)]=\"newGuest.extra_info\"></textarea>\r\n    </mat-form-field>\r\n\r\n    <mat-form-field>\r\n      <mat-select placeholder=\"Food choice\" [(ngModel)]=\"newGuest.meal_choice\">\r\n        <mat-option value=\"1\">Steak</mat-option>\r\n        <mat-option value=\"2\">Cheese</mat-option>\r\n        <mat-option value=\"3\">Cake</mat-option>\r\n      </mat-select>\r\n    </mat-form-field>\r\n\r\n\r\n    <mat-form-field>\r\n      <mat-select placeholder=\"Attending?\" [(value)]=\"newGuest.attending\" [compareWith]=\"compareFn\">\r\n        <mat-option value=\"1\">Yes</mat-option>\r\n        <mat-option value=\"2\">Maybe</mat-option>\r\n        <mat-option value=\"3\">No</mat-option>\r\n      </mat-select>\r\n    </mat-form-field>\r\n\r\n    <mat-checkbox [(ngModel)]=\"newGuest.plus_one_offered\">Plus One Offered</mat-checkbox>\r\n\r\n    <mat-checkbox [(ngModel)]=\"newGuest.plus_one_needed\">Plus One Needed</mat-checkbox>\r\n\r\n    <mat-checkbox [(ngModel)]=\"newGuest.attending_ceremony\">Ceremony?</mat-checkbox>\r\n\r\n    <button (click)=\"addGuest()\" mat-fab>Add</button>\r\n  </div>\r\n</mat-card>\r\n\r\n<div *ngFor=\"let guest of guests\">\r\n  <mat-card\r\n    [ngStyle]=\"{'background-color':guest.guest == 'true' ? '' : '#f8e9d5' }\">\r\n    <div class=\"example-container\">\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"First Name\" [(ngModel)]=\"guest.first_name\">\r\n      </mat-form-field>\r\n\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"Last Name\" [(ngModel)]=\"guest.last_name\">\r\n      </mat-form-field>\r\n\r\n      <mat-form-field>\r\n        <input matInput type=\"email\" placeholder=\"Contact Email\" [(ngModel)]=\"guest.contact_email\" email>\r\n      </mat-form-field>\r\n\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"Contact Phone No.\" [(ngModel)]=\"guest.contact_phone\">\r\n      </mat-form-field>\r\n\r\n      <mat-form-field>\r\n        <textarea matInput placeholder=\"Extra Info\" [(ngModel)]=\"guest.extra_info\"></textarea>\r\n      </mat-form-field>\r\n\r\n      <mat-form-field>\r\n        <mat-select placeholder=\"Food choice\" [(value)]=\"guest.meal_choice\" [compareWith]=\"compareFn\">\r\n          <mat-option value=\"1\">Steak</mat-option>\r\n          <mat-option value=\"2\">Cheese</mat-option>\r\n          <mat-option value=\"3\">Cake</mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n\r\n      <mat-form-field>\r\n        <mat-select placeholder=\"Attending?\" [(value)]=\"guest.attending\" [compareWith]=\"compareFn\">\r\n          <mat-option value=\"1\">Yes</mat-option>\r\n          <mat-option value=\"2\">Maybe</mat-option>\r\n          <mat-option value=\"3\">No</mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n\r\n      <mat-checkbox [(ngModel)]=\"guest.plus_one_offered\">Plus One Offered</mat-checkbox>\r\n\r\n      <mat-checkbox [(ngModel)]=\"guest.plus_one_needed\">Plus One Needed</mat-checkbox>\r\n\r\n      <mat-checkbox [(ngModel)]=\"guest.attending_ceremony\">Ceremony?</mat-checkbox>\r\n\r\n      <button (click)=\"confirmAction(removeGuest, [guest.id])\" mat-fab>Delete</button>\r\n\r\n      <button (click)=\"confirmAction(updateGuest, [guest.id])\" mat-fab>Update</button>\r\n\r\n      <button [disabled]=\"!guest.contact_email\" (click)=\"confirmAction(emailGuest, [guest.contact_email])\" mat-fab>Email</button>\r\n\r\n      <button [disabled]=\"!guest.contact_email\" (click)=\"confirmAction(goToInvite, [guest.id, guest.guest])\" mat-fab>Invite</button>\r\n    </div>\r\n  </mat-card>\r\n</div>\r\n"
+module.exports = "<header id=\"fh5co-header\" class=\"fh5co-cover fh5co-cover-sm\" role=\"banner\" style=\"background-image:url(../../assets/images/img_bg_1.jpg); height: 120px;\">\r\n</header>\r\n\r\n<!--<button mat-fab color=\"primary\" (click)=\"confirmAction(emailAll, [])\">Email All</button>-->\r\n<button [ngStyle]=\"{'background-color':filter.filter == false ? 'green' : '' }\" mat-fab color=\"primary\" (click)=\"updateFilter(false, 1)\">All</button>\r\n<button  [ngStyle]=\"{'background-color':filter.filter == true && filter.attending == 1 ? 'green' : '' }\" mat-fab color=\"primary\" (click)=\"updateFilter(true, 1)\">Attending</button>\r\n<button  [ngStyle]=\"{'background-color':filter.filter == true && filter.attending == 2 ? 'green' : '' }\" mat-fab color=\"primary\" (click)=\"updateFilter(true, 2)\">Maybe</button>\r\n<button [ngStyle]=\"{'background-color':filter.filter == true && filter.attending == 3 ? 'green' : '' }\"  mat-fab color=\"primary\" (click)=\"updateFilter(true, 3)\">Not</button>\r\n<button  [ngStyle]=\"{'background-color':filter.filter == true && filter.attending == null ? 'green' : '' }\" mat-fab color=\"primary\" (click)=\"updateFilter(true, null)\">No Reply</button>\r\n<h3>Attending: {{attendingGuests}}</h3>\r\n<h3>PlusOnes: {{plusOnes}}</h3>\r\n<h3>Maybe Attending: {{maybeAttendingGuests}}</h3>\r\n<h3>Not Attending: {{nonAttendingGuests}}</h3>\r\n<h3>Not Replied: {{notRepliedGuests}}</h3>\r\n<mat-card>\r\n  <mat-card-title>New Guest</mat-card-title>\r\n  <div class=\"example-container\">\r\n    <mat-form-field>\r\n      <input matInput placeholder=\"First Name\" [(ngModel)]=\"newGuest.first_name\">\r\n    </mat-form-field>\r\n\r\n    <mat-form-field>\r\n      <input matInput placeholder=\"Last Name\" [(ngModel)]=\"newGuest.last_name\">\r\n    </mat-form-field>\r\n\r\n    <mat-form-field>\r\n      <input matInput type=\"email\" placeholder=\"Contact Email\" [(ngModel)]=\"newGuest.contact_email\" email>\r\n    </mat-form-field>\r\n\r\n    <mat-form-field>\r\n      <input matInput placeholder=\"Contact Phone No.\" [(ngModel)]=\"newGuest.contact_phone\">\r\n    </mat-form-field>\r\n\r\n    <mat-form-field>\r\n      <textarea matInput placeholder=\"Extra Info\" [(ngModel)]=\"newGuest.extra_info\"></textarea>\r\n    </mat-form-field>\r\n\r\n    <mat-form-field>\r\n      <mat-select placeholder=\"Food choice\" [(ngModel)]=\"newGuest.meal_choice\">\r\n        <mat-option value=\"1\">Steak</mat-option>\r\n        <mat-option value=\"2\">Cheese</mat-option>\r\n        <mat-option value=\"3\">Cake</mat-option>\r\n      </mat-select>\r\n    </mat-form-field>\r\n\r\n\r\n    <mat-form-field>\r\n      <mat-select placeholder=\"Attending?\" [(value)]=\"newGuest.attending\" [compareWith]=\"compareFn\">\r\n        <mat-option value=\"1\">Yes</mat-option>\r\n        <mat-option value=\"2\">Maybe</mat-option>\r\n        <mat-option value=\"3\">No</mat-option>\r\n      </mat-select>\r\n    </mat-form-field>\r\n\r\n    <mat-checkbox [(ngModel)]=\"newGuest.plus_one_offered\">Plus One Offered</mat-checkbox>\r\n\r\n    <mat-checkbox [(ngModel)]=\"newGuest.plus_one_needed\">Plus One Needed</mat-checkbox>\r\n\r\n    <mat-checkbox [(ngModel)]=\"newGuest.attending_ceremony\">Ceremony?</mat-checkbox>\r\n\r\n    <button (click)=\"addGuest()\" mat-fab>Add</button>\r\n  </div>\r\n</mat-card>\r\n\r\n<div *ngFor=\"let guest of guests | attendingFilter:filter\">\r\n  <mat-card\r\n    [ngStyle]=\"{'background-color':guest.guest == 'true' ? '' : '#f8e9d5' }\">\r\n    <div class=\"example-container\">\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"First Name\" [(ngModel)]=\"guest.first_name\">\r\n      </mat-form-field>\r\n\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"Last Name\" [(ngModel)]=\"guest.last_name\">\r\n      </mat-form-field>\r\n\r\n      <mat-form-field>\r\n        <input matInput type=\"email\" placeholder=\"Contact Email\" [(ngModel)]=\"guest.contact_email\" email>\r\n      </mat-form-field>\r\n\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"Contact Phone No.\" [(ngModel)]=\"guest.contact_phone\">\r\n      </mat-form-field>\r\n\r\n      <mat-form-field>\r\n        <textarea matInput placeholder=\"Extra Info\" [(ngModel)]=\"guest.extra_info\"></textarea>\r\n      </mat-form-field>\r\n\r\n      <mat-form-field>\r\n        <mat-select placeholder=\"Food choice\" [(value)]=\"guest.meal_choice\" [compareWith]=\"compareFn\">\r\n          <mat-option value=\"1\">Steak</mat-option>\r\n          <mat-option value=\"2\">Cheese</mat-option>\r\n          <mat-option value=\"3\">Cake</mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n\r\n      <mat-form-field>\r\n        <mat-select placeholder=\"Attending?\" [(value)]=\"guest.attending\" [compareWith]=\"compareFn\">\r\n          <mat-option value=\"1\">Yes</mat-option>\r\n          <mat-option value=\"2\">Maybe</mat-option>\r\n          <mat-option value=\"3\">No</mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n\r\n      <mat-checkbox [(ngModel)]=\"guest.plus_one_offered\">Plus One Offered</mat-checkbox>\r\n\r\n      <mat-checkbox [(ngModel)]=\"guest.plus_one_needed\">Plus One Needed</mat-checkbox>\r\n\r\n      <mat-checkbox [(ngModel)]=\"guest.attending_ceremony\">Ceremony?</mat-checkbox>\r\n\r\n      <button (click)=\"confirmAction(removeGuest, [guest.id])\" mat-fab>Delete</button>\r\n\r\n      <button (click)=\"confirmAction(updateGuest, [guest.id])\" mat-fab>Update</button>\r\n\r\n      <!--<button [disabled]=\"!guest.contact_email\" (click)=\"confirmAction(emailGuest, [guest.contact_email])\" mat-fab>Email</button>-->\r\n\r\n      <button [disabled]=\"!guest.contact_email\" (click)=\"confirmAction(goToInvite, [guest, guest.guest])\" mat-fab>Invite</button>\r\n    </div>\r\n  </mat-card>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -239,25 +239,35 @@ var AdminComponent = /** @class */ (function () {
         this.plusOnes = 0;
         this.attendingGuests = 0;
         this.nonAttendingGuests = 0;
+        this.maybeAttendingGuests = 0;
+        this.notRepliedGuests = 0;
+        this.filter = { filter: false, attending: _models__WEBPACK_IMPORTED_MODULE_3__["Attending"].Yes };
     }
     AdminComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.apiManager.getGuests()
             .subscribe(function (data) {
             // console.log(data);
-            _this.guests = data.sort(function (g1, g2) {
+            var filteredData = data.filter(function (guest) { return guest.first_name; });
+            _this.guests = filteredData.sort(function (g1, g2) {
                 var id1 = g1.main_guest_id | g1.id;
                 var id2 = g2.main_guest_id | g2.id;
                 return id1 - id2;
             });
-            data.forEach(function (guest) {
+            filteredData.forEach(function (guest) {
                 console.log(guest.attending, _models__WEBPACK_IMPORTED_MODULE_3__["Attending"].Yes);
                 if (guest.attending == _models__WEBPACK_IMPORTED_MODULE_3__["Attending"].Yes)
                     _this.attendingGuests++;
-                else
-                    _this.nonAttendingGuests++;
-                if (guest.guest == 'false')
-                    _this.plusOnes++;
+                else {
+                    if (guest.guest == 'false')
+                        _this.plusOnes++;
+                    else if (guest.attending == _models__WEBPACK_IMPORTED_MODULE_3__["Attending"].Maybe)
+                        _this.maybeAttendingGuests++;
+                    else if (guest.attending == _models__WEBPACK_IMPORTED_MODULE_3__["Attending"].No)
+                        _this.nonAttendingGuests++;
+                    else
+                        _this.notRepliedGuests++;
+                }
             });
             console.log(_this.nonAttendingGuests, _this.attendingGuests, _this.plusOnes);
         });
@@ -274,13 +284,17 @@ var AdminComponent = /** @class */ (function () {
             }
         });
     };
-    AdminComponent.prototype.goToInvite = function (id, guest) {
-        if (guest == "true") {
-            this.router.navigate(['/invitation', { id: id }]);
-        }
-        else {
-            this.router.navigate(['/invitation', { id: id, extra: true }]);
-        }
+    AdminComponent.prototype.goToInvite = function (guest, extra) {
+        this.router.navigate(['/invitation', { id: guest.id, extra: (extra === "true") ? "false" : "true" }]);
+    };
+    AdminComponent.prototype.sendInvite = function (guest, extra) {
+        var inviteUrl = "http://www.desmondirinawedding.co.uk/invitation;id=" + guest.id + ";extra=" + ((extra === "true") ? "false" : "true");
+        this.apiManager.sendInvite(inviteUrl, guest.first_name, guest.contact_email)
+            .subscribe(function (res) {
+            console.log(res);
+        }, function (err) {
+            console.log(err);
+        });
     };
     AdminComponent.prototype.compareFn = function (op1, op2) {
         // console.log(op1, typeof op1, op2, typeof op2);
@@ -382,6 +396,10 @@ var AdminComponent = /** @class */ (function () {
             console.error(err);
         });
     };
+    AdminComponent.prototype.updateFilter = function (filter, attending) {
+        this.filter.filter = filter;
+        this.filter.attending = attending;
+    };
     AdminComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-admin',
@@ -453,10 +471,10 @@ var AngularMaterialModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             imports: [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatInputModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatButtonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatCheckboxModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatCardModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatFormFieldModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSelectModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSnackBarModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatExpansionModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTabsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTableModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatStepperModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_3__["MatIconModule"]],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_3__["MatIconModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatRadioModule"]],
             exports: [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatInputModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatButtonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatCheckboxModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatCardModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatFormFieldModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSelectModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSnackBarModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatExpansionModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTabsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTableModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatStepperModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_3__["MatIconModule"]],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_3__["MatIconModule"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatRadioModule"]],
         })
     ], AngularMaterialModule);
     return AngularMaterialModule;
@@ -661,12 +679,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _guards_auth_guard__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./guards/auth.guard */ "./src/app/guards/auth.guard.ts");
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
 /* harmony import */ var _invitation_invitation_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./invitation/invitation.component */ "./src/app/invitation/invitation.component.ts");
+/* harmony import */ var _attending_filter_pipe__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./attending-filter.pipe */ "./src/app/attending-filter.pipe.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -717,7 +737,8 @@ var AppModule = /** @class */ (function () {
                 _admin_admin_component__WEBPACK_IMPORTED_MODULE_13__["DialogOverviewExampleDialog"],
                 _meals_meals_component__WEBPACK_IMPORTED_MODULE_22__["MealsComponent"],
                 _login_login_component__WEBPACK_IMPORTED_MODULE_25__["LoginComponent"],
-                _invitation_invitation_component__WEBPACK_IMPORTED_MODULE_26__["InvitationComponent"]
+                _invitation_invitation_component__WEBPACK_IMPORTED_MODULE_26__["InvitationComponent"],
+                _attending_filter_pipe__WEBPACK_IMPORTED_MODULE_27__["AttendingFilterPipe"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -749,6 +770,58 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/attending-filter.pipe.ts":
+/*!******************************************!*\
+  !*** ./src/app/attending-filter.pipe.ts ***!
+  \******************************************/
+/*! exports provided: AttendingFilterPipe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AttendingFilterPipe", function() { return AttendingFilterPipe; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _models__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./models */ "./src/app/models/index.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var AttendingFilterPipe = /** @class */ (function () {
+    function AttendingFilterPipe() {
+    }
+    AttendingFilterPipe.prototype.transform = function (items, filter) {
+        if (!items || !filter || filter.filter == false) {
+            return items;
+        }
+        // filter items array, items which match and return true will be
+        // kept, false will be filtered out
+        return items.filter(function (item) {
+            if (filter.attending == _models__WEBPACK_IMPORTED_MODULE_1__["Attending"].Yes) {
+                return item.attending == filter.attending || item.main_guest_id;
+            }
+            else if (filter.attending == null) {
+                return item.attending == filter.attending && !item.main_guest_id;
+            }
+            return item.attending == filter.attending;
+        });
+    };
+    AttendingFilterPipe = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Pipe"])({
+            name: 'attendingFilter',
+            pure: false
+        })
+    ], AttendingFilterPipe);
+    return AttendingFilterPipe;
 }());
 
 
@@ -1141,7 +1214,7 @@ module.exports = "/*.mat-step-header .mat-step-icon-selected, .mat-step-header .
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<br>\r\n<br>\r\n<br>\r\n<br>\r\n{{firstName}}\r\n{{lastName}}\r\n<form [formGroup]=\"formGroup\">\r\n  <mat-vertical-stepper [linear]=\"false\" #stepper>\r\n    <mat-step label=\"  Starter\">\r\n      <span class=\"meal-options-space\">\r\n      <mat-card *ngFor=\"let starter of starters\" [ngClass]=\"getMealStyle('starter', starter)\" (click)=\"mealClickEvent('starter', starter)\">\r\n        <img mat-card-image src={{starter.imageUrl}} alt=\"Photo of {{starter.name}}\">\r\n     <mat-card-header>\r\n          <mat-card-subtitle>{{starter.name}}</mat-card-subtitle>\r\n     </mat-card-header>\r\n      </mat-card>\r\n      </span>\r\n      <br>\r\n      <div>\r\n        <button [ngClass]=\"{'selected-option': menuChoice['starter'] !== null}\" mat-button matStepperNext type=\"button\">Next</button>\r\n      </div>\r\n    </mat-step>\r\n    <mat-step label=\"  Soup\">\r\n      <span class=\"meal-options-space\">\r\n      <mat-card *ngFor=\"let soup of soups\" [ngClass]=\"getMealStyle('soup', soup)\" (click)=\"mealClickEvent('soup', soup)\">\r\n        <img mat-card-image src={{soup.imageUrl}} alt=\"Photo of {{soup.name}}\">\r\n        <mat-card-header>\r\n          <mat-card-subtitle>{{soup.name}}</mat-card-subtitle>\r\n        </mat-card-header>\r\n      </mat-card>\r\n      </span>\r\n      <br>\r\n      <div>\r\n        <button mat-button matStepperPrevious type=\"button\">Back</button>\r\n        <button [ngClass]=\"{'selected-option': menuChoice['soup'] !== null}\"  mat-button matStepperNext type=\"button\">Next</button>\r\n      </div>\r\n    </mat-step>\r\n    <mat-step label=\"  Main\">\r\n      <span class=\"meal-options-space\">\r\n      <mat-card *ngFor=\"let main of mains\" [ngClass]=\"getMealStyle('main', main)\" (click)=\"mealClickEvent('main', main)\">\r\n        <img mat-card-image src={{main.imageUrl}} alt=\"Photo of {{main.name}}\">\r\n        <mat-card-header>\r\n          <mat-card-subtitle>{{main.name}}</mat-card-subtitle>\r\n        </mat-card-header>\r\n      </mat-card>\r\n      </span>\r\n      <br>\r\n      <div>\r\n        <button mat-button matStepperPrevious type=\"button\">Back</button>\r\n        <button [ngClass]=\"{'selected-option': menuChoice['main'] !== null}\"  mat-button matStepperNext type=\"button\">Next</button>\r\n      </div>\r\n    </mat-step>\r\n    <mat-step label=\"  Dessert\">\r\n      <span class=\"meal-options-space\">\r\n      <mat-card *ngFor=\"let dessert of desserts\" [ngClass]=\"getMealStyle('dessert', dessert)\" (click)=\"mealClickEvent('dessert', dessert)\">\r\n        <img mat-card-image src={{dessert.imageUrl}} alt=\"Photo of {{dessert.name}}\">\r\n        <mat-card-header>\r\n          <mat-card-subtitle>{{dessert.name}}</mat-card-subtitle>\r\n        </mat-card-header>\r\n      </mat-card>\r\n      </span>\r\n      <br>\r\n      <div>\r\n        <button mat-button matStepperPrevious type=\"button\">Back</button>\r\n        <button [ngClass]=\"{'selected-option': menuChoice['dessert'] !== null}\"  mat-button matStepperNext type=\"button\">Next</button>\r\n      </div>\r\n    </mat-step>\r\n    <mat-step label=\"  Menu Review\">\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"Menu Review\">\r\n      </mat-form-field>\r\n      <div>\r\n        <button mat-button matStepperPrevious type=\"button\">Back</button>\r\n        <button mat-button type=\"button\" (click)=\"submitInviteResponse()\">Submit</button>\r\n      </div>\r\n    </mat-step>\r\n\r\n    <!-- Icon overrides. -->\r\n    <ng-template matStepperIcon=\"number\" let-index=\"index\">\r\n      <mat-icon svgIcon=\"{{icons[index]}}\"></mat-icon>\r\n    </ng-template>\r\n    <ng-template matStepperIcon=\"edit\" let-index=\"index\">\r\n      <mat-icon svgIcon=\"{{icons[index]}}\"></mat-icon>\r\n    </ng-template>\r\n    <ng-template matStepperIcon=\"done\" let-index=\"index\">\r\n      <mat-icon svgIcon=\"{{icons[index]}}\"></mat-icon>\r\n    </ng-template>\r\n  </mat-vertical-stepper>\r\n</form>\r\n"
+module.exports = "<br>\r\n<br>\r\n<br>\r\n<br>\r\n{{firstName}}\r\n{{lastName}}\r\n<label id=\"example-radio-group-label\">Can you attend our Wedding? </label>\r\n<mat-radio-group [(ngModel)]=\"attending\" aria-labelledby=\"example-radio-group-label\" aria-label=\"Can you attend our wedding?\">\r\n  <mat-radio-button value=\"1\">Yes</mat-radio-button>\r\n  <mat-radio-button value=\"3\">No</mat-radio-button>\r\n</mat-radio-group>\r\n\r\n<form [formGroup]=\"formGroup\">\r\n  <mat-vertical-stepper [linear]=\"false\" #stepper>\r\n    <mat-step label=\"  Starter\">\r\n      <span class=\"meal-options-space\">\r\n      <mat-card *ngFor=\"let starter of starters\" [ngClass]=\"getMealStyle('starter', starter)\" (click)=\"mealClickEvent('starter', starter)\">\r\n        <img mat-card-image src={{starter.imageUrl}} alt=\"Photo of {{starter.name}}\">\r\n     <mat-card-header>\r\n          <mat-card-subtitle>{{starter.name}}</mat-card-subtitle>\r\n     </mat-card-header>\r\n      </mat-card>\r\n      </span>\r\n      <br>\r\n      <div>\r\n        <button [ngClass]=\"{'selected-option': menuChoice['starter'] !== null}\" mat-button matStepperNext type=\"button\">Next</button>\r\n      </div>\r\n    </mat-step>\r\n    <mat-step label=\"  Soup\">\r\n      <span class=\"meal-options-space\">\r\n      <mat-card *ngFor=\"let soup of soups\" [ngClass]=\"getMealStyle('soup', soup)\" (click)=\"mealClickEvent('soup', soup)\">\r\n        <img mat-card-image src={{soup.imageUrl}} alt=\"Photo of {{soup.name}}\">\r\n        <mat-card-header>\r\n          <mat-card-subtitle>{{soup.name}}</mat-card-subtitle>\r\n        </mat-card-header>\r\n      </mat-card>\r\n      </span>\r\n      <br>\r\n      <div>\r\n        <button mat-button matStepperPrevious type=\"button\">Back</button>\r\n        <button [ngClass]=\"{'selected-option': menuChoice['soup'] !== null}\"  mat-button matStepperNext type=\"button\">Next</button>\r\n      </div>\r\n    </mat-step>\r\n    <mat-step label=\"  Main\">\r\n      <span class=\"meal-options-space\">\r\n      <mat-card *ngFor=\"let main of mains\" [ngClass]=\"getMealStyle('main', main)\" (click)=\"mealClickEvent('main', main)\">\r\n        <img mat-card-image src={{main.imageUrl}} alt=\"Photo of {{main.name}}\">\r\n        <mat-card-header>\r\n          <mat-card-subtitle>{{main.name}}</mat-card-subtitle>\r\n        </mat-card-header>\r\n      </mat-card>\r\n      </span>\r\n      <br>\r\n      <div>\r\n        <button mat-button matStepperPrevious type=\"button\">Back</button>\r\n        <button [ngClass]=\"{'selected-option': menuChoice['main'] !== null}\"  mat-button matStepperNext type=\"button\">Next</button>\r\n      </div>\r\n    </mat-step>\r\n    <mat-step label=\"  Dessert\">\r\n      <span class=\"meal-options-space\">\r\n      <mat-card *ngFor=\"let dessert of desserts\" [ngClass]=\"getMealStyle('dessert', dessert)\" (click)=\"mealClickEvent('dessert', dessert)\">\r\n        <img mat-card-image src={{dessert.imageUrl}} alt=\"Photo of {{dessert.name}}\">\r\n        <mat-card-header>\r\n          <mat-card-subtitle>{{dessert.name}}</mat-card-subtitle>\r\n        </mat-card-header>\r\n      </mat-card>\r\n      </span>\r\n      <br>\r\n      <div>\r\n        <button mat-button matStepperPrevious type=\"button\">Back</button>\r\n        <button [ngClass]=\"{'selected-option': menuChoice['dessert'] !== null}\"  mat-button matStepperNext type=\"button\">Next</button>\r\n      </div>\r\n    </mat-step>\r\n    <mat-step label=\"  Menu Review\">\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"Menu Review\">\r\n      </mat-form-field>\r\n      <div>\r\n        <button mat-button matStepperPrevious type=\"button\">Back</button>\r\n        <button mat-button type=\"button\" (click)=\"submitInviteResponse()\">Submit</button>\r\n      </div>\r\n    </mat-step>\r\n\r\n    <!-- Icon overrides. -->\r\n    <ng-template matStepperIcon=\"number\" let-index=\"index\">\r\n      <mat-icon svgIcon=\"{{icons[index]}}\"></mat-icon>\r\n    </ng-template>\r\n    <ng-template matStepperIcon=\"edit\" let-index=\"index\">\r\n      <mat-icon svgIcon=\"{{icons[index]}}\"></mat-icon>\r\n    </ng-template>\r\n    <ng-template matStepperIcon=\"done\" let-index=\"index\">\r\n      <mat-icon svgIcon=\"{{icons[index]}}\"></mat-icon>\r\n    </ng-template>\r\n  </mat-vertical-stepper>\r\n</form>\r\n"
 
 /***/ }),
 
@@ -1196,12 +1269,16 @@ var InvitationComponent = /** @class */ (function () {
             'menu'
         ];
         this.icon = '../../assets/images/main-meal.svg';
+        this.attending = "1";
         this.matIconRegistry.addSvgIcon("soup", this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/images/soup.svg'));
         this.matIconRegistry.addSvgIcon("main", this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/images/main-meal.svg'));
         this.matIconRegistry.addSvgIcon("dessert", this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/images/dessert.svg'));
         this.matIconRegistry.addSvgIcon("menu", this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/images/menu.svg'));
         this.matIconRegistry.addSvgIcon("starter", this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/images/starter.svg'));
     }
+    InvitationComponent.prototype.getIcon = function (index) {
+        console.log(index);
+    };
     InvitationComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params
@@ -1209,7 +1286,7 @@ var InvitationComponent = /** @class */ (function () {
             console.log(params);
             _this.guest = params;
             if (params.id) {
-                if (params.extra == 'true') {
+                if (params.extra === "true") {
                     // fetch plusone details of id
                     _this.apiManager.getPlusOne(params.id)
                         .subscribe(function (data) {
@@ -1271,7 +1348,8 @@ var InvitationComponent = /** @class */ (function () {
     };
     InvitationComponent.prototype.submitInviteResponse = function () {
         var _this = this;
-        this.apiManager.submitInviteResponse(this.guest, true, this.menuChoice)
+        var attending = +this.attending;
+        this.apiManager.submitInviteResponse(this.guest, attending, this.menuChoice)
             .subscribe(function (data) {
             _this.router.navigate(['']);
         });
@@ -1849,6 +1927,9 @@ var ApiManagerService = /** @class */ (function () {
     };
     ApiManagerService.prototype.getPlusOne = function (id) {
         return this.http.get('api/plusOne', { params: { id: id } });
+    };
+    ApiManagerService.prototype.sendInvite = function (url, name, email) {
+        return this.http.post('api/sendInvite', { url: url, name: name, email: email });
     };
     ApiManagerService.prototype.submitInviteResponse = function (guest, attending, menuChoice) {
         return this.http.post('api/submitInviteResponse', { guest: guest, attending: attending, menuChoice: menuChoice });

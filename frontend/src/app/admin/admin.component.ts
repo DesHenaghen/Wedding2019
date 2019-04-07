@@ -16,6 +16,9 @@ export class AdminComponent implements OnInit {
   plusOnes: number = 0;
   attendingGuests: number = 0;
   nonAttendingGuests: number = 0;
+  maybeAttendingGuests: number = 0;
+  notRepliedGuests: number = 0;
+  filter: any = {filter: false, attending: Attending.Yes};
 
   constructor(private apiManager: ApiManagerService,
               public snackBar: MatSnackBar,
@@ -26,17 +29,22 @@ export class AdminComponent implements OnInit {
     this.apiManager.getGuests()
       .subscribe((data: any[]) => {
         // console.log(data);
-        this.guests = data.sort((g1, g2) => {
+        let filteredData = data.filter(guest => guest.first_name);
+        this.guests = filteredData.sort((g1, g2) => {
           const id1 = g1.main_guest_id | g1.id;
           const id2 = g2.main_guest_id | g2.id;
           return id1 - id2
         });
-        data.forEach((guest)=> {
+        filteredData.forEach((guest)=> {
           console.log(guest.attending, Attending.Yes);
           if (guest.attending == Attending.Yes) this.attendingGuests++;
-          else this.nonAttendingGuests++;
-          if (guest.guest=='false') this.plusOnes++;
-        })
+          else {
+            if (guest.guest=='false') this.plusOnes++;
+            else if (guest.attending == Attending.Maybe) this.maybeAttendingGuests++;
+            else if (guest.attending == Attending.No) this.nonAttendingGuests++;
+            else this.notRepliedGuests++;
+          }
+        });
         console.log(this.nonAttendingGuests, this.attendingGuests, this.plusOnes)
       });
   }
@@ -55,12 +63,21 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  goToInvite(id: any, guest: any) {
-    if (guest == "true") {
-      this.router.navigate(['/invitation', {id}]);
-    } else {
-      this.router.navigate(['/invitation', {id, extra: true}]);
-    }
+  goToInvite(guest: any, extra: any) {
+    this.router.navigate(['/invitation', {id: guest.id, extra: (extra === "true") ? "false" : "true"}]);
+  }
+
+  sendInvite(guest: Guest, extra: any) {
+    var inviteUrl = `http://www.desmondirinawedding.co.uk/invitation;id=${guest.id};extra=${(extra === "true") ? "false" : "true"}`;
+    this.apiManager.sendInvite(inviteUrl, guest.first_name, guest.contact_email)
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log(err);
+        }
+      )
   }
 
   compareFn(op1, op2) {
@@ -182,6 +199,11 @@ export class AdminComponent implements OnInit {
           console.error(err);
         }
       );
+  }
+
+  updateFilter(filter: boolean, attending: Attending) {
+    this.filter.filter = filter;
+    this.filter.attending = attending;
   }
 }
 

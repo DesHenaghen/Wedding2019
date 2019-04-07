@@ -6,7 +6,7 @@ import {
   MatFormFieldModule, MatInputModule,
   MatSelectModule, MatSnackBarModule,
   MatExpansionModule, MatTabsModule, MatTableModule,
-  MatStepperModule
+  MatStepperModule, MatRadioModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
@@ -14,9 +14,9 @@ import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   imports: [MatInputModule, MatButtonModule, MatCheckboxModule, MatCardModule, MatFormFieldModule, MatSelectModule,
     MatSnackBarModule, MatDialogModule, FormsModule, MatExpansionModule, MatTabsModule, MatTableModule, MatStepperModule,
-    ReactiveFormsModule, MatIconModule ],
+    ReactiveFormsModule, MatIconModule, MatRadioModule ],
   exports: [MatInputModule, MatButtonModule, MatCheckboxModule, MatCardModule, MatFormFieldModule, MatSelectModule,
     MatSnackBarModule, MatDialogModule, FormsModule, MatExpansionModule, MatTabsModule, MatTableModule, MatStepperModule,
-    ReactiveFormsModule, MatIconModule ],
+    ReactiveFormsModule, MatIconModule, MatRadioModule ],
 })
 export class AngularMaterialModule { }

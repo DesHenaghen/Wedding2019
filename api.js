@@ -83,7 +83,6 @@ router.get('/guest', function (req, res) {
             console.error(err);
             res.send(err);
         }
-        console.log("result", response.rows);
         res.send(response.rows[0]);
     });
 });
@@ -95,7 +94,6 @@ router.get('/plusOne', function (req, res) {
             console.error(err);
             res.send(err);
         }
-        console.log("result", response.rows);
         res.send(response.rows[0]);
     });
 });
@@ -149,11 +147,10 @@ router.post('/updateGuest', (req, res) => {
 
 router.post('/submitInviteResponse', (req, res) => {
     ({guest, attending, menuChoice} = req.body);
-    console.log(menuChoice);
+    console.log(req.body);
     const tableName = guest.extra==='true'?'plus_ones':'guests';
-    const attendingValue = attending===true?1:3;
     client.query('UPDATE '+tableName+' SET attending=$1, starter=$2, soup=$3, main_meal=$4, dessert=$5 WHERE id=$6',
-        [attendingValue, menuChoice.starter, menuChoice.soup, menuChoice.main, menuChoice.dessert, guest.id], (err, result) => {
+        [attending, menuChoice.starter, menuChoice.soup, menuChoice.main, menuChoice.dessert, guest.id], (err, result) => {
             if (err) {
                 console.error(err.stack);
                 res.send("Failed");
@@ -307,7 +304,7 @@ router.post('/sendSTD', (req, res) => {
         } else {
             if (plusOne) {
                 client.query(
-                    'INSERT INTO plus_ones(first_name, last_name, contact_email, contact_phone, main_guest_id, use_main_contact_info) ' +
+                    'INSERT INTO plus_ones(first_name, last_name, contact_email, contact_phone, main_guest_id, use_main_contact_info)' +
                     'VALUES ($1, $2, $3, $4, $5, $6) ' +
                     'ON CONFLICT (main_guest_id) DO UPDATE ' +
                     'SET first_name=$1, last_name=$2, contact_email=$3, contact_phone=$4, use_main_contact_info=$6',
@@ -323,6 +320,18 @@ router.post('/sendSTD', (req, res) => {
                 res.send({message: 'Logged Save the Date response'});
             }
         }
+    });
+});
+
+router.post('/sendInvite', (req, res) => {
+    const email = req.body.email;
+    fs.readFile(__dirname + '/emails/invite.html', 'utf8', function (err,data) {
+        if (err) {
+            return console.log(err);
+        }
+
+        // console.log(data);
+        sendEmail(email, data, "Invite to Irina & Desmond's Wedding", res, {}, {name: req.body.name, url: req.body.url});
     });
 });
 

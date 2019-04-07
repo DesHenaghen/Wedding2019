@@ -40,6 +40,7 @@ export class InvitationComponent implements OnInit {
 
   isSelectedStarter: number;
   private guest: any;
+  attending = "1";
 
 
   constructor(private _formBuilder: FormBuilder,
@@ -70,13 +71,18 @@ export class InvitationComponent implements OnInit {
       this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/images/starter.svg')
     );
   }
+
+  getIcon(index) {
+    console.log(index);
+  }
+
   ngOnInit() {
     this.route.params
       .subscribe(params => {
         console.log(params);
         this.guest = params;
         if (params.id) {
-          if (params.extra=='true') {
+          if (params.extra === "true") {
             // fetch plusone details of id
             this.apiManager.getPlusOne(params.id)
               .subscribe((data: any) => {
@@ -153,7 +159,8 @@ export class InvitationComponent implements OnInit {
   }
 
   submitInviteResponse(): void {
-    this.apiManager.submitInviteResponse(this.guest, true, this.menuChoice)
+    const attending = +this.attending;
+    this.apiManager.submitInviteResponse(this.guest, attending, this.menuChoice)
       .subscribe(
         (data: any) => {
           this.router.navigate(['']);
