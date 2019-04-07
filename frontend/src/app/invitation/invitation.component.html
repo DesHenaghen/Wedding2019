@@ -6,37 +6,60 @@
 {{lastName}}
 <form [formGroup]="formGroup">
   <mat-vertical-stepper [linear]="false" #stepper>
-    <mat-step label="  Starter" class="background-none">
-        <mat-form-field>
-          <input matInput placeholder="Starter">
-        </mat-form-field>
+    <mat-step label="  Starter">
+      <span class="meal-options-space">
+      <mat-card *ngFor="let starter of starters" class="meal-option-card" (click)="mealClickEvent('starter', starter)">
+        <img mat-card-image src={{starter.imageUrl}} alt="Photo of {{starter.name}}">
+     <mat-card-header>
+          <mat-card-subtitle>{{starter.name}}</mat-card-subtitle>
+     </mat-card-header>
+      </mat-card>
+      </span>
+      <br>
       <div>
-        <button mat-button matStepperPrevious type="button">Back</button>
         <button mat-button matStepperNext type="button">Next</button>
       </div>
     </mat-step>
     <mat-step label="  Soup">
-      <mat-form-field>
-        <input matInput placeholder="Soup">
-      </mat-form-field>
+      <span class="meal-options-space">
+      <mat-card *ngFor="let soup of soups" class="meal-option-card">
+        <img mat-card-image src={{soup.imageUrl}} alt="Photo of {{soup.name}}">
+        <mat-card-header>
+          <mat-card-subtitle>{{soup.name}}</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+      </span>
+      <br>
       <div>
         <button mat-button matStepperPrevious type="button">Back</button>
         <button mat-button matStepperNext type="button">Next</button>
       </div>
     </mat-step>
     <mat-step label="  Main">
-      <mat-form-field>
-        <input matInput placeholder="Main">
-      </mat-form-field>
+      <span class="meal-options-space">
+      <mat-card *ngFor="let main of mains" class="meal-option-card">
+        <img mat-card-image src={{main.imageUrl}} alt="Photo of {{main.name}}">
+        <mat-card-header>
+          <mat-card-subtitle>{{main.name}}</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+      </span>
+      <br>
       <div>
         <button mat-button matStepperPrevious type="button">Back</button>
         <button mat-button matStepperNext type="button">Next</button>
       </div>
     </mat-step>
     <mat-step label="  Dessert">
-      <mat-form-field>
-        <input matInput placeholder="Dessert" >
-      </mat-form-field>
+      <span class="meal-options-space">
+      <mat-card *ngFor="let dessert of desserts" class="meal-option-card">
+        <img mat-card-image src={{dessert.imageUrl}} alt="Photo of {{dessert.name}}">
+        <mat-card-header>
+          <mat-card-subtitle>{{dessert.name}}</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+      </span>
+      <br>
       <div>
         <button mat-button matStepperPrevious type="button">Back</button>
         <button mat-button matStepperNext type="button">Next</button>
@@ -56,8 +79,8 @@
       <mat-icon svgIcon="{{icons[index]}}"></mat-icon>
     </ng-template>
     <ng-template matStepperIcon="edit" let-index="index">
-    <mat-icon svgIcon="{{icons[index]}}"></mat-icon>
-  </ng-template>
+      <mat-icon svgIcon="{{icons[index]}}"></mat-icon>
+    </ng-template>
     <ng-template matStepperIcon="done" let-index="index">
       <mat-icon svgIcon="{{icons[index]}}"></mat-icon>
     </ng-template>

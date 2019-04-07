@@ -10,3 +10,20 @@
 .mat-step-icon .mat-icon, .mat-step-icon-content {
   top: auto !important;
 }
+
+.meal-option-card {
+  max-width: 300px;
+  min-width: 200px;
+  margin: 10px;
+}
+
+
+.meal-options-space {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}

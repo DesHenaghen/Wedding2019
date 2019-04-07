@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
-import {ActivatedRoute} from "@angular/router";
-import {ApiManagerService} from "../services";
+import {ActivatedRoute} from '@angular/router';
+import {ApiManagerService} from '../services';
+import {MealOption} from '../models';
 
 @Component({
   selector: 'app-invitation',
@@ -14,12 +15,10 @@ import {ApiManagerService} from "../services";
     provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false}
   }],
   encapsulation: ViewEncapsulation.None
-
 })
 
 export class InvitationComponent implements OnInit {
 
-  formGroup: FormGroup;
   icons = [
     'starter',
     'soup',
@@ -30,6 +29,15 @@ export class InvitationComponent implements OnInit {
   icon = '../../assets/images/main-meal.svg';
   firstName: string;
   lastName: string;
+  formGroup: FormGroup;
+  starters: MealOption[];
+  soups: MealOption[];
+  mains: MealOption[];
+  desserts: MealOption[];
+
+  isSelectedStarter: number;
+
+
   constructor(private _formBuilder: FormBuilder,
               private matIconRegistry: MatIconRegistry,
               private domSanitizer: DomSanitizer,
@@ -57,11 +65,6 @@ export class InvitationComponent implements OnInit {
       this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/images/starter.svg')
     );
   }
-
-  getIcon(index) {
-    console.log(index);
-  }
-
   ngOnInit() {
     this.route.params
       .subscribe(params => {
@@ -95,5 +98,42 @@ export class InvitationComponent implements OnInit {
       firstCtrl: ['', Validators.required],
       secondCtrl: ['', Validators.required]
     });
+
+    this.starters = [
+      new MealOption(0, 'Ham Hock Terrine with Spiced Pear Chutney and Mini Highland Oatcakes',
+        'https://material.angular.io/assets/img/examples/shiba2.jpg'),
+      new MealOption(1, 'Fricassee of Field and Forest Mushrooms on a Garlic Crouton',
+        'https://material.angular.io/assets/img/examples/shiba2.jpg'),
+      new MealOption(2, 'Egg and Parma Ham Salad with Mustard Dressing',
+        'https://material.angular.io/assets/img/examples/shiba2.jpg')
+    ];
+    this.soups = [
+      new MealOption(0, 'Cappuccino of Tomato Soup infused with Green Herbs',
+        'https://material.angular.io/assets/img/examples/shiba2.jpg'),
+      new MealOption(1, 'Cappuccino of Split Green Pea and Pear Soup with Herb Oil',
+        'https://material.angular.io/assets/img/examples/shiba2.jpg'),
+      new MealOption(2, 'Cappuccino of Seasonal Vegetable Broth with Ground White Pepper',
+        'https://material.angular.io/assets/img/examples/shiba2.jpg')
+    ];
+    this.mains = [
+      new MealOption(0, 'Roast Breast of Chicken with a Light Pan Gravy served with Roast Potatoes and Melange of Roast Vegetables',
+      'https://material.angular.io/assets/img/examples/shiba2.jpg'),
+      new MealOption(1, 'Pulled Beef with Herbs wrapped in Topside with a Jus served with Gratin Potatoes, Carrots and Grilled Courgettes',
+        'https://material.angular.io/assets/img/examples/shiba2.jpg'),
+      new MealOption(2, 'Baked Scottish Salmon on a White Wine Cream served with Parsley Buttered Potatoes and Melange of Vegetables',
+        'https://material.angular.io/assets/img/examples/shiba2.jpg')
+    ];
+    this.desserts = [
+      new MealOption(0, 'Homemade Vanilla Cheesecake with a Wild Berry Puree',
+        'https://material.angular.io/assets/img/examples/shiba2.jpg'),
+      new MealOption(1, 'Western House Strawberry Meringue with Chantilly Cream',
+        'https://material.angular.io/assets/img/examples/shiba2.jpg'),
+      new MealOption(2, 'Cream Filled Chocolate Profiteroles with a Warm Butterscotch Sauce',
+        'https://material.angular.io/assets/img/examples/shiba2.jpg')
+    ];
+  }
+
+  mealClickEvent(type: string, item) {
+    console.log(item);
   }
 }
