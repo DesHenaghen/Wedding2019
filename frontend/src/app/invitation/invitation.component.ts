@@ -3,9 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ApiManagerService} from '../services';
 import {MealOption, MenuChoice} from '../models';
+import {MatDialog} from "@angular/material";
 
 @Component({
   selector: 'app-invitation',
@@ -38,13 +39,15 @@ export class InvitationComponent implements OnInit {
   menuChoice: MenuChoice;
 
   isSelectedStarter: number;
+  private guest: any;
 
 
   constructor(private _formBuilder: FormBuilder,
               private matIconRegistry: MatIconRegistry,
               private domSanitizer: DomSanitizer,
               private route: ActivatedRoute,
-              private apiManager: ApiManagerService) {
+              private apiManager: ApiManagerService,
+              private router: Router) {
 
     this.matIconRegistry.addSvgIcon(
       `soup`,
@@ -71,8 +74,9 @@ export class InvitationComponent implements OnInit {
     this.route.params
       .subscribe(params => {
         console.log(params);
+        this.guest = params;
         if (params.id) {
-          if (params.extra) {
+          if (params.extra=='true') {
             // fetch plusone details of id
             this.apiManager.getPlusOne(params.id)
               .subscribe((data: any) => {
@@ -137,13 +141,23 @@ export class InvitationComponent implements OnInit {
   }
   getMealStyle(type: string, item) {
 
-    if (this.menuChoice[type] === item.index) {
+    if (this.menuChoice[type] === item.name) {
       return 'meal-option-card choice';
     }
     return 'meal-option-card';
   }
 
   mealClickEvent(type: string, item) {
-    this.menuChoice[type] = item.index;
+    this.menuChoice[type] = item.name;
+    console.log(this.menuChoice)
+  }
+
+  submitInviteResponse(): void {
+    this.apiManager.submitInviteResponse(this.guest, true, this.menuChoice)
+      .subscribe(
+        (data: any) => {
+          this.router.navigate(['']);
+        }
+      )
   }
 }

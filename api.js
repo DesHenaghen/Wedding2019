@@ -5,17 +5,15 @@ const { Client } = require('pg');
 const fs = require('fs');
 const mustache = require('mustache');
 const Styliner = require('styliner');
-const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
-const expressJwt = require('express-jwt');
 
 const client = new Client({  user: 'postgres',
-    // host: 'localhost',
-    // database: 'postgres',
-    // password: 'postgres',
-    // port: 5432
-   connectionString: process.env.DATABASE_URL,
-   ssl: true
+    host: 'localhost',
+    database: 'postgres',
+    password: 'postgres',
+    port: 5432
+   // connectionString: process.env.DATABASE_URL,
+   // ssl: true
 });
 
 let poolConfig = {
@@ -69,7 +67,7 @@ router.get('/guests', function (req, res) {
                 //console.log(err, response);
                 if (err) {
                     console.error(err);
-                    res.err(err);
+                    res.send(err);
                 } else {
                     res.send(response2.rows.concat(response.rows));
                 }
@@ -83,8 +81,9 @@ router.get('/guest', function (req, res) {
     client.query('SELECT first_name, last_name FROM guests where id = $1', [req.query.id], (err, response) => {
         if (err) {
             console.error(err);
-            res.err(err);
+            res.send(err);
         }
+        console.log("result", response.rows);
         res.send(response.rows[0]);
     });
 });
@@ -94,8 +93,9 @@ router.get('/plusOne', function (req, res) {
     client.query('SELECT first_name, last_name FROM plus_ones where id = $1', [req.query.id], (err, response) => {
         if (err) {
             console.error(err);
-            res.err(err);
+            res.send(err);
         }
+        console.log("result", response.rows);
         res.send(response.rows[0]);
     });
 });
@@ -145,6 +145,22 @@ router.post('/updateGuest', (req, res) => {
                res.send({message: "Updated"});
            }
        });
+});
+
+router.post('/submitInviteResponse', (req, res) => {
+    ({guest, attending, menuChoice} = req.body);
+    console.log(menuChoice);
+    const tableName = guest.extra==='true'?'plus_ones':'guests';
+    const attendingValue = attending===true?1:3;
+    client.query('UPDATE '+tableName+' SET attending=$1, starter=$2, soup=$3, main_meal=$4, dessert=$5 WHERE id=$6',
+        [attendingValue, menuChoice.starter, menuChoice.soup, menuChoice.main, menuChoice.dessert, guest.id], (err, result) => {
+            if (err) {
+                console.error(err.stack);
+                res.send("Failed");
+            } else {
+                res.send({message: "Updated"});
+            }
+        });
 });
 
 function sendEmail(email, template, subject, res, options, view) {

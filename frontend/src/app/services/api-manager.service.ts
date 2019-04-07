@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Guest} from "../models/guest";
 import {PlusOne} from "../models/plusOne";
+import {MenuChoice} from "../models";
 
 @Injectable({
   providedIn: 'root'
@@ -57,5 +58,9 @@ export class ApiManagerService {
 
   public getPlusOne(id: any) {
     return this.http.get('api/plusOne', {params: {id}});
+  }
+
+  public submitInviteResponse(guest: any, attending: boolean, menuChoice: MenuChoice) {
+    return this.http.post('api/submitInviteResponse', {guest, attending, menuChoice});
   }
 }

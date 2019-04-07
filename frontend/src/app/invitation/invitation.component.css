@@ -24,9 +24,12 @@
 }
 
 .choice {
-  outline-color: #b828cc;
-  outline-style: auto;
-  outline-width: 7px;
+  box-shadow: 0 0 3pt 2pt #b020cc !important;
+}
+
+.selected-option {
+  background-color: #b020cc;
+  color: white;
 }
 
 @media (min-width: 1025px) {

@@ -17,7 +17,7 @@
       </span>
       <br>
       <div>
-        <button mat-button matStepperNext type="button">Next</button>
+        <button [ngClass]="{'selected-option': menuChoice['starter'] !== null}" mat-button matStepperNext type="button">Next</button>
       </div>
     </mat-step>
     <mat-step label="  Soup">
@@ -32,7 +32,7 @@
       <br>
       <div>
         <button mat-button matStepperPrevious type="button">Back</button>
-        <button mat-button matStepperNext type="button">Next</button>
+        <button [ngClass]="{'selected-option': menuChoice['soup'] !== null}"  mat-button matStepperNext type="button">Next</button>
       </div>
     </mat-step>
     <mat-step label="  Main">
@@ -47,7 +47,7 @@
       <br>
       <div>
         <button mat-button matStepperPrevious type="button">Back</button>
-        <button mat-button matStepperNext type="button">Next</button>
+        <button [ngClass]="{'selected-option': menuChoice['main'] !== null}"  mat-button matStepperNext type="button">Next</button>
       </div>
     </mat-step>
     <mat-step label="  Dessert">
@@ -62,7 +62,7 @@
       <br>
       <div>
         <button mat-button matStepperPrevious type="button">Back</button>
-        <button mat-button matStepperNext type="button">Next</button>
+        <button [ngClass]="{'selected-option': menuChoice['dessert'] !== null}"  mat-button matStepperNext type="button">Next</button>
       </div>
     </mat-step>
     <mat-step label="  Menu Review">
@@ -71,6 +71,7 @@
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious type="button">Back</button>
+        <button mat-button type="button" (click)="submitInviteResponse()">Submit</button>
       </div>
     </mat-step>
 
