@@ -1130,7 +1130,7 @@ var HomeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/*.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {*/\r\n.mat-step-header div.mat-step-icon  { background: none !important; }\r\n.mat-step-icon .mat-icon {\r\n  font-size: 45px !important;\r\n  height: 45px !important;\r\n  width: 45px !important;\r\n}\r\n.mat-step-icon .mat-icon, .mat-step-icon-content {\r\n  top: auto !important;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaW52aXRhdGlvbi9pbnZpdGF0aW9uLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEscUlBQXFJO0FBQ3JJLHNDQUFzQywyQkFBMkIsRUFBRTtBQUVuRTtFQUNFLDBCQUEwQjtFQUMxQix1QkFBdUI7RUFDdkIsc0JBQXNCO0FBQ3hCO0FBRUE7RUFDRSxvQkFBb0I7QUFDdEIiLCJmaWxlIjoic3JjL2FwcC9pbnZpdGF0aW9uL2ludml0YXRpb24uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qLm1hdC1zdGVwLWhlYWRlciAubWF0LXN0ZXAtaWNvbi1zZWxlY3RlZCwgLm1hdC1zdGVwLWhlYWRlciAubWF0LXN0ZXAtaWNvbi1zdGF0ZS1kb25lLCAubWF0LXN0ZXAtaGVhZGVyIC5tYXQtc3RlcC1pY29uLXN0YXRlLWVkaXQgeyovXHJcbi5tYXQtc3RlcC1oZWFkZXIgZGl2Lm1hdC1zdGVwLWljb24gIHsgYmFja2dyb3VuZDogbm9uZSAhaW1wb3J0YW50OyB9XHJcblxyXG4ubWF0LXN0ZXAtaWNvbiAubWF0LWljb24ge1xyXG4gIGZvbnQtc2l6ZTogNDVweCAhaW1wb3J0YW50O1xyXG4gIGhlaWdodDogNDVweCAhaW1wb3J0YW50O1xyXG4gIHdpZHRoOiA0NXB4ICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5tYXQtc3RlcC1pY29uIC5tYXQtaWNvbiwgLm1hdC1zdGVwLWljb24tY29udGVudCB7XHJcbiAgdG9wOiBhdXRvICFpbXBvcnRhbnQ7XHJcbn1cclxuIl19 */"
+module.exports = "/*.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {*/\r\n.mat-step-header div.mat-step-icon  { background: none !important; }\r\n.mat-step-icon .mat-icon {\r\n  font-size: 45px !important;\r\n  height: 45px !important;\r\n  width: 45px !important;\r\n}\r\n.mat-step-icon .mat-icon, .mat-step-icon-content {\r\n  top: auto !important;\r\n}\r\n.meal-option-card {\r\n  max-width: 300px;\r\n  min-width: 200px;\r\n  margin: 10px;\r\n}\r\n.meal-options-space {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n}\r\n.example-header-image {\r\n  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');\r\n  background-size: cover;\r\n}\r\n@media (min-width: 1025px) {\r\n  mat-card img {\r\n    -o-object-fit: cover;\r\n       object-fit: cover; /*this makes de image in src fit to the size of specified below*/\r\n    width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/\r\n    height: 80%;\r\n  }\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaW52aXRhdGlvbi9pbnZpdGF0aW9uLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEscUlBQXFJO0FBQ3JJLHNDQUFzQywyQkFBMkIsRUFBRTtBQUVuRTtFQUNFLDBCQUEwQjtFQUMxQix1QkFBdUI7RUFDdkIsc0JBQXNCO0FBQ3hCO0FBRUE7RUFDRSxvQkFBb0I7QUFDdEI7QUFFQTtFQUNFLGdCQUFnQjtFQUNoQixnQkFBZ0I7RUFDaEIsWUFBWTtBQUNkO0FBR0E7RUFDRSxhQUFhO0VBQ2IsZUFBZTtBQUNqQjtBQUVBO0VBQ0UsbUZBQW1GO0VBQ25GLHNCQUFzQjtBQUN4QjtBQUVBO0VBQ0U7SUFDRSxvQkFBaUI7T0FBakIsaUJBQWlCLEVBQUUsZ0VBQWdFO0lBQ25GLFdBQVcsRUFBRSw0RkFBNEY7SUFDekcsV0FBVztFQUNiO0FBQ0YiLCJmaWxlIjoic3JjL2FwcC9pbnZpdGF0aW9uL2ludml0YXRpb24uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qLm1hdC1zdGVwLWhlYWRlciAubWF0LXN0ZXAtaWNvbi1zZWxlY3RlZCwgLm1hdC1zdGVwLWhlYWRlciAubWF0LXN0ZXAtaWNvbi1zdGF0ZS1kb25lLCAubWF0LXN0ZXAtaGVhZGVyIC5tYXQtc3RlcC1pY29uLXN0YXRlLWVkaXQgeyovXHJcbi5tYXQtc3RlcC1oZWFkZXIgZGl2Lm1hdC1zdGVwLWljb24gIHsgYmFja2dyb3VuZDogbm9uZSAhaW1wb3J0YW50OyB9XHJcblxyXG4ubWF0LXN0ZXAtaWNvbiAubWF0LWljb24ge1xyXG4gIGZvbnQtc2l6ZTogNDVweCAhaW1wb3J0YW50O1xyXG4gIGhlaWdodDogNDVweCAhaW1wb3J0YW50O1xyXG4gIHdpZHRoOiA0NXB4ICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5tYXQtc3RlcC1pY29uIC5tYXQtaWNvbiwgLm1hdC1zdGVwLWljb24tY29udGVudCB7XHJcbiAgdG9wOiBhdXRvICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5tZWFsLW9wdGlvbi1jYXJkIHtcclxuICBtYXgtd2lkdGg6IDMwMHB4O1xyXG4gIG1pbi13aWR0aDogMjAwcHg7XHJcbiAgbWFyZ2luOiAxMHB4O1xyXG59XHJcblxyXG5cclxuLm1lYWwtb3B0aW9ucy1zcGFjZSB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LXdyYXA6IHdyYXA7XHJcbn1cclxuXHJcbi5leGFtcGxlLWhlYWRlci1pbWFnZSB7XHJcbiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCdodHRwczovL21hdGVyaWFsLmFuZ3VsYXIuaW8vYXNzZXRzL2ltZy9leGFtcGxlcy9zaGliYTEuanBnJyk7XHJcbiAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcclxufVxyXG5cclxuQG1lZGlhIChtaW4td2lkdGg6IDEwMjVweCkge1xyXG4gIG1hdC1jYXJkIGltZyB7XHJcbiAgICBvYmplY3QtZml0OiBjb3ZlcjsgLyp0aGlzIG1ha2VzIGRlIGltYWdlIGluIHNyYyBmaXQgdG8gdGhlIHNpemUgb2Ygc3BlY2lmaWVkIGJlbG93Ki9cclxuICAgIHdpZHRoOiAxMDAlOyAvKiBIZXJlIHlvdSBjYW4gdXNlIHdoZXJldmVyIHlvdSB3YW50IHRvIHNwZWNpZnkgdGhlIHdpZHRoIGFuZCBhbHNvIHRoZSBoZWlnaHQgb2YgdGhlIDxpbWc+Ki9cclxuICAgIGhlaWdodDogODAlO1xyXG4gIH1cclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -1141,7 +1141,7 @@ module.exports = "/*.mat-step-header .mat-step-icon-selected, .mat-step-header .
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<br>\r\n<br>\r\n<br>\r\n<br>\r\n{{firstName}}\r\n{{lastName}}\r\n<form [formGroup]=\"formGroup\">\r\n  <mat-vertical-stepper [linear]=\"false\" #stepper>\r\n    <mat-step label=\"  Starter\" class=\"background-none\">\r\n        <mat-form-field>\r\n          <input matInput placeholder=\"Starter\">\r\n        </mat-form-field>\r\n      <div>\r\n        <button mat-button matStepperPrevious type=\"button\">Back</button>\r\n        <button mat-button matStepperNext type=\"button\">Next</button>\r\n      </div>\r\n    </mat-step>\r\n    <mat-step label=\"  Soup\">\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"Soup\">\r\n      </mat-form-field>\r\n      <div>\r\n        <button mat-button matStepperPrevious type=\"button\">Back</button>\r\n        <button mat-button matStepperNext type=\"button\">Next</button>\r\n      </div>\r\n    </mat-step>\r\n    <mat-step label=\"  Main\">\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"Main\">\r\n      </mat-form-field>\r\n      <div>\r\n        <button mat-button matStepperPrevious type=\"button\">Back</button>\r\n        <button mat-button matStepperNext type=\"button\">Next</button>\r\n      </div>\r\n    </mat-step>\r\n    <mat-step label=\"  Dessert\">\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"Dessert\" >\r\n      </mat-form-field>\r\n      <div>\r\n        <button mat-button matStepperPrevious type=\"button\">Back</button>\r\n        <button mat-button matStepperNext type=\"button\">Next</button>\r\n      </div>\r\n    </mat-step>\r\n    <mat-step label=\"  Menu Review\">\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"Menu Review\">\r\n      </mat-form-field>\r\n      <div>\r\n        <button mat-button matStepperPrevious type=\"button\">Back</button>\r\n      </div>\r\n    </mat-step>\r\n\r\n    <!-- Icon overrides. -->\r\n    <ng-template matStepperIcon=\"number\" let-index=\"index\">\r\n      <mat-icon svgIcon=\"{{icons[index]}}\"></mat-icon>\r\n    </ng-template>\r\n    <ng-template matStepperIcon=\"edit\" let-index=\"index\">\r\n    <mat-icon svgIcon=\"{{icons[index]}}\"></mat-icon>\r\n  </ng-template>\r\n    <ng-template matStepperIcon=\"done\" let-index=\"index\">\r\n      <mat-icon svgIcon=\"{{icons[index]}}\"></mat-icon>\r\n    </ng-template>\r\n  </mat-vertical-stepper>\r\n</form>\r\n"
+module.exports = "<br>\r\n<br>\r\n<br>\r\n<br>\r\n{{firstName}}\r\n{{lastName}}\r\n<form [formGroup]=\"formGroup\">\r\n  <mat-vertical-stepper [linear]=\"false\" #stepper>\r\n    <mat-step label=\"  Starter\">\r\n      <span class=\"meal-options-space\">\r\n      <mat-card *ngFor=\"let starter of starters\" class=\"meal-option-card\" (click)=\"mealClickEvent('starter', starter)\">\r\n        <img mat-card-image src={{starter.imageUrl}} alt=\"Photo of {{starter.name}}\">\r\n     <mat-card-header>\r\n          <mat-card-subtitle>{{starter.name}}</mat-card-subtitle>\r\n     </mat-card-header>\r\n      </mat-card>\r\n      </span>\r\n      <br>\r\n      <div>\r\n        <button mat-button matStepperNext type=\"button\">Next</button>\r\n      </div>\r\n    </mat-step>\r\n    <mat-step label=\"  Soup\">\r\n      <span class=\"meal-options-space\">\r\n      <mat-card *ngFor=\"let soup of soups\" class=\"meal-option-card\">\r\n        <img mat-card-image src={{soup.imageUrl}} alt=\"Photo of {{soup.name}}\">\r\n        <mat-card-header>\r\n          <mat-card-subtitle>{{soup.name}}</mat-card-subtitle>\r\n        </mat-card-header>\r\n      </mat-card>\r\n      </span>\r\n      <br>\r\n      <div>\r\n        <button mat-button matStepperPrevious type=\"button\">Back</button>\r\n        <button mat-button matStepperNext type=\"button\">Next</button>\r\n      </div>\r\n    </mat-step>\r\n    <mat-step label=\"  Main\">\r\n      <span class=\"meal-options-space\">\r\n      <mat-card *ngFor=\"let main of mains\" class=\"meal-option-card\">\r\n        <img mat-card-image src={{main.imageUrl}} alt=\"Photo of {{main.name}}\">\r\n        <mat-card-header>\r\n          <mat-card-subtitle>{{main.name}}</mat-card-subtitle>\r\n        </mat-card-header>\r\n      </mat-card>\r\n      </span>\r\n      <br>\r\n      <div>\r\n        <button mat-button matStepperPrevious type=\"button\">Back</button>\r\n        <button mat-button matStepperNext type=\"button\">Next</button>\r\n      </div>\r\n    </mat-step>\r\n    <mat-step label=\"  Dessert\">\r\n      <span class=\"meal-options-space\">\r\n      <mat-card *ngFor=\"let dessert of desserts\" class=\"meal-option-card\">\r\n        <img mat-card-image src={{dessert.imageUrl}} alt=\"Photo of {{dessert.name}}\">\r\n        <mat-card-header>\r\n          <mat-card-subtitle>{{dessert.name}}</mat-card-subtitle>\r\n        </mat-card-header>\r\n      </mat-card>\r\n      </span>\r\n      <br>\r\n      <div>\r\n        <button mat-button matStepperPrevious type=\"button\">Back</button>\r\n        <button mat-button matStepperNext type=\"button\">Next</button>\r\n      </div>\r\n    </mat-step>\r\n    <mat-step label=\"  Menu Review\">\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"Menu Review\">\r\n      </mat-form-field>\r\n      <div>\r\n        <button mat-button matStepperPrevious type=\"button\">Back</button>\r\n      </div>\r\n    </mat-step>\r\n\r\n    <!-- Icon overrides. -->\r\n    <ng-template matStepperIcon=\"number\" let-index=\"index\">\r\n      <mat-icon svgIcon=\"{{icons[index]}}\"></mat-icon>\r\n    </ng-template>\r\n    <ng-template matStepperIcon=\"edit\" let-index=\"index\">\r\n      <mat-icon svgIcon=\"{{icons[index]}}\"></mat-icon>\r\n    </ng-template>\r\n    <ng-template matStepperIcon=\"done\" let-index=\"index\">\r\n      <mat-icon svgIcon=\"{{icons[index]}}\"></mat-icon>\r\n    </ng-template>\r\n  </mat-vertical-stepper>\r\n</form>\r\n"
 
 /***/ }),
 
@@ -1162,6 +1162,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../services */ "./src/app/services/index.ts");
+/* harmony import */ var _models__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../models */ "./src/app/models/index.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1171,6 +1172,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1199,9 +1201,6 @@ var InvitationComponent = /** @class */ (function () {
         this.matIconRegistry.addSvgIcon("menu", this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/images/menu.svg'));
         this.matIconRegistry.addSvgIcon("starter", this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/images/starter.svg'));
     }
-    InvitationComponent.prototype.getIcon = function (index) {
-        console.log(index);
-    };
     InvitationComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params
@@ -1236,6 +1235,29 @@ var InvitationComponent = /** @class */ (function () {
             firstCtrl: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             secondCtrl: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
         });
+        this.starters = [
+            new _models__WEBPACK_IMPORTED_MODULE_7__["MealOption"](0, 'Ham Hock Terrine with Spiced Pear Chutney and Mini Highland Oatcakes', '../../assets/images/starter_hamhock.jpg'),
+            new _models__WEBPACK_IMPORTED_MODULE_7__["MealOption"](1, 'Fricassee of Field and Forest Mushrooms on a Garlic Crouton', '../../assets/images/starter_mushroom.jpg'),
+            new _models__WEBPACK_IMPORTED_MODULE_7__["MealOption"](2, 'Egg and Parma Ham Salad with Mustard Dressing', '../../assets/images/starter_salad.jpg')
+        ];
+        this.soups = [
+            new _models__WEBPACK_IMPORTED_MODULE_7__["MealOption"](0, 'Cappuccino of Tomato Soup infused with Green Herbs', '../../assets/images/soup_tomato.jpg'),
+            new _models__WEBPACK_IMPORTED_MODULE_7__["MealOption"](1, 'Cappuccino of Split Green Pea and Pear Soup with Herb Oil', '../../assets/images/soup_pea.jpg'),
+            new _models__WEBPACK_IMPORTED_MODULE_7__["MealOption"](2, 'Cappuccino of Seasonal Vegetable Broth with Ground White Pepper', '../../assets/images/soup_vegetables.jpg')
+        ];
+        this.mains = [
+            new _models__WEBPACK_IMPORTED_MODULE_7__["MealOption"](0, 'Roast Breast of Chicken with a Light Pan Gravy served with Roast Potatoes and Melange of Roast Vegetables', '../../assets/images/main_chicken.jpg'),
+            new _models__WEBPACK_IMPORTED_MODULE_7__["MealOption"](1, 'Pulled Beef with Herbs wrapped in Topside with a Jus served with Gratin Potatoes, Carrots and Grilled Courgettes', '../../assets/images/main_beef.jpg'),
+            new _models__WEBPACK_IMPORTED_MODULE_7__["MealOption"](2, 'Baked Scottish Salmon on a White Wine Cream served with Parsley Buttered Potatoes and Melange of Vegetables', '../../assets/images/main_salmon.jpg')
+        ];
+        this.desserts = [
+            new _models__WEBPACK_IMPORTED_MODULE_7__["MealOption"](0, 'Homemade Vanilla Cheesecake with a Wild Berry Puree', '../../assets/images/dessert_cheesecake.jpg'),
+            new _models__WEBPACK_IMPORTED_MODULE_7__["MealOption"](1, 'Western House Strawberry Meringue with Chantilly Cream', '../../assets/images/dessert_meringue.jpg'),
+            new _models__WEBPACK_IMPORTED_MODULE_7__["MealOption"](2, 'Cream Filled Chocolate Profiteroles with a Warm Butterscotch Sauce', '../../assets/images/dessert_profiteroles.jpg')
+        ];
+    };
+    InvitationComponent.prototype.mealClickEvent = function (type, item) {
+        console.log(item);
     };
     InvitationComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1418,7 +1440,7 @@ var Guest = /** @class */ (function () {
 /*!*********************************!*\
   !*** ./src/app/models/index.ts ***!
   \*********************************/
-/*! exports provided: PlusOne, Attending, Guest */
+/*! exports provided: Attending, Guest, PlusOne, MealOption */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1431,7 +1453,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _plusOne__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./plusOne */ "./src/app/models/plusOne.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PlusOne", function() { return _plusOne__WEBPACK_IMPORTED_MODULE_1__["PlusOne"]; });
 
+/* harmony import */ var _meal_option__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./meal-option */ "./src/app/models/meal-option.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MealOption", function() { return _meal_option__WEBPACK_IMPORTED_MODULE_2__["MealOption"]; });
 
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/app/models/meal-option.ts":
+/*!***************************************!*\
+  !*** ./src/app/models/meal-option.ts ***!
+  \***************************************/
+/*! exports provided: MealOption */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MealOption", function() { return MealOption; });
+var MealOption = /** @class */ (function () {
+    function MealOption(index, name, imageUrl) {
+        this.index = index;
+        this.name = name;
+        this.imageUrl = imageUrl;
+    }
+    return MealOption;
+}());
 
 
 
