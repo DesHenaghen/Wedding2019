@@ -5,7 +5,7 @@ import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ActivatedRoute} from '@angular/router';
 import {ApiManagerService} from '../services';
-import {MealOption} from '../models';
+import {MealOption, MenuChoice} from '../models';
 
 @Component({
   selector: 'app-invitation',
@@ -34,6 +34,8 @@ export class InvitationComponent implements OnInit {
   soups: MealOption[];
   mains: MealOption[];
   desserts: MealOption[];
+
+  menuChoice: MenuChoice;
 
   isSelectedStarter: number;
 
@@ -93,6 +95,7 @@ export class InvitationComponent implements OnInit {
           }
         }
       });
+    this.menuChoice = new MenuChoice();
 
     this.formGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required],
@@ -132,8 +135,15 @@ export class InvitationComponent implements OnInit {
         '../../assets/images/dessert_profiteroles.jpg')
     ];
   }
+  getMealStyle(type: string, item) {
+
+    if (this.menuChoice[type] === item.index) {
+      return 'meal-option-card choice';
+    }
+    return 'meal-option-card';
+  }
 
   mealClickEvent(type: string, item) {
-    console.log(item);
+    this.menuChoice[type] = item.index;
   }
 }

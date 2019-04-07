@@ -23,9 +23,10 @@
   flex-wrap: wrap;
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+.choice {
+  outline-color: #b828cc;
+  outline-style: auto;
+  outline-width: 7px;
 }
 
 @media (min-width: 1025px) {
