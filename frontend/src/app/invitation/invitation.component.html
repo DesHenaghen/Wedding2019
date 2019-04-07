@@ -8,7 +8,7 @@
   <mat-vertical-stepper [linear]="false" #stepper>
     <mat-step label="  Starter">
       <span class="meal-options-space">
-      <mat-card *ngFor="let starter of starters" class="meal-option-card" (click)="mealClickEvent('starter', starter)">
+      <mat-card *ngFor="let starter of starters" [ngClass]="getMealStyle('starter', starter)" (click)="mealClickEvent('starter', starter)">
         <img mat-card-image src={{starter.imageUrl}} alt="Photo of {{starter.name}}">
      <mat-card-header>
           <mat-card-subtitle>{{starter.name}}</mat-card-subtitle>
@@ -22,7 +22,7 @@
     </mat-step>
     <mat-step label="  Soup">
       <span class="meal-options-space">
-      <mat-card *ngFor="let soup of soups" class="meal-option-card">
+      <mat-card *ngFor="let soup of soups" [ngClass]="getMealStyle('soup', soup)" (click)="mealClickEvent('soup', soup)">
         <img mat-card-image src={{soup.imageUrl}} alt="Photo of {{soup.name}}">
         <mat-card-header>
           <mat-card-subtitle>{{soup.name}}</mat-card-subtitle>
@@ -37,7 +37,7 @@
     </mat-step>
     <mat-step label="  Main">
       <span class="meal-options-space">
-      <mat-card *ngFor="let main of mains" class="meal-option-card">
+      <mat-card *ngFor="let main of mains" [ngClass]="getMealStyle('main', main)" (click)="mealClickEvent('main', main)">
         <img mat-card-image src={{main.imageUrl}} alt="Photo of {{main.name}}">
         <mat-card-header>
           <mat-card-subtitle>{{main.name}}</mat-card-subtitle>
@@ -52,7 +52,7 @@
     </mat-step>
     <mat-step label="  Dessert">
       <span class="meal-options-space">
-      <mat-card *ngFor="let dessert of desserts" class="meal-option-card">
+      <mat-card *ngFor="let dessert of desserts" [ngClass]="getMealStyle('dessert', dessert)" (click)="mealClickEvent('dessert', dessert)">
         <img mat-card-image src={{dessert.imageUrl}} alt="Photo of {{dessert.name}}">
         <mat-card-header>
           <mat-card-subtitle>{{dessert.name}}</mat-card-subtitle>
