@@ -23,9 +23,20 @@
 }
 
 .choice {
-  outline-color: #b828cc;
-  outline-style: auto;
-  outline-width: 7px;
+  box-shadow: 0 0 3pt 2pt #b020cc !important;
+}
+
+.selected-option {
+  background-color: #b020cc;
+  color: white;
+}
+
+@media (min-width: 1025px) {
+  mat-card img {
+    object-fit: cover; /*this makes de image in src fit to the size of specified below*/
+    width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+    height: 80%;
+  }
 }
 
 .chalkboard {

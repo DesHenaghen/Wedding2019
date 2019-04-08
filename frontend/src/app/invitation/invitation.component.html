@@ -4,8 +4,13 @@
 <br>
 {{firstName}}
 {{lastName}}
+<label id="example-radio-group-label">Can you attend our Wedding? </label>
+<mat-radio-group [(ngModel)]="attending" aria-labelledby="example-radio-group-label" aria-label="Can you attend our wedding?">
+  <mat-radio-button value="1">Yes</mat-radio-button>
+  <mat-radio-button value="3">No</mat-radio-button>
+</mat-radio-group>
 <form [formGroup]="formGroup">
-  <mat-vertical-stepper [linear]="false" #stepper>
+  <mat-vertical-stepper *ngIf="attending==='1'" [linear]="false" #stepper>
     <mat-step label="  Starter">
       <span class="meal-options-space">
       <mat-card *ngFor="let starter of starters" [ngClass]="getMealStyle('starter', starter)" (click)="mealClickEvent('starter', starter)">
@@ -17,7 +22,7 @@
       </span>
       <br>
       <div>
-        <button mat-button matStepperNext type="button">Next</button>
+        <button [ngClass]="{'selected-option': menuChoice['starter'] !== null}" mat-button matStepperNext type="button">Next</button>
       </div>
     </mat-step>
     <mat-step label="  Soup">
@@ -32,7 +37,7 @@
       <br>
       <div>
         <button mat-button matStepperPrevious type="button">Back</button>
-        <button mat-button matStepperNext type="button">Next</button>
+        <button [ngClass]="{'selected-option': menuChoice['soup'] !== null}"  mat-button matStepperNext type="button">Next</button>
       </div>
     </mat-step>
     <mat-step label="  Main">
@@ -47,7 +52,7 @@
       <br>
       <div>
         <button mat-button matStepperPrevious type="button">Back</button>
-        <button mat-button matStepperNext type="button">Next</button>
+        <button [ngClass]="{'selected-option': menuChoice['main'] !== null}"  mat-button matStepperNext type="button">Next</button>
       </div>
     </mat-step>
     <mat-step label="  Dessert">
@@ -62,7 +67,7 @@
       <br>
       <div>
         <button mat-button matStepperPrevious type="button">Back</button>
-        <button mat-button matStepperNext type="button">Next</button>
+        <button [ngClass]="{'selected-option': menuChoice['dessert'] !== null}"  mat-button matStepperNext type="button">Next</button>
       </div>
     </mat-step>
     <mat-step label="  Menu Review">
@@ -108,4 +113,5 @@
       <mat-icon svgIcon="{{icons[index]}}"></mat-icon>
     </ng-template>
   </mat-vertical-stepper>
+  <button mat-button type="button" (click)="submitInviteResponse()">Submit</button>
 </form>

@@ -5,17 +5,15 @@ const { Client } = require('pg');
 const fs = require('fs');
 const mustache = require('mustache');
 const Styliner = require('styliner');
-const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
-const expressJwt = require('express-jwt');
 
 const client = new Client({  user: 'postgres',
-    // host: 'localhost',
-    // database: 'postgres',
-    // password: 'postgres',
-    // port: 5432
-   connectionString: process.env.DATABASE_URL,
-   ssl: true
+    host: 'localhost',
+    database: 'postgres',
+    password: 'postgres',
+    port: 5432
+   // connectionString: process.env.DATABASE_URL,
+   // ssl: true
 });
 
 let poolConfig = {
@@ -69,7 +67,7 @@ router.get('/guests', function (req, res) {
                 //console.log(err, response);
                 if (err) {
                     console.error(err);
-                    res.err(err);
+                    res.send(err);
                 } else {
                     res.send(response2.rows.concat(response.rows));
                 }
@@ -83,7 +81,7 @@ router.get('/guest', function (req, res) {
     client.query('SELECT first_name, last_name FROM guests where id = $1', [req.query.id], (err, response) => {
         if (err) {
             console.error(err);
-            res.err(err);
+            res.send(err);
         }
         res.send(response.rows[0]);
     });
@@ -94,7 +92,7 @@ router.get('/plusOne', function (req, res) {
     client.query('SELECT first_name, last_name FROM plus_ones where id = $1', [req.query.id], (err, response) => {
         if (err) {
             console.error(err);
-            res.err(err);
+            res.send(err);
         }
         res.send(response.rows[0]);
     });
@@ -145,6 +143,21 @@ router.post('/updateGuest', (req, res) => {
                res.send({message: "Updated"});
            }
        });
+});
+
+router.post('/submitInviteResponse', (req, res) => {
+    ({guest, attending, menuChoice} = req.body);
+    console.log(req.body);
+    const tableName = guest.extra==='true'?'plus_ones':'guests';
+    client.query('UPDATE '+tableName+' SET attending=$1, starter=$2, soup=$3, main_meal=$4, dessert=$5 WHERE id=$6',
+        [attending, menuChoice.starter, menuChoice.soup, menuChoice.main, menuChoice.dessert, guest.id], (err, result) => {
+            if (err) {
+                console.error(err.stack);
+                res.send("Failed");
+            } else {
+                res.send({message: "Updated"});
+            }
+        });
 });
 
 function sendEmail(email, template, subject, res, options, view) {
@@ -291,7 +304,7 @@ router.post('/sendSTD', (req, res) => {
         } else {
             if (plusOne) {
                 client.query(
-                    'INSERT INTO plus_ones(first_name, last_name, contact_email, contact_phone, main_guest_id, use_main_contact_info) ' +
+                    'INSERT INTO plus_ones(first_name, last_name, contact_email, contact_phone, main_guest_id, use_main_contact_info)' +
                     'VALUES ($1, $2, $3, $4, $5, $6) ' +
                     'ON CONFLICT (main_guest_id) DO UPDATE ' +
                     'SET first_name=$1, last_name=$2, contact_email=$3, contact_phone=$4, use_main_contact_info=$6',
@@ -307,6 +320,18 @@ router.post('/sendSTD', (req, res) => {
                 res.send({message: 'Logged Save the Date response'});
             }
         }
+    });
+});
+
+router.post('/sendInvite', (req, res) => {
+    const email = req.body.email;
+    fs.readFile(__dirname + '/emails/invite.html', 'utf8', function (err,data) {
+        if (err) {
+            return console.log(err);
+        }
+
+        // console.log(data);
+        sendEmail(email, data, "Invite to Irina & Desmond's Wedding", res, {}, {name: req.body.name, url: req.body.url});
     });
 });
 
