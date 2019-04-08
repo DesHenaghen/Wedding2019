@@ -17,7 +17,6 @@
   margin: 10px;
 }
 
-
 .meal-options-space {
   display: flex;
   flex-wrap: wrap;
@@ -28,3 +27,35 @@
   outline-style: auto;
   outline-width: 7px;
 }
+
+.chalkboard {
+
+  max-width: 500px;
+  min-width: 300px;
+  max-height: 1100px;
+  min-height: 700px;
+  text-align: center;
+  margin: auto;
+}
+
+.chalkboard img {
+  width: 250px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.chalkboard h2 {
+  color: white;
+}
+
+.chalkboard p {
+  margin: auto;
+  text-align: center;
+  max-width: 450px;
+  min-width: 200px;
+  color: white;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-style: italic;
+}
+

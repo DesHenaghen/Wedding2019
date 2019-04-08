@@ -146,4 +146,11 @@ export class InvitationComponent implements OnInit {
   mealClickEvent(type: string, item) {
     this.menuChoice[type] = item.index;
   }
+
+  getMealChoice(type: string, index: string) {
+    if (this.menuChoice[index] === null || this.menuChoice[index] === undefined) {
+      return '__________________';
+    }
+    return this[type][this.menuChoice[index]].name;
+  }
 }
