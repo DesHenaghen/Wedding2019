@@ -1,8 +1,8 @@
 export class MenuChoice {
-  starter: number;
-  soup: number;
-  main: number;
-  dessert: number;
+  starter: string;
+  soup: string;
+  main: string;
+  dessert: string;
 
   constructor() {
     this.starter = null;

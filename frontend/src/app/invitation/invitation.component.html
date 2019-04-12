@@ -2,6 +2,12 @@
 <br>
 <br>
 <br>
+<div class="invitation">
+  <div  class="background" >
+    <img src="../../assets/images/ceremony_invitation.png">
+  </div>
+</div>
+
 {{firstName}}
 {{lastName}}
 <label id="example-radio-group-label">Can you attend our Wedding? </label>
@@ -71,32 +77,27 @@
       </div>
     </mat-step>
     <mat-step label="  Menu Review">
-      <mat-card style="background-image:url(../../assets/images/chalkboard.jpg);">
-        <div class="chalkboard fh5co-heading">
-            <h2>Menu</h2>
-          <img src="../../assets/images/floral-design.png" alt="Floral Design">
-          <p>Starter: </p>
-          <p>{{getMealChoice('starters', 'starter')}}</p>
-          <h2>~</h2>
-          <p>Soup: </p>
-          <p>{{getMealChoice('soups', 'soup')}}</p>
-          <h2>~</h2>
-          <p>Main: </p>
-          <p>{{getMealChoice('mains', 'main')}}</p>
-          <h2>~</h2>
-          <p>Dessert: </p>
-          <p>{{getMealChoice('desserts', 'dessert')}}</p>
-          <h2>~</h2>
-          <h2>Bon Appétit! <3</h2>
-          <img src="../../assets/images/floral-twirl.png" alt="Twirl">
-
-        </div>
+      <div style="margin-left: -36px">
+      <mat-card class="chalkboard fh5co-heading" style="background-image:url(../../assets/images/chalkboard.jpg);">
+        <h2>Menu</h2>
+        <img src="../../assets/images/floral-design.png" alt="Floral Design">
+        <p>Starter: </p>
+        <p>{{getMealChoice('starter')}}</p>
+        <h2>~</h2>
+        <p>Soup: </p>
+        <p>{{getMealChoice('soup')}}</p>
+        <h2>~</h2>
+        <p>Main: </p>
+        <p>{{getMealChoice('main')}}</p>
+        <h2>~</h2>
+        <p>Dessert: </p>
+        <p>{{getMealChoice('dessert')}}</p>
+        <h2>~</h2>
+        <h2>Bon Appétit! <3</h2>
+        <img src="../../assets/images/floral-twirl.png" alt="Twirl">
       </mat-card>
+      </div>
 
-
-      <mat-form-field>
-        <input matInput placeholder="Menu Review">
-      </mat-form-field>
       <div>
         <button mat-button matStepperPrevious type="button">Back</button>
       </div>

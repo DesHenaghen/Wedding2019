@@ -70,3 +70,25 @@
   font-style: italic;
 }
 
+.invitation {
+  padding-top: 15%;
+  padding-bottom: 15%;
+  width: 100%;
+}
+.invitation .background {
+  background-size: contain;
+  background-image:url(../../assets/images/invitation_background.png);
+
+}
+
+.invitation img{
+  margin-top: -15%;
+  margin-bottom: -15%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  max-width: 600px;
+  max-height: 800px;
+  display: block;
+}
+
