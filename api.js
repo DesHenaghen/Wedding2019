@@ -145,6 +145,26 @@ router.post('/updateGuest', (req, res) => {
        });
 });
 
+function sendNegativeInviteResponseConfirmationEmail(data) {
+    fs.readFile(__dirname + '/emails/negativeInviteResponse.html', 'utf8', function (err, template) {
+        if (err) {
+            return console.log(err);
+        }
+
+        // console.log(data);
+        client.query('SELECT first_name, contact_email FROM guests WHERE id = $1 limit 1', [data.guest.id], (err, result) => {
+            if (err) {
+                console.error(err.stack);
+            } else if (result.rows.length > 0) {
+                console.log(result.rows[0]);
+
+                const guest = result.rows[0];
+                sendEmail(guest.contact_email, template, "Sorry to see you can't make it", null, null, {name: guest.first_name});
+            }
+        });
+    });
+}
+
 router.post('/submitInviteResponse', (req, res) => {
     ({guest, attending, menuChoice} = req.body);
     console.log(req.body);
@@ -156,9 +176,63 @@ router.post('/submitInviteResponse', (req, res) => {
                 res.send("Failed");
             } else {
                 res.send({message: "Updated"});
+                if (attending == 1)
+                    sendMenuConfirmationEmail(req.body);
+                else if (attending == 3)
+                    sendNegativeInviteResponseConfirmationEmail(req.body);
             }
         });
 });
+
+function sendMenuConfirmationEmail(data) {
+    let mailOptions = {
+        attachments: [
+            {
+                filename: 'chalkboard.jpg',
+                path: 'frontend/src/assets/images/chalkboard.jpg',
+                cid: 'chalkboard'
+            },
+            {
+                filename: 'floral-design.png',
+                path: 'frontend/src/assets/images/floral-design.png',
+                cid: 'floral-design'
+            },
+            {
+                filename: 'floral-twirl.png',
+                path: 'frontend/src/assets/images/floral-twirl.png',
+                cid: 'floral-twirl'
+            },
+            {
+                filename: 'invitation_background.png',
+                path: 'frontend/src/assets/images/invitation_background.png',
+                cid: 'invitation_background'
+            },
+            {
+                filename: 'ceremony_invitation.png',
+                path: 'frontend/src/assets/images/ceremony_invitation.png',
+                cid: 'ceremony_invitation'
+            }
+        ]
+    };
+    fs.readFile(__dirname + '/emails/positiveInviteResponse.html', 'utf8', function (err, template) {
+        if (err) {
+            return console.log(err);
+        }
+
+        // console.log(data);
+        client.query('SELECT first_name, contact_email FROM guests WHERE id = $1 limit 1', [data.guest.id], (err, result) => {
+            if (err) {
+                console.error(err.stack);
+            } else if (result.rows.length > 0) {
+                console.log(result.rows[0]);
+                const guest = result.rows[0];
+                sendEmail(guest.contact_email, template, "So glad you can make it! Here's your menu", null, mailOptions,
+                    {starter: data.menuChoice.starter, soup: data.menuChoice.soup, main: data.menuChoice.main,
+                        dessert: data.menuChoice.dessert, name: guest.first_name});
+            }
+        });
+    });
+}
 
 function sendEmail(email, template, subject, res, options, view) {
     let mailOptions = options || {};
