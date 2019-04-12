@@ -76,10 +76,6 @@
             margin-right: auto
         }
 
-        .chalkboard h2 {
-            color: white;
-        }
-
         .chalkboard p {
             margin: auto;
             text-align: center;
@@ -91,8 +87,12 @@
         }
 
         .invitation {
+            padding-top: 15%;
+            padding-bottom: 15%;
             width: 100%;
+            text-align:center
         }
+
         .invitation .background {
             background-size: contain;
             background-image:url(cid:invitation_background);
@@ -100,14 +100,18 @@
         }
 
         .invitation img{
-            margin-top: -15%;
-            margin-bottom: -15%;
-            margin-left: auto;
-            margin-right: auto;
-            width: 80%;
-            max-width: 600px;
-            max-height: 800px;
-            display: block;
+            max-width: 601px;
+            max-height: 801px;
+            display: inline-block;
+        }
+
+        .fh5co-heading h2 {
+            font-size: 60px;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            font-weight: bold;
+            color: white;
+            font-family: "Sacramento", Arial, serif;
         }
 
     </style>
@@ -115,7 +119,7 @@
 <body>
 <div class="invitation">
     <div  class="background" >
-        <img src="cid:ceremony_invitation">
+        <img src="cid:ceremony_invitation" style="margin: -10% 0 -10% 0; width: 80%;">
     </div>
 </div>
 <h2>Hi {{name}}, we're so glad you can make it to our wedding! Please see your menu choices below for your reference :)</h2>
