@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cid="http://www.w3.org/1999/xhtml"
+>
+<head>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml><![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <!--[if !mso]><!-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--<![endif]-->
+    <title></title>
+    <!--[if !mso]><!-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <!--<![endif]-->
+
+    <style type="text/css" id="media-query">
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        table, tr, td {
+            vertical-align: top;
+            border-collapse: collapse;
+        }
+
+        .ie-browser table, .mso-container table {
+            table-layout: fixed;
+        }
+
+        * {
+            line-height: inherit;
+        }
+
+        a[x-apple-data-detectors=true] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        [owa] .img-container div, [owa] .img-container button {
+            display: block !important;
+        }
+
+        [owa] .fullwidth button {
+            width: 100% !important;
+        }
+
+        @media (min-width: 1025px) {
+            mat-card img {
+                object-fit: cover; /*this makes de image in src fit to the size of specified below*/
+                width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+                height: 80%;
+            }
+        }
+
+        .chalkboard {
+
+            max-width: 500px;
+            min-width: 300px;
+            max-height: 1100px;
+            min-height: 700px;
+            text-align: center;
+            margin: auto;
+        }
+
+        .chalkboard img {
+            width: 250px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .chalkboard h2 {
+            color: white;
+        }
+
+        .chalkboard p {
+            margin: auto;
+            text-align: center;
+            max-width: 450px;
+            min-width: 200px;
+            color: white;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            font-style: italic;
+        }
+
+        .invitation {
+            width: 100%;
+        }
+        .invitation .background {
+            background-size: contain;
+            background-image:url(cid:invitation_background);
+
+        }
+
+        .invitation img{
+            margin-top: -15%;
+            margin-bottom: -15%;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            max-width: 600px;
+            max-height: 800px;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+<div class="invitation">
+    <div  class="background" >
+        <img src="cid:ceremony_invitation">
+    </div>
+</div>
+<h2>Hi {{name}}, we're so glad you can make it to our wedding! Please see your menu choices below for your reference :)</h2>
+<div class="chalkboard fh5co-heading" style="background-image:url('cid:chalkboard');">
+    <h2>Menu</h2>
+    <img src="cid:floral-design" alt="Floral Design">
+    <p>Starter: </p>
+    <p>{{starter}}</p>
+    <h2>~</h2>
+    <p>Soup: </p>
+    <p>{{soup}}</p>
+    <h2>~</h2>
+    <p>Main: </p>
+    <p>{{main}}</p>
+    <h2>~</h2>
+    <p>Dessert: </p>
+    <p>{{dessert}}</p>
+    <h2>~</h2>
+    <h2>Bon Appétit! <3</h2>
+    <img src="cid:floral-twirl" alt="Twirl">
+</div>
+</body>
+</html>
