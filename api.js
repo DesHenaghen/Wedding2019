@@ -203,14 +203,9 @@ function sendMenuConfirmationEmail(data) {
                 cid: 'floral-twirl'
             },
             {
-                filename: 'invitation_background.png',
-                path: 'frontend/src/assets/images/invitation_background.png',
-                cid: 'invitation_background'
-            },
-            {
-                filename: 'ceremony_invitation.png',
-                path: 'frontend/src/assets/images/ceremony_invitation.png',
-                cid: 'ceremony_invitation'
+                filename: 'invitation.jpg',
+                path: 'frontend/src/assets/images/invitation.jpg',
+                cid: 'invitation'
             }
         ]
     };
