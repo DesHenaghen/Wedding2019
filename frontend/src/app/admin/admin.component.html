@@ -114,7 +114,7 @@
 
       <!--<button [disabled]="!guest.contact_email" (click)="confirmAction(emailGuest, [guest.contact_email])" mat-fab>Email</button>-->
 
-      <button [disabled]="!guest.contact_email" (click)="confirmAction(goToInvite, [guest, guest.guest])" mat-fab>Invite</button>
+      <button [disabled]="!guest.contact_email" (click)="confirmAction(sendInvite, [guest, guest.guest])" mat-fab>Invite</button>
     </div>
   </mat-card>
 </div>

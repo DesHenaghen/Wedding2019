@@ -201,11 +201,6 @@ function sendMenuConfirmationEmail(data) {
                 filename: 'floral-twirl.png',
                 path: 'frontend/src/assets/images/floral-twirl.png',
                 cid: 'floral-twirl'
-            },
-            {
-                filename: 'invitation.jpg',
-                path: 'frontend/src/assets/images/invitation.jpg',
-                cid: 'invitation'
             }
         ]
     };
@@ -400,7 +395,15 @@ router.post('/sendInvite', (req, res) => {
         }
 
         // console.log(data);
-        sendEmail(email, data, "Invite to Irina & Desmond's Wedding", res, {}, {name: req.body.name, url: req.body.url});
+        sendEmail(email, data, "Invite to Irina & Desmond's Wedding", res, {
+            attachments: [
+                {
+                    filename: 'invitation.jpg',
+                    path: 'frontend/src/assets/images/invitation.jpg',
+                    cid: 'invitation'
+                }
+            ]
+        }, {name: req.body.name, url: req.body.url});
     });
 });
 
