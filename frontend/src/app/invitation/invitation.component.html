@@ -8,7 +8,7 @@
   <br>
   <p>(If you are still not sure, please contact the bride and groom for special arrangements.)</p>
   <br>
-  <mat-radio-group [(ngModel)]="attending" aria-labelledby="example-radio-group-label">
+  <mat-radio-group [(ngModel)]="attending">
     <mat-radio-button value="1">Yes, looking forward to it! </mat-radio-button>
     <mat-radio-button value="3">Sadly can't make it.</mat-radio-button>
   </mat-radio-group>
@@ -23,9 +23,10 @@
   <p *ngIf="attending==='3'">That's a shame. You will be missed!</p>
 </div>
 
-<form [formGroup]="formGroup">
-  <mat-vertical-stepper *ngIf="attending==='1'" [linear]="false" #stepper>
-    <mat-step label="  Starter">
+<div *ngIf="attending==='1'" >
+  <form [formGroup]="formGroup">
+    <mat-vertical-stepper [linear]="false" #stepper>
+      <mat-step label="  Starter">
       <span class="meal-options-space">
       <mat-card *ngFor="let starter of starters" [ngClass]="getMealStyle('starter', starter)" (click)="mealClickEvent('starter', starter)">
         <img mat-card-image src={{starter.imageUrl}} alt="Photo of {{starter.name}}">
@@ -34,12 +35,12 @@
      </mat-card-header>
       </mat-card>
       </span>
-      <br>
-      <div class="rsvp">
-        <button [ngClass]="{'selected-option': menuChoice['starter'] !== null}" mat-button matStepperNext type="button">Next</button>
-      </div>
-    </mat-step>
-    <mat-step label="  Soup">
+        <br>
+        <div class="rsvp">
+          <button [ngClass]="{'selected-option': menuChoice['starter'] !== null}" mat-button matStepperNext type="button">Next</button>
+        </div>
+      </mat-step>
+      <mat-step label="  Soup">
       <span class="meal-options-space">
       <mat-card *ngFor="let soup of soups" [ngClass]="getMealStyle('soup', soup)" (click)="mealClickEvent('soup', soup)">
         <img mat-card-image src={{soup.imageUrl}} alt="Photo of {{soup.name}}">
@@ -48,13 +49,13 @@
         </mat-card-header>
       </mat-card>
       </span>
-      <br>
-      <div class="rsvp">
-        <button mat-button matStepperPrevious type="button">Back</button>
-        <button [ngClass]="{'selected-option': menuChoice['soup'] !== null}"  mat-button matStepperNext type="button">Next</button>
-      </div>
-    </mat-step>
-    <mat-step label="  Main">
+        <br>
+        <div class="rsvp">
+          <button mat-button matStepperPrevious type="button">Back</button>
+          <button [ngClass]="{'selected-option': menuChoice['soup'] !== null}"  mat-button matStepperNext type="button">Next</button>
+        </div>
+      </mat-step>
+      <mat-step label="  Main">
       <span class="meal-options-space">
       <mat-card *ngFor="let main of mains" [ngClass]="getMealStyle('main', main)" (click)="mealClickEvent('main', main)">
         <img mat-card-image src={{main.imageUrl}} alt="Photo of {{main.name}}">
@@ -63,13 +64,13 @@
         </mat-card-header>
       </mat-card>
       </span>
-      <br>
-      <div class="rsvp">
-        <button mat-button matStepperPrevious type="button">Back</button>
-        <button [ngClass]="{'selected-option': menuChoice['main'] !== null}"  mat-button matStepperNext type="button">Next</button>
-      </div>
-    </mat-step>
-    <mat-step label="  Dessert">
+        <br>
+        <div class="rsvp">
+          <button mat-button matStepperPrevious type="button">Back</button>
+          <button [ngClass]="{'selected-option': menuChoice['main'] !== null}"  mat-button matStepperNext type="button">Next</button>
+        </div>
+      </mat-step>
+      <mat-step label="  Dessert">
       <span class="meal-options-space">
       <mat-card *ngFor="let dessert of desserts" [ngClass]="getMealStyle('dessert', dessert)" (click)="mealClickEvent('dessert', dessert)">
         <img mat-card-image src={{dessert.imageUrl}} alt="Photo of {{dessert.name}}">
@@ -78,52 +79,78 @@
         </mat-card-header>
       </mat-card>
       </span>
-      <br>
-      <div class="rsvp">
-        <button mat-button matStepperPrevious type="button">Back</button>
-        <button [ngClass]="{'selected-option': menuChoice['dessert'] !== null}"  mat-button matStepperNext type="button">Next</button>
-      </div>
-    </mat-step>
-    <mat-step label="  Menu Review">
-      <div style="margin-left: -36px">
-      <mat-card class="chalkboard fh5co-heading" style="background-image:url(../../assets/images/chalkboard.jpg);">
-        <h2>Menu</h2>
-        <img src="../../assets/images/floral-design.png" alt="Floral Design">
-        <p>Starter: </p>
-        <p>{{getMealChoice('starter')}}</p>
-        <h2>~</h2>
-        <p>Soup: </p>
-        <p>{{getMealChoice('soup')}}</p>
-        <h2>~</h2>
-        <p>Main: </p>
-        <p>{{getMealChoice('main')}}</p>
-        <h2>~</h2>
-        <p>Dessert: </p>
-        <p>{{getMealChoice('dessert')}}</p>
-        <h2>~</h2>
-        <h2>Bon Appétit! <3</h2>
-        <img src="../../assets/images/floral-twirl.png" alt="Twirl">
-      </mat-card>
-      </div>
+        <br>
+        <div class="rsvp">
+          <button mat-button matStepperPrevious type="button">Back</button>
+          <button [ngClass]="{'selected-option': menuChoice['dessert'] !== null}"  mat-button matStepperNext type="button">Next</button>
+        </div>
+      </mat-step>
+      <mat-step label="  Menu Review">
+        <div style="margin-left: -36px">
+          <mat-card class="chalkboard fh5co-heading" style="background-image:url(../../assets/images/chalkboard.jpg);">
+            <h2>Menu</h2>
+            <img src="../../assets/images/floral-design.png" alt="Floral Design">
+            <p>Starter: </p>
+            <p>{{getMealChoice('starter')}}</p>
+            <h2>~</h2>
+            <p>Soup: </p>
+            <p>{{getMealChoice('soup')}}</p>
+            <h2>~</h2>
+            <p>Main: </p>
+            <p>{{getMealChoice('main')}}</p>
+            <h2>~</h2>
+            <p>Dessert: </p>
+            <p>{{getMealChoice('dessert')}}</p>
+            <h2>~</h2>
+            <h2>Bon Appétit! <3</h2>
+            <img src="../../assets/images/floral-twirl.png" alt="Twirl">
+          </mat-card>
+        </div>
 
-      <div class="rsvp">
-        <button mat-button matStepperPrevious type="button">Back</button>
-      </div>
-    </mat-step>
-    <!-- Icon overrides. -->
-    <ng-template matStepperIcon="number" let-index="index">
-      <mat-icon svgIcon="{{icons[index]}}"></mat-icon>
-    </ng-template>
-    <ng-template matStepperIcon="edit" let-index="index">
-      <mat-icon svgIcon="{{icons[index]}}"></mat-icon>
-    </ng-template>
-    <ng-template matStepperIcon="done" let-index="index">
-      <mat-icon svgIcon="{{icons[index]}}"></mat-icon>
-    </ng-template>
-  </mat-vertical-stepper>
+        <div class="rsvp">
+          <button mat-button matStepperPrevious type="button">Back</button>
+        </div>
+      </mat-step>
+      <!-- Icon overrides. -->
+      <ng-template matStepperIcon="number" let-index="index">
+        <mat-icon svgIcon="{{icons[index]}}"></mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="edit" let-index="index">
+        <mat-icon svgIcon="{{icons[index]}}"></mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="done" let-index="index">
+        <mat-icon svgIcon="{{icons[index]}}"></mat-icon>
+      </ng-template>
+    </mat-vertical-stepper>
+  </form>
+<div class="rsvp">
+  <label>Please detail any dietary requirements we should pass onto the caterers. </label>
+  <br>
+  <textarea matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="2"
+            cdkAutosizeMaxRows="5"></textarea>
 
-  <div class="rsvp" id="fh5co-started">
-    <button class="btn btn-default" type="button" (click)="submitInviteResponse()">Send my R.S.V.P.</button>
-  </div>
+  <br>
+  <br>
+  <label>On the night of the wedding, you will be:</label>
+  <br>
+  <mat-radio-group>
+    <mat-radio-button value="1">staying at the Western House Hotel</mat-radio-button>
+    <br>
+    <mat-radio-button value="2">staying at the Premier Inn</mat-radio-button>
+    <br>
+    <mat-radio-button value="3">travelling back to :</mat-radio-button> <input placeholder="(enter postcode)">
+  </mat-radio-group>
 
-</form>
+
+</div>
+
+</div>
+
+<div class="rsvp" id="fh5co-started">
+  <button class="btn btn-default" type="button" (click)="submitInviteResponse()">Send my R.S.V.P.</button>
+</div>
+
+
