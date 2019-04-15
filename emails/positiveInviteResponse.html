@@ -50,6 +50,38 @@
         [owa] .fullwidth button {
             width: 100% !important;
         }
+        /*.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {*/
+        .mat-step-header div.mat-step-icon  { background: none !important; }
+
+        .mat-step-icon .mat-icon {
+            font-size: 45px !important;
+            height: 45px !important;
+            width: 45px !important;
+        }
+
+        .mat-step-icon .mat-icon, .mat-step-icon-content {
+            top: auto !important;
+        }
+
+        .meal-option-card {
+            max-width: 300px;
+            min-width: 200px;
+            margin: 10px;
+        }
+
+        .meal-options-space {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .choice {
+            box-shadow: 0 0 3pt 2pt #b020cc !important;
+        }
+
+        .selected-option {
+            background-color: #b020cc;
+            color: white;
+        }
 
         @media (min-width: 1025px) {
             mat-card img {
@@ -76,6 +108,10 @@
             margin-right: auto
         }
 
+        .chalkboard h2 {
+            color: white;
+        }
+
         .chalkboard p {
             margin: auto;
             text-align: center;
@@ -87,22 +123,13 @@
         }
 
         .invitation {
-            padding-top: 15%;
-            padding-bottom: 15%;
             width: 100%;
-            text-align:center
-        }
+            background-position: center;
+            background-image: url("cid:invitation");
+            min-height: 420px;
+            background-repeat: no-repeat;
+            background-size: cover;
 
-        .invitation .background {
-            background-size: contain;
-            background-image:url(cid:invitation_background);
-
-        }
-
-        .invitation img{
-            max-width: 601px;
-            max-height: 801px;
-            display: inline-block;
         }
 
         .fh5co-heading h2 {
@@ -117,11 +144,6 @@
     </style>
 </head>
 <body>
-<div class="invitation">
-    <div  class="background" >
-        <img src="cid:ceremony_invitation" style="margin: -10% 0 -10% 0; width: 80%;">
-    </div>
-</div>
 <h2>Hi {{name}}, we're so glad you can make it to our wedding! Please see your menu choices below for your reference :)</h2>
 <div class="chalkboard fh5co-heading" style="background-image:url('cid:chalkboard');">
     <h2>Menu</h2>
