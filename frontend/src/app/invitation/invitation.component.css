@@ -70,13 +70,30 @@
   font-style: italic;
 }
 
-.invitation {
+.flower-header {
   width: 100%;
   background-position: center;
-  background-image: url("../../assets/images/invitation.jpg");
-  min-height: 420px;
+  background-image: url("../../assets/images/flower_header.jpg");
+  min-height: 200px;
   background-repeat: no-repeat;
   background-size: cover;
-
 }
+
+.rsvp {
+  margin: auto;
+  text-align: center;
+  max-width: 500px;
+  min-width: 200px;
+}
+
+
+.rsvp label{
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-style: italic;
+}
+
+.rsvp mat-radio-button {
+  margin-left: 10px;
+}
+
 

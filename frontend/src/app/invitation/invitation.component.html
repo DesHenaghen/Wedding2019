@@ -1,18 +1,28 @@
-<br>
-<br>
-<br>
-<br>
-<div class="invitation">
-  <img >
+<div class="flower-header">
+  <img>
 </div>
 
-{{firstName}}
-{{lastName}}
-<label id="example-radio-group-label">Can you attend our Wedding? </label>
-<mat-radio-group [(ngModel)]="attending" aria-labelledby="example-radio-group-label" aria-label="Can you attend our wedding?">
-  <mat-radio-button value="1">Yes</mat-radio-button>
-  <mat-radio-button value="3">No</mat-radio-button>
-</mat-radio-group>
+<div class="rsvp fh5co-heading">
+  <h2>R.S.V.P.</h2>
+  <label>Hi {{firstName}}, are you able to attend our wedding? </label>
+  <br>
+  <p>(If you are still not sure, please contact the bride and groom for special arrangements.)</p>
+  <br>
+  <mat-radio-group [(ngModel)]="attending" aria-labelledby="example-radio-group-label">
+    <mat-radio-button value="1">Yes, looking forward to it! </mat-radio-button>
+    <mat-radio-button value="3">Sadly can't make it.</mat-radio-button>
+  </mat-radio-group>
+  <br>
+  <br>
+
+  <div *ngIf="attending==='1'">
+    <p>Fantastic!</p>
+    <p>Please make your meal choices from the menu below and let us know your dietary requirements.
+      These will be served during the main meal on the day.</p>
+  </div>
+  <p *ngIf="attending==='3'">That's a shame. You will be missed!</p>
+</div>
+
 <form [formGroup]="formGroup">
   <mat-vertical-stepper *ngIf="attending==='1'" [linear]="false" #stepper>
     <mat-step label="  Starter">
@@ -100,7 +110,6 @@
         <button mat-button matStepperPrevious type="button">Back</button>
       </div>
     </mat-step>
-
     <!-- Icon overrides. -->
     <ng-template matStepperIcon="number" let-index="index">
       <mat-icon svgIcon="{{icons[index]}}"></mat-icon>
@@ -112,5 +121,9 @@
       <mat-icon svgIcon="{{icons[index]}}"></mat-icon>
     </ng-template>
   </mat-vertical-stepper>
-  <button mat-button type="button" (click)="submitInviteResponse()">Submit</button>
+
+  <div class="rsvp" id="fh5co-started">
+    <button class="btn btn-default" type="button" (click)="submitInviteResponse()">Send my R.S.V.P.</button>
+  </div>
+
 </form>
