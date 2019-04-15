@@ -401,6 +401,21 @@ router.post('/sendInvite', (req, res) => {
                     filename: 'invitation.jpg',
                     path: 'frontend/src/assets/images/invitation.jpg',
                     cid: 'invitation'
+                },
+                {
+                    filename: 'rsvp.png',
+                    path: 'frontend/src/assets/images/rsvp.png',
+                    cid: 'rsvp'
+                },
+                {
+                    filename: 'information.png',
+                    path: 'frontend/src/assets/images/information.png',
+                    cid: 'information'
+                },
+                {
+                    filename: 'gifts.png',
+                    path: 'frontend/src/assets/images/gifts.png',
+                    cid: 'gifts'
                 }
             ]
         }, {name: req.body.name, url: req.body.url});
