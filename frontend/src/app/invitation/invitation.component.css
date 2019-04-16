@@ -96,4 +96,11 @@
   margin-left: 10px;
 }
 
+#travel-option > .mat-radio-label-content {
+  font-family: "Work Sans", Arial, sans-serif;
+  font-size: 18px;
+  color: #828282;
+  font-weight: normal !important;
+}
+
 
