@@ -8,12 +8,12 @@ const Styliner = require('styliner');
 const jwt = require('jsonwebtoken');
 
 const client = new Client({  user: 'postgres',
-    // host: 'localhost',
-    // database: 'postgres',
-    // password: 'postgres',
-    // port: 5432
-   connectionString: process.env.DATABASE_URL,
-   ssl: true
+    host: 'localhost',
+    database: 'postgres',
+    password: 'postgres',
+    port: 5432
+   // connectionString: process.env.DATABASE_URL,
+   // ssl: true
 });
 
 let poolConfig = {
@@ -395,30 +395,8 @@ router.post('/sendInvite', (req, res) => {
         }
 
         // console.log(data);
-        sendEmail(email, data, "Invite to Irina & Desmond's Wedding", res, {
-            attachments: [
-                {
-                    filename: 'invitation.jpg',
-                    path: 'frontend/src/assets/images/invitation.jpg',
-                    cid: 'invitation'
-                },
-                {
-                    filename: 'rsvp.png',
-                    path: 'frontend/src/assets/images/rsvp.png',
-                    cid: 'rsvp'
-                },
-                {
-                    filename: 'information.png',
-                    path: 'frontend/src/assets/images/information.png',
-                    cid: 'information'
-                },
-                {
-                    filename: 'gifts.png',
-                    path: 'frontend/src/assets/images/gifts.png',
-                    cid: 'gifts'
-                }
-            ]
-        }, {name: req.body.name, url: req.body.url});
+        sendEmail("deshenaghen@yahoo.co.uk", data, "Invite to Irina & Desmond's Wedding", res, {},
+            {name: "desmoond henaughoan", url: "www.google.com"});
     });
 });
 
