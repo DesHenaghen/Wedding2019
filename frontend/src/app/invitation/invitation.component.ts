@@ -6,7 +6,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ApiManagerService} from '../services';
 import {MealOption, MenuChoice} from '../models';
-import {MatDialog} from "@angular/material";
+import {MatDialog, MatStepper} from "@angular/material";
 
 @Component({
   selector: 'app-invitation',
@@ -143,8 +143,9 @@ export class InvitationComponent implements OnInit {
     return 'meal-option-card';
   }
 
-  mealClickEvent(type: string, item) {
+  mealClickEvent(type: string, item, stepper: MatStepper) {
     this.menuChoice[type] = item.name;
+    stepper.next();
   }
 
   submitInviteResponse(): void {
