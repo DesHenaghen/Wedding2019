@@ -36,7 +36,7 @@ export class AdminComponent implements OnInit {
           return id1 - id2
         });
         filteredData.forEach((guest)=> {
-          console.log(guest.attending, Attending.Yes);
+          // console.log(guest.attending, Attending.Yes);
           if (guest.attending == Attending.Yes) this.attendingGuests++;
           else {
             if (guest.guest=='false') this.plusOnes++;
@@ -69,7 +69,7 @@ export class AdminComponent implements OnInit {
 
   sendInvite(guest: Guest, extra: any) {
     var inviteUrl = `http://www.desmondirinawedding.co.uk/invitation;id=${guest.id};extra=${(extra === "true") ? "false" : "true"}`;
-    this.apiManager.sendInvite(inviteUrl, guest.first_name, guest.contact_email)
+    this.apiManager.sendInvite(inviteUrl, guest.first_name, guest.contact_email, guest.attending_ceremony)
       .subscribe(
         res => {
           console.log(res);
@@ -82,7 +82,7 @@ export class AdminComponent implements OnInit {
 
   sendYahooInvite(guest: Guest, extra: any) {
     var inviteUrl = `http://www.desmondirinawedding.co.uk/invitation;id=${guest.id};extra=${(extra === "true") ? "false" : "true"}`;
-    this.apiManager.sendYahooInvite(inviteUrl, guest.first_name, guest.contact_email)
+    this.apiManager.sendYahooInvite(inviteUrl, guest.first_name, guest.contact_email, guest.attending_ceremony)
       .subscribe(
         res => {
           console.log(res);

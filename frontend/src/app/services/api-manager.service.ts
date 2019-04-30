@@ -60,12 +60,12 @@ export class ApiManagerService {
     return this.http.get('api/plusOne', {params: {id}});
   }
 
-  public sendInvite(url: string, name: string, email: string) {
-    return this.http.post('api/sendInvite', {url, name, email})
+  public sendInvite(url: string, name: string, email: string, ceremony: boolean) {
+    return this.http.post('api/sendInvite', {url, name, email, ceremony})
   }
 
-  public sendYahooInvite(url: string, name: string, email: string) {
-    return this.http.post('api/sendYahooInvite', {url, name, email})
+  public sendYahooInvite(url: string, name: string, email: string, ceremony: boolean) {
+    return this.http.post('api/sendYahooInvite', {url, name, email, ceremony})
   }
 
   public submitInviteResponse(guest: any, attending: number, menuChoice: MenuChoice) {

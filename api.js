@@ -389,7 +389,8 @@ router.post('/sendSTD', (req, res) => {
 
 router.post('/sendInvite', (req, res) => {
     const email = req.body.email;
-    fs.readFile(__dirname + '/emails/invite.html', 'utf8', function (err,data) {
+    const email_file = (req.body.ceremony) ? "invite.html" : "reception_invite.html";
+    fs.readFile(__dirname + '/emails/' + email_file, 'utf8', function (err,data) {
         if (err) {
             return console.log(err);
         }
@@ -402,7 +403,8 @@ router.post('/sendInvite', (req, res) => {
 
 router.post('/sendYahooInvite', (req, res) => {
     const email = req.body.email;
-    fs.readFile(__dirname + '/emails/invite_yahoo.html', 'utf8', function (err,data) {
+    const email_file = (req.body.ceremony) ? "invite_yahoo.html" : "reception_invite_yahoo.html";
+    fs.readFile(__dirname + '/emails/' + email_file, 'utf8', function (err,data) {
         if (err) {
             return console.log(err);
         }
