@@ -40,6 +40,9 @@ export class InvitationComponent implements OnInit {
 
   private guest: any;
   attending;
+  dietary: String;
+  staying_at: String;
+  postcode: String;
 
 
   constructor(private _formBuilder: FormBuilder,
@@ -150,7 +153,8 @@ export class InvitationComponent implements OnInit {
 
   submitInviteResponse(): void {
     const attending = +this.attending;
-    this.apiManager.submitInviteResponse(this.guest, attending, this.menuChoice)
+    const staying_at = (this.staying_at=="postcode")?this.postcode:this.staying_at;
+    this.apiManager.submitInviteResponse(this.guest, attending, this.menuChoice, this.dietary, staying_at)
       .subscribe(
         (data: any) => {
           // this.router.navigate(['']);

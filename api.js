@@ -166,11 +166,11 @@ function sendNegativeInviteResponseConfirmationEmail(data) {
 }
 
 router.post('/submitInviteResponse', (req, res) => {
-    ({guest, attending, menuChoice} = req.body);
+    ({guest, attending, menuChoice, dietary, staying_at} = req.body);
     console.log(req.body);
     const tableName = guest.extra==='true'?'plus_ones':'guests';
-    client.query('UPDATE '+tableName+' SET attending=$1, starter=$2, soup=$3, main_meal=$4, dessert=$5 WHERE id=$6',
-        [attending, menuChoice.starter, menuChoice.soup, menuChoice.main, menuChoice.dessert, guest.id], (err, result) => {
+    client.query('UPDATE '+tableName+' SET attending=$1, starter=$2, soup=$3, main_meal=$4, dessert=$5, dietary_requirements=$6, staying_at=$7 WHERE id=$8',
+        [attending, menuChoice.starter, menuChoice.soup, menuChoice.main, menuChoice.dessert, dietary, staying_at, guest.id], (err, result) => {
             if (err) {
                 console.error(err.stack);
                 res.send("Failed");
