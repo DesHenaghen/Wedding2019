@@ -144,24 +144,32 @@
     </style>
 </head>
 <body>
-<h2>Hi {{name}}, we're so glad you can make it to our wedding! Please see your menu choices below for your reference :)</h2>
-<div class="chalkboard fh5co-heading" style="background-image:url('cid:chalkboard');">
-    <h2>Menu</h2>
-    <img src="cid:floral-design" alt="Floral Design">
-    <p>Starter: </p>
-    <p>{{starter}}</p>
-    <h2>~</h2>
-    <p>Soup: </p>
-    <p>{{soup}}</p>
-    <h2>~</h2>
-    <p>Main: </p>
-    <p>{{main}}</p>
-    <h2>~</h2>
-    <p>Dessert: </p>
-    <p>{{dessert}}</p>
-    <h2>~</h2>
-    <h2>Bon Appétit! <3</h2>
-    <img src="cid:floral-twirl" alt="Twirl">
+<div style="width:100%;position: relative;overflow:hidden;min-height: 420px;">
+    <img id="header" style="min-height: 420px;width: 100%;object-fit: cover; position: absolute; top:-9999px;bottom:-9999px;left:-9999px;right:-9999px;margin:auto;" src="http://www.desmondirinawedding.co.uk/assets/images/cat-servants.jpg">
 </div>
+<table class="row"><tbody><tr> <!-- Main Email content -->
+    <th class="small-12 large-12 columns first last">
+        <table>
+            <tr>
+                <th>
+                    <p>
+                        Hi {{name}}, we're so glad you can make it to our wedding! Please see the menu below for your reference :)
+                        <br><br>
+                        <p>Starter: {{starter}}</p>
+                        <br><br>
+                        <p>Soup: {{soup}}</p>
+                        <br><br>
+                        <p>Main: {{main}}</p>
+                        <br><br>
+                        <p>Dessert: {{dessert}}</p>
+                        Hope you are having a great day!
+                        <br>
+                        Des & Ira
+                    </p>
+                </th>
+            </tr>
+        </table>
+    </th>
+</tr></tbody></table>
 </body>
 </html>
