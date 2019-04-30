@@ -17,8 +17,8 @@
 
   <div *ngIf="attending==='1'">
     <p>Fantastic!</p>
-    <p>Please make your meal choices from the menu below and let us know your dietary requirements.
-      These will be served during the main meal on the day.</p>
+    <p>Please make your Main meal choice and tell us any dietary requirements.
+      Below is the menu that will be served on the day.</p>
   </div>
   <p *ngIf="attending==='3'">That's a shame. You will be missed!</p>
 </div>
@@ -26,64 +26,45 @@
 <div *ngIf="attending==='1'" >
   <form [formGroup]="formGroup">
     <mat-vertical-stepper [linear]="false" #stepper>
-      <mat-step label="  Starter">
+      <mat-step label="  Starter" matStepperNext>
       <span class="meal-options-space">
-      <mat-card *ngFor="let starter of starters" [ngClass]="getMealStyle('starter', starter)" (click)="mealClickEvent('starter', starter)">
+      <mat-card *ngFor="let starter of starters" [ngClass]="getMealStyle('starter', starter)" (click)="mealClickEvent('starter', starter, stepper)">
         <img mat-card-image src={{starter.imageUrl}} alt="Photo of {{starter.name}}">
      <mat-card-header>
           <mat-card-subtitle>{{starter.name}}</mat-card-subtitle>
      </mat-card-header>
       </mat-card>
       </span>
-        <br>
-        <div class="rsvp">
-          <button [ngClass]="{'selected-option': menuChoice['starter'] !== null}" mat-button matStepperNext type="button">Next</button>
-        </div>
       </mat-step>
       <mat-step label="  Soup">
       <span class="meal-options-space">
-      <mat-card *ngFor="let soup of soups" [ngClass]="getMealStyle('soup', soup)" (click)="mealClickEvent('soup', soup)">
+      <mat-card *ngFor="let soup of soups" [ngClass]="getMealStyle('soup', soup)" (click)="mealClickEvent('soup', soup, stepper)">
         <img mat-card-image src={{soup.imageUrl}} alt="Photo of {{soup.name}}">
         <mat-card-header>
           <mat-card-subtitle>{{soup.name}}</mat-card-subtitle>
         </mat-card-header>
       </mat-card>
       </span>
-        <br>
-        <div class="rsvp">
-          <button mat-button matStepperPrevious type="button">Back</button>
-          <button [ngClass]="{'selected-option': menuChoice['soup'] !== null}"  mat-button matStepperNext type="button">Next</button>
-        </div>
       </mat-step>
       <mat-step label="  Main">
       <span class="meal-options-space">
-      <mat-card *ngFor="let main of mains" [ngClass]="getMealStyle('main', main)" (click)="mealClickEvent('main', main)">
+      <mat-card *ngFor="let main of mains" [ngClass]="getMealStyle('main', main)" (click)="mealClickEvent('main', main, stepper)">
         <img mat-card-image src={{main.imageUrl}} alt="Photo of {{main.name}}">
         <mat-card-header>
           <mat-card-subtitle>{{main.name}}</mat-card-subtitle>
         </mat-card-header>
       </mat-card>
       </span>
-        <br>
-        <div class="rsvp">
-          <button mat-button matStepperPrevious type="button">Back</button>
-          <button [ngClass]="{'selected-option': menuChoice['main'] !== null}"  mat-button matStepperNext type="button">Next</button>
-        </div>
       </mat-step>
       <mat-step label="  Dessert">
       <span class="meal-options-space">
-      <mat-card *ngFor="let dessert of desserts" [ngClass]="getMealStyle('dessert', dessert)" (click)="mealClickEvent('dessert', dessert)">
+      <mat-card *ngFor="let dessert of desserts" [ngClass]="getMealStyle('dessert', dessert)" (click)="mealClickEvent('dessert', dessert, stepper)">
         <img mat-card-image src={{dessert.imageUrl}} alt="Photo of {{dessert.name}}">
         <mat-card-header>
           <mat-card-subtitle>{{dessert.name}}</mat-card-subtitle>
         </mat-card-header>
       </mat-card>
       </span>
-        <br>
-        <div class="rsvp">
-          <button mat-button matStepperPrevious type="button">Back</button>
-          <button [ngClass]="{'selected-option': menuChoice['dessert'] !== null}"  mat-button matStepperNext type="button">Next</button>
-        </div>
       </mat-step>
       <mat-step label="  Menu Review">
         <div style="margin-left: -36px">

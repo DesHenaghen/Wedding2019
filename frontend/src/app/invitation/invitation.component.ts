@@ -6,7 +6,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ApiManagerService} from '../services';
 import {MealOption, MenuChoice} from '../models';
-import {MatDialog} from "@angular/material";
+import {MatDialog, MatStepper} from "@angular/material";
 
 @Component({
   selector: 'app-invitation',
@@ -38,7 +38,6 @@ export class InvitationComponent implements OnInit {
 
   menuChoice: MenuChoice;
 
-  isSelectedStarter: number;
   private guest: any;
   attending;
 
@@ -132,6 +131,9 @@ export class InvitationComponent implements OnInit {
       new MealOption('Homemade Vanilla Cheesecake with a Wild Berry Puree',
         '../../assets/images/dessert_cheesecake.jpg')
     ];
+    this.menuChoice.starter = this.starters[0].name;
+    this.menuChoice.soup = this.soups[0].name;
+    this.menuChoice.dessert = this.desserts[0].name;
   }
   getMealStyle(type: string, item) {
 
@@ -141,8 +143,9 @@ export class InvitationComponent implements OnInit {
     return 'meal-option-card';
   }
 
-  mealClickEvent(type: string, item) {
+  mealClickEvent(type: string, item, stepper: MatStepper) {
     this.menuChoice[type] = item.name;
+    stepper.next();
   }
 
   submitInviteResponse(): void {
