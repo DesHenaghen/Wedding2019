@@ -68,7 +68,7 @@ export class ApiManagerService {
     return this.http.post('api/sendYahooInvite', {url, name, email, ceremony})
   }
 
-  public submitInviteResponse(guest: any, attending: number, menuChoice: MenuChoice) {
-    return this.http.post('api/submitInviteResponse', {guest, attending, menuChoice});
+  public submitInviteResponse(guest: any, attending: number, menuChoice: MenuChoice, dietary: String, staying_at: String) {
+    return this.http.post('api/submitInviteResponse', {guest, attending, menuChoice, dietary, staying_at});
   }
 }

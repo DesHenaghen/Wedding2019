@@ -105,6 +105,7 @@
   <label>Please detail any dietary requirements we should pass onto the caterers. </label>
   <br>
   <textarea matInput
+            [(ngModel)]="dietary"
             cdkTextareaAutosize
             #autosize="cdkTextareaAutosize"
             cdkAutosizeMinRows="2"
@@ -115,12 +116,14 @@
   <label>On the night of the wedding, you will be:</label>
   <br>
 </div>
-  <mat-radio-group id="travel-option">
-    <mat-radio-button value="1">staying at the Western House Hotel</mat-radio-button>
+  <mat-radio-group [(ngModel)]="staying_at" id="travel-option">
+    <mat-radio-button value="Western House Hotel">staying at the Western House Hotel</mat-radio-button>
     <br>
-    <mat-radio-button value="2">staying at the Premier Inn</mat-radio-button>
+    <mat-radio-button value="Premier Inn">staying at the Premier Inn</mat-radio-button>
     <br>
-    <mat-radio-button value="3">travelling back to :</mat-radio-button> <input placeholder="(enter postcode)">
+    <mat-radio-button value="postcode">travelling back to :</mat-radio-button> <input [(ngModel)]="postcode" placeholder="(enter postcode)">
+    <br>
+    <mat-radio-button value="N/A">Would rather not say</mat-radio-button>
   </mat-radio-group>
 
 
