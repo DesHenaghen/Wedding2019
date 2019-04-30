@@ -38,7 +38,6 @@ export class InvitationComponent implements OnInit {
 
   menuChoice: MenuChoice;
 
-  isSelectedStarter: number;
   private guest: any;
   attending;
 
@@ -132,6 +131,9 @@ export class InvitationComponent implements OnInit {
       new MealOption('Homemade Vanilla Cheesecake with a Wild Berry Puree',
         '../../assets/images/dessert_cheesecake.jpg')
     ];
+    this.menuChoice.starter = this.starters[0].name;
+    this.menuChoice.soup = this.soups[0].name;
+    this.menuChoice.dessert = this.desserts[0].name;
   }
   getMealStyle(type: string, item) {
 
