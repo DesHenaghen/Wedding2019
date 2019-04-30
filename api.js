@@ -185,25 +185,6 @@ router.post('/submitInviteResponse', (req, res) => {
 });
 
 function sendMenuConfirmationEmail(data) {
-    let mailOptions = {
-        attachments: [
-            {
-                filename: 'chalkboard.jpg',
-                path: 'frontend/src/assets/images/chalkboard.jpg',
-                cid: 'chalkboard'
-            },
-            {
-                filename: 'floral-design.png',
-                path: 'frontend/src/assets/images/floral-design.png',
-                cid: 'floral-design'
-            },
-            {
-                filename: 'floral-twirl.png',
-                path: 'frontend/src/assets/images/floral-twirl.png',
-                cid: 'floral-twirl'
-            }
-        ]
-    };
     fs.readFile(__dirname + '/emails/positiveInviteResponse.html', 'utf8', function (err, template) {
         if (err) {
             return console.log(err);
@@ -216,7 +197,7 @@ function sendMenuConfirmationEmail(data) {
             } else if (result.rows.length > 0) {
                 console.log(result.rows[0]);
                 const guest = result.rows[0];
-                sendEmail(guest.contact_email, template, "So glad you can make it! Here's your menu", null, mailOptions,
+                sendEmail(guest.contact_email, template, "So glad you can make it! Here's your menu", null, {},
                     {starter: data.menuChoice.starter, soup: data.menuChoice.soup, main: data.menuChoice.main,
                         dessert: data.menuChoice.dessert, name: guest.first_name});
             }
