@@ -80,6 +80,19 @@ export class AdminComponent implements OnInit {
       )
   }
 
+  sendYahooInvite(guest: Guest, extra: any) {
+    var inviteUrl = `http://www.desmondirinawedding.co.uk/invitation;id=${guest.id};extra=${(extra === "true") ? "false" : "true"}`;
+    this.apiManager.sendYahooInvite(inviteUrl, guest.first_name, guest.contact_email)
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log(err);
+        }
+      )
+  }
+
   compareFn(op1, op2) {
     // console.log(op1, typeof op1, op2, typeof op2);
 

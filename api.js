@@ -400,6 +400,19 @@ router.post('/sendInvite', (req, res) => {
     });
 });
 
+router.post('/sendYahooInvite', (req, res) => {
+    const email = req.body.email;
+    fs.readFile(__dirname + '/emails/invite_yahoo.html', 'utf8', function (err,data) {
+        if (err) {
+            return console.log(err);
+        }
+
+        // console.log(data);
+        sendEmail(email, data, "Invite to Irina & Desmond's Wedding", res, {},
+            {name: req.body.name, url: req.body.url});
+    });
+});
+
 router.post('/guestExists', (req, res) => {
     let guest = req.body.guest;
     console.log(guest);
