@@ -8,12 +8,12 @@ const Styliner = require('styliner');
 const jwt = require('jsonwebtoken');
 
 const client = new Client({  user: 'postgres',
-    host: 'localhost',
-    database: 'postgres',
-    password: 'postgres',
-    port: 5432
-   // connectionString: process.env.DATABASE_URL,
-   // ssl: true
+    // host: 'localhost',
+    // database: 'postgres',
+    // password: 'postgres',
+    // port: 5432
+   connectionString: process.env.DATABASE_URL,
+   ssl: true
 });
 
 let poolConfig = {
@@ -395,8 +395,8 @@ router.post('/sendInvite', (req, res) => {
         }
 
         // console.log(data);
-        sendEmail("deshenaghen@yahoo.co.uk", data, "Invite to Irina & Desmond's Wedding", res, {},
-            {name: "desmoond henaughoan", url: "www.google.com"});
+        sendEmail(email, data, "Invite to Irina & Desmond's Wedding", res, {},
+            {name: req.body.name, url: req.body.url});
     });
 });
 
