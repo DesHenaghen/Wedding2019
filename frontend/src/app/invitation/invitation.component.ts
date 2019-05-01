@@ -115,7 +115,7 @@ export class InvitationComponent implements OnInit {
     });
 
     this.starters = [
-      new MealOption('Fricassee of Field and Forest Mushrooms on a Garlic Crouton',
+      new MealOption('Fricassee of Field and Forest Mushrooms on a Garlic Crouton (Vegetarian)',
         '../../assets/images/starter_mushroom.jpg')
     ];
     this.soups = [
@@ -127,7 +127,7 @@ export class InvitationComponent implements OnInit {
         '../../assets/images/main_beef.jpg'),
       new MealOption('Baked Scottish Salmon on a White Wine Cream served with Parsley Buttered Potatoes and Melange of Vegetables',
         '../../assets/images/main_salmon.jpg'),
-      new MealOption('Broad Bean and Pea Risotto with Rocket Leaf',
+      new MealOption('Broad Bean and Pea Risotto with Rocket Leaf (Vegetarian)',
         '../../assets/images/veggie_main.jpg')
     ];
     this.desserts = [
