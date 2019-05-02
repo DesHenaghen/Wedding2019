@@ -1,88 +1,67 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cid="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 >
 <head>
-    <!--[if gte mso 9]>
-    <xml>
-        <o:OfficeDocumentSettings>
-            <o:AllowPNG/>
-            <o:PixelsPerInch>96</o:PixelsPerInch>
-        </o:OfficeDocumentSettings>
-    </xml><![endif]-->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width" name="viewport">
     <!--[if !mso]><!-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--<![endif]-->
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"><!--<![endif]-->
     <title></title>
-    <!--[if !mso]><!-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-    <!--<![endif]-->
 
-    <style type="text/css" id="media-query">
-        body {
-            margin: 0;
-            padding: 0;
+    <style type="text/css">
+
+
+        .button a {
+            padding: 8px 12px;
+            border: 1px solid #ED2939;
+            border-radius: 2px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
         }
 
-        table, tr, td {
-            vertical-align: top;
-            border-collapse: collapse;
+        tr, td {
             color: #777777 !important;
             font-family: Helvetica, Arial, sans-serif;
-
+            text-align: left;
         }
 
-        .ie-browser table, .mso-container table {
-            table-layout: fixed;
+        #header {
+            left: -9999px;
         }
-
-        * {
-            line-height: inherit;
-        }
-
-        a[x-apple-data-detectors=true] {
-            color: inherit !important;
-            text-decoration: none !important;
-        }
-
-        [owa] .img-container div, [owa] .img-container button {
-            display: block !important;
-        }
-
-        [owa] .fullwidth button {
-            width: 100% !important;
-        }
-
     </style>
 </head>
 <body>
-<div style="width:100%;position: relative;overflow:hidden;min-height: 420px;">
-    <img id="header" style="min-height: 420px;width: 100%;object-fit: cover; position: absolute; top:-9999px;bottom:-9999px;left:-9999px;right:-9999px;margin:auto;" src="http://www.desmondirinawedding.co.uk/assets/images/cat-servants.jpg">
+<style>
+    #header {
+        left: -9999px;
+    }
+</style>
+<div style="width:100%;position: relative;overflow:hidden;min-height: 320px;">
+    <img id="header" style="min-height: 320px;width: 100%;object-fit: cover; max-height: 320px; position: absolute; top:-9999px;bottom:-9999px;left:-9999px;right:-9999px;margin:auto;" src="http://www.desmondirinawedding.co.uk/assets/images/cat-servants.jpg">
 </div>
-<table class="row"><tbody><tr> <!-- Main Email content -->
-    <th class="small-12 large-12 columns first last">
-        <table>
-            <tr>
-                <th>
-                    <p>
-                        Hi {{name}}, we're so glad you can make it to our wedding! Please see the menu below for your reference :)
-                        <br><br>
-                        <p>Starter: {{starter}}</p>
-                        <br><br>
-                        <p>Soup: {{soup}}</p>
-                        <br><br>
-                        <p>Main: {{main}}</p>
-                        <br><br>
-                        <p>Dessert: {{dessert}}</p>
-                        Hope you are having a great day!
-                        <br>
-                        Des & Ira
-                    </p>
-                </th>
-            </tr>
-        </table>
-    </th>
-</tr></tbody></table>
+<table style="width: 100%;">
+    <tbody>
+    <tr><td>
+        Hi {{name}},
+    </td></tr>
+    <tr><td>
+        we're so glad you can make it to our wedding! Please see the menu below for your reference :)
+    </td></tr>
+    <tr><td>
+        Starter: {{starter}}, Soup: {{soup}}, Main: {{main}}, Dessert: {{dessert}}
+    </td></tr>
+    <tr><td>
+        Hope you are having a great day!
+    </td></tr>
+    <tr><td>
+        Desmond & Irina
+    </td></tr>
+    </tbody>
+</table>
 </body>
 </html>
