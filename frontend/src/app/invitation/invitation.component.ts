@@ -157,7 +157,7 @@ export class InvitationComponent implements OnInit {
     this.apiManager.submitInviteResponse(this.guest, attending, this.menuChoice, this.dietary, staying_at)
       .subscribe(
         (data: any) => {
-          // this.router.navigate(['']);
+          this.router.navigate(['/']);
           console.log(data);
         }
       );

@@ -1354,11 +1354,12 @@ var InvitationComponent = /** @class */ (function () {
         stepper.next();
     };
     InvitationComponent.prototype.submitInviteResponse = function () {
+        var _this = this;
         var attending = +this.attending;
         var staying_at = (this.staying_at == "postcode") ? this.postcode : this.staying_at;
         this.apiManager.submitInviteResponse(this.guest, attending, this.menuChoice, this.dietary, staying_at)
             .subscribe(function (data) {
-            // this.router.navigate(['']);
+            _this.router.navigate(['/']);
             console.log(data);
         });
     };
