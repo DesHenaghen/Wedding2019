@@ -35,7 +35,7 @@
   mat-card img {
     object-fit: cover; /*this makes de image in src fit to the size of specified below*/
     width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
-    height: 80%;
+    height: 70%;
   }
 }
 
@@ -101,6 +101,23 @@
   font-size: 18px;
   color: #828282;
   font-weight: normal !important;
+}
+
+#travel-option > mat-radio-button {
+  margin-left: 20px;
+}
+
+#dietary-requirements {
+  margin: 20px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-style: italic;
+}
+
+#dietary-requirements textarea {
+  min-height: 64px;
+  max-height: 135px;
+  min-width: 300px;
+  max-width: 600px;
 }
 
 

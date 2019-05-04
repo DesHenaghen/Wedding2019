@@ -1,167 +1,67 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cid="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 >
 <head>
-    <!--[if gte mso 9]>
-    <xml>
-        <o:OfficeDocumentSettings>
-            <o:AllowPNG/>
-            <o:PixelsPerInch>96</o:PixelsPerInch>
-        </o:OfficeDocumentSettings>
-    </xml><![endif]-->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width" name="viewport">
     <!--[if !mso]><!-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--<![endif]-->
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"><!--<![endif]-->
     <title></title>
-    <!--[if !mso]><!-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-    <!--<![endif]-->
 
-    <style type="text/css" id="media-query">
-        body {
-            margin: 0;
-            padding: 0;
-        }
+    <style type="text/css">
 
-        table, tr, td {
-            vertical-align: top;
-            border-collapse: collapse;
-        }
 
-        .ie-browser table, .mso-container table {
-            table-layout: fixed;
-        }
-
-        * {
-            line-height: inherit;
-        }
-
-        a[x-apple-data-detectors=true] {
-            color: inherit !important;
-            text-decoration: none !important;
-        }
-
-        [owa] .img-container div, [owa] .img-container button {
-            display: block !important;
-        }
-
-        [owa] .fullwidth button {
-            width: 100% !important;
-        }
-        /*.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {*/
-        .mat-step-header div.mat-step-icon  { background: none !important; }
-
-        .mat-step-icon .mat-icon {
-            font-size: 45px !important;
-            height: 45px !important;
-            width: 45px !important;
-        }
-
-        .mat-step-icon .mat-icon, .mat-step-icon-content {
-            top: auto !important;
-        }
-
-        .meal-option-card {
-            max-width: 300px;
-            min-width: 200px;
-            margin: 10px;
-        }
-
-        .meal-options-space {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .choice {
-            box-shadow: 0 0 3pt 2pt #b020cc !important;
-        }
-
-        .selected-option {
-            background-color: #b020cc;
-            color: white;
-        }
-
-        @media (min-width: 1025px) {
-            mat-card img {
-                object-fit: cover; /*this makes de image in src fit to the size of specified below*/
-                width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
-                height: 80%;
-            }
-        }
-
-        .chalkboard {
-
-            max-width: 500px;
-            min-width: 300px;
-            max-height: 1100px;
-            min-height: 700px;
-            text-align: center;
-            margin: auto;
-        }
-
-        .chalkboard img {
-            width: 250px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto
-        }
-
-        .chalkboard h2 {
-            color: white;
-        }
-
-        .chalkboard p {
-            margin: auto;
-            text-align: center;
-            max-width: 450px;
-            min-width: 200px;
-            color: white;
-            font-family: "Comic Sans MS", cursive, sans-serif;
-            font-style: italic;
-        }
-
-        .invitation {
-            width: 100%;
-            background-position: center;
-            background-image: url("cid:invitation");
-            min-height: 420px;
-            background-repeat: no-repeat;
-            background-size: cover;
-
-        }
-
-        .fh5co-heading h2 {
-            font-size: 60px;
-            margin-bottom: 10px;
-            line-height: 1.5;
+        .button a {
+            padding: 8px 12px;
+            border: 1px solid #ED2939;
+            border-radius: 2px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #ffffff;
+            text-decoration: none;
             font-weight: bold;
-            color: white;
-            font-family: "Sacramento", Arial, serif;
+            display: inline-block;
         }
 
+        tr, td {
+            color: #777777 !important;
+            font-family: Helvetica, Arial, sans-serif;
+            text-align: left;
+        }
+
+        #header {
+            left: -9999px;
+        }
     </style>
 </head>
 <body>
-<h2>Hi {{name}}, we're so glad you can make it to our wedding! Please see your menu choices below for your reference :)</h2>
-<div class="chalkboard fh5co-heading" style="background-image:url('cid:chalkboard');">
-    <h2>Menu</h2>
-    <img src="cid:floral-design" alt="Floral Design">
-    <p>Starter: </p>
-    <p>{{starter}}</p>
-    <h2>~</h2>
-    <p>Soup: </p>
-    <p>{{soup}}</p>
-    <h2>~</h2>
-    <p>Main: </p>
-    <p>{{main}}</p>
-    <h2>~</h2>
-    <p>Dessert: </p>
-    <p>{{dessert}}</p>
-    <h2>~</h2>
-    <h2>Bon Appétit! <3</h2>
-    <img src="cid:floral-twirl" alt="Twirl">
+<style>
+    #header {
+        left: -9999px;
+    }
+</style>
+<div style="width:100%;position: relative;overflow:hidden;min-height: 320px;">
+    <img id="header" style="min-height: 320px;width: 100%;object-fit: cover; max-height: 320px; position: absolute; top:-9999px;bottom:-9999px;left:-9999px;right:-9999px;margin:auto;" src="http://www.desmondirinawedding.co.uk/assets/images/cat-servants.jpg">
 </div>
+<table style="width: 100%;">
+    <tbody>
+    <tr><td>
+        Hi {{name}},
+    </td></tr>
+    <tr><td>
+        we're so glad you can make it to our wedding! Please see the menu below for your reference :)
+    </td></tr>
+    <tr><td>
+        Starter: {{starter}}, Soup: {{soup}}, Main: {{main}}, Dessert: {{dessert}}
+    </td></tr>
+    <tr><td>
+        Hope you are having a great day!
+    </td></tr>
+    <tr><td>
+        Desmond & Irina
+    </td></tr>
+    </tbody>
+</table>
 </body>
 </html>

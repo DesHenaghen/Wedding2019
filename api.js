@@ -166,11 +166,11 @@ function sendNegativeInviteResponseConfirmationEmail(data) {
 }
 
 router.post('/submitInviteResponse', (req, res) => {
-    ({guest, attending, menuChoice} = req.body);
+    ({guest, attending, menuChoice, dietary, staying_at} = req.body);
     console.log(req.body);
     const tableName = guest.extra==='true'?'plus_ones':'guests';
-    client.query('UPDATE '+tableName+' SET attending=$1, starter=$2, soup=$3, main_meal=$4, dessert=$5 WHERE id=$6',
-        [attending, menuChoice.starter, menuChoice.soup, menuChoice.main, menuChoice.dessert, guest.id], (err, result) => {
+    client.query('UPDATE '+tableName+' SET attending=$1, starter=$2, soup=$3, main_meal=$4, dessert=$5, dietary_requirements=$6, staying_at=$7 WHERE id=$8',
+        [attending, menuChoice.starter, menuChoice.soup, menuChoice.main, menuChoice.dessert, dietary, staying_at, guest.id], (err, result) => {
             if (err) {
                 console.error(err.stack);
                 res.send("Failed");
@@ -185,25 +185,6 @@ router.post('/submitInviteResponse', (req, res) => {
 });
 
 function sendMenuConfirmationEmail(data) {
-    let mailOptions = {
-        attachments: [
-            {
-                filename: 'chalkboard.jpg',
-                path: 'frontend/src/assets/images/chalkboard.jpg',
-                cid: 'chalkboard'
-            },
-            {
-                filename: 'floral-design.png',
-                path: 'frontend/src/assets/images/floral-design.png',
-                cid: 'floral-design'
-            },
-            {
-                filename: 'floral-twirl.png',
-                path: 'frontend/src/assets/images/floral-twirl.png',
-                cid: 'floral-twirl'
-            }
-        ]
-    };
     fs.readFile(__dirname + '/emails/positiveInviteResponse.html', 'utf8', function (err, template) {
         if (err) {
             return console.log(err);
@@ -216,7 +197,7 @@ function sendMenuConfirmationEmail(data) {
             } else if (result.rows.length > 0) {
                 console.log(result.rows[0]);
                 const guest = result.rows[0];
-                sendEmail(guest.contact_email, template, "So glad you can make it! Here's your menu", null, mailOptions,
+                sendEmail(guest.contact_email, template, "So glad you can make it! Here's your menu", null, {},
                     {starter: data.menuChoice.starter, soup: data.menuChoice.soup, main: data.menuChoice.main,
                         dessert: data.menuChoice.dessert, name: guest.first_name});
             }
@@ -389,36 +370,29 @@ router.post('/sendSTD', (req, res) => {
 
 router.post('/sendInvite', (req, res) => {
     const email = req.body.email;
-    fs.readFile(__dirname + '/emails/invite.html', 'utf8', function (err,data) {
+    const email_file = (req.body.ceremony) ? "invite.html" : "reception_invite.html";
+    fs.readFile(__dirname + '/emails/' + email_file, 'utf8', function (err,data) {
         if (err) {
             return console.log(err);
         }
 
         // console.log(data);
-        sendEmail(email, data, "Invite to Irina & Desmond's Wedding", res, {
-            attachments: [
-                {
-                    filename: 'invitation.jpg',
-                    path: 'frontend/src/assets/images/invitation.jpg',
-                    cid: 'invitation'
-                },
-                {
-                    filename: 'rsvp.png',
-                    path: 'frontend/src/assets/images/rsvp.png',
-                    cid: 'rsvp'
-                },
-                {
-                    filename: 'information.png',
-                    path: 'frontend/src/assets/images/information.png',
-                    cid: 'information'
-                },
-                {
-                    filename: 'gifts.png',
-                    path: 'frontend/src/assets/images/gifts.png',
-                    cid: 'gifts'
-                }
-            ]
-        }, {name: req.body.name, url: req.body.url});
+        sendEmail(email, data, "Invite to Irina & Desmond's Wedding", res, {},
+            {name: req.body.name, url: req.body.url});
+    });
+});
+
+router.post('/sendYahooInvite', (req, res) => {
+    const email = req.body.email;
+    const email_file = (req.body.ceremony) ? "invite_yahoo.html" : "reception_invite_yahoo.html";
+    fs.readFile(__dirname + '/emails/' + email_file, 'utf8', function (err,data) {
+        if (err) {
+            return console.log(err);
+        }
+
+        // console.log(data);
+        sendEmail(email, data, "Invite to Irina & Desmond's Wedding", res, {},
+            {name: req.body.name, url: req.body.url});
     });
 });
 

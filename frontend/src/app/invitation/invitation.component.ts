@@ -6,7 +6,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ApiManagerService} from '../services';
 import {MealOption, MenuChoice} from '../models';
-import {MatDialog} from "@angular/material";
+import {MatDialog, MatStepper} from "@angular/material";
 
 @Component({
   selector: 'app-invitation',
@@ -38,9 +38,11 @@ export class InvitationComponent implements OnInit {
 
   menuChoice: MenuChoice;
 
-  isSelectedStarter: number;
   private guest: any;
   attending;
+  dietary: String;
+  staying_at: String;
+  postcode: String;
 
 
   constructor(private _formBuilder: FormBuilder,
@@ -113,37 +115,28 @@ export class InvitationComponent implements OnInit {
     });
 
     this.starters = [
-      new MealOption( 'Ham Hock Terrine with Spiced Pear Chutney and Mini Highland Oatcakes',
-        '../../assets/images/starter_hamhock.jpg'),
-      new MealOption('Fricassee of Field and Forest Mushrooms on a Garlic Crouton',
-        '../../assets/images/starter_mushroom.jpg'),
-      new MealOption( 'Egg and Parma Ham Salad with Mustard Dressing',
-        '../../assets/images/starter_salad.jpg')
+      new MealOption('Fricassee of Field and Forest Mushrooms on a Garlic Crouton (Vegetarian)',
+        '../../assets/images/starter_mushroom.jpg')
     ];
     this.soups = [
-      new MealOption( 'Cappuccino of Tomato Soup infused with Green Herbs',
-        '../../assets/images/soup_tomato.jpg'),
-      new MealOption( 'Cappuccino of Split Green Pea and Pear Soup with Herb Oil',
-        '../../assets/images/soup_pea.jpg'),
-      new MealOption( 'Cappuccino of Seasonal Vegetable Broth with Ground White Pepper',
-        '../../assets/images/soup_vegetables.jpg')
+      new MealOption( 'Cappuccino of Cream of Leek and Potato Soup with Chive Oil',
+        '../../assets/images/soup_potato.jpg')
     ];
     this.mains = [
-      new MealOption('Roast Breast of Chicken with a Light Pan Gravy served with Roast Potatoes and Melange of Roast Vegetables',
-      '../../assets/images/main_chicken.jpg'),
       new MealOption( 'Pulled Beef with Herbs wrapped in Topside with a Jus served with Gratin Potatoes, Carrots and Grilled Courgettes',
         '../../assets/images/main_beef.jpg'),
       new MealOption('Baked Scottish Salmon on a White Wine Cream served with Parsley Buttered Potatoes and Melange of Vegetables',
-        '../../assets/images/main_salmon.jpg')
+        '../../assets/images/main_salmon.jpg'),
+      new MealOption('Broad Bean and Pea Risotto with Rocket Leaf (Vegetarian)',
+        '../../assets/images/veggie_main.jpg')
     ];
     this.desserts = [
       new MealOption('Homemade Vanilla Cheesecake with a Wild Berry Puree',
-        '../../assets/images/dessert_cheesecake.jpg'),
-      new MealOption( 'Western House Strawberry Meringue with Chantilly Cream',
-        '../../assets/images/dessert_meringue.jpg'),
-      new MealOption( 'Cream Filled Chocolate Profiteroles with a Warm Butterscotch Sauce',
-        '../../assets/images/dessert_profiteroles.jpg')
+        '../../assets/images/dessert_cheesecake.jpg')
     ];
+    this.menuChoice.starter = this.starters[0].name;
+    this.menuChoice.soup = this.soups[0].name;
+    this.menuChoice.dessert = this.desserts[0].name;
   }
   getMealStyle(type: string, item) {
 
@@ -153,13 +146,15 @@ export class InvitationComponent implements OnInit {
     return 'meal-option-card';
   }
 
-  mealClickEvent(type: string, item) {
+  mealClickEvent(type: string, item, stepper: MatStepper) {
     this.menuChoice[type] = item.name;
+    stepper.next();
   }
 
   submitInviteResponse(): void {
     const attending = +this.attending;
-    this.apiManager.submitInviteResponse(this.guest, attending, this.menuChoice)
+    const staying_at = (this.staying_at=="postcode")?this.postcode:this.staying_at;
+    this.apiManager.submitInviteResponse(this.guest, attending, this.menuChoice, this.dietary, staying_at)
       .subscribe(
         (data: any) => {
           // this.router.navigate(['']);
