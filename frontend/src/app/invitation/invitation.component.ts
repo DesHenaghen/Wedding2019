@@ -5,8 +5,8 @@ import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ApiManagerService} from '../services';
-import {MealOption, MenuChoice} from '../models';
-import {MatDialog, MatStepper} from "@angular/material";
+import {Attending, MealOption, MenuChoice} from '../models';
+import {MatDialog, MatSnackBar, MatStepper} from "@angular/material";
 
 @Component({
   selector: 'app-invitation',
@@ -50,7 +50,8 @@ export class InvitationComponent implements OnInit {
               private domSanitizer: DomSanitizer,
               private route: ActivatedRoute,
               private apiManager: ApiManagerService,
-              private router: Router) {
+              private router: Router,
+              public snackBar: MatSnackBar) {
 
     this.matIconRegistry.addSvgIcon(
       `soup`,
@@ -157,8 +158,10 @@ export class InvitationComponent implements OnInit {
     this.apiManager.submitInviteResponse(this.guest, attending, this.menuChoice, this.dietary, staying_at)
       .subscribe(
         (data: any) => {
+          let snackbarMsg = 'Thanks for your RSVP!';
+          if (attending == Attending.Yes) snackbarMsg += " We look forward to seeing you at the Wedding!";
           this.router.navigate(['/']);
-          console.log(data);
+          this.snackBar.open(snackbarMsg, 'Ok', {duration: 10000});
         }
       );
   }
