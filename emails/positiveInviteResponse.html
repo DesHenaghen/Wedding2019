@@ -41,8 +41,8 @@
         left: -9999px;
     }
 </style>
-<div style="width:100%;position: relative;overflow:hidden;min-height: 320px;">
-    <img id="header" style="min-height: 320px;width: 100%;object-fit: cover; max-height: 320px; position: absolute; top:-9999px;bottom:-9999px;left:-9999px;right:-9999px;margin:auto;" src="http://www.desmondirinawedding.co.uk/assets/images/cat-servants.jpg">
+<div style="width:100%;position: relative;overflow:hidden;">
+    <img id="header" style="width: 100%;object-fit: cover; position: absolute; top:-9999px;bottom:-9999px;left:-9999px;right:-9999px;margin:auto;" src="http://www.desmondirinawedding.co.uk/assets/images/cat-servants.jpg">
 </div>
 <table style="width: 100%;">
     <tbody>
@@ -53,7 +53,12 @@
         we're so glad you can make it to our wedding! Please see the menu below for your reference :)
     </td></tr>
     <tr><td>
-        Starter: {{starter}}, Soup: {{soup}}, Main: {{main}}, Dessert: {{dessert}}
+        <ul>
+            <li>Starter: {{starter}}</li>
+            <li>Soup: {{soup}}</li>
+            <li>Main: {{main}}</li>
+            <li>Dessert: {{dessert}}</li>
+        </ul>
     </td></tr>
     <tr><td>
         Hope you are having a great day!

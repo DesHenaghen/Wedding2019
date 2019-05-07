@@ -50,7 +50,8 @@ export class InvitationComponent implements OnInit {
               private domSanitizer: DomSanitizer,
               private route: ActivatedRoute,
               private apiManager: ApiManagerService,
-              private router: Router) {
+              private router: Router,
+              public snackBar: MatSnackBar) {
 
     this.matIconRegistry.addSvgIcon(
       `soup`,
@@ -165,8 +166,10 @@ export class InvitationComponent implements OnInit {
     this.apiManager.submitInviteResponse(this.guest, attending, this.menuChoice, this.dietary, staying_at)
       .subscribe(
         (data: any) => {
+          let snackbarMsg = 'Thanks for your RSVP!';
+          if (attending == Attending.Yes) snackbarMsg += " We look forward to seeing you at the Wedding!";
           this.router.navigate(['/']);
-          console.log(data);
+          this.snackBar.open(snackbarMsg, 'Ok', {duration: 10000});
         }
       );
   }
