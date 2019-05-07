@@ -6,7 +6,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ApiManagerService} from '../services';
 import {Attending, MealOption, MenuChoice} from '../models';
-import {MatDialog, MatSnackBar, MatStepper} from "@angular/material";
+import {MatSnackBar, MatStepper} from '@angular/material';
 
 @Component({
   selector: 'app-invitation',
@@ -152,8 +152,12 @@ export class InvitationComponent implements OnInit {
     stepper.next();
   }
 
+  invitationRSVPvalid() {
+    return this.menuChoice.allSelected() && this.staying_at;
+  }
+
   submitInviteResponse(): void {
-    if (this.staying_at && this.menuChoice.allSelected()) {
+    if (this.invitationRSVPvalid()) {
       const attending = +this.attending;
       const staying_at = (this.staying_at == "postcode") ? this.postcode : this.staying_at;
       this.apiManager.submitInviteResponse(this.guest, attending, this.menuChoice, this.dietary, staying_at)
