@@ -83,15 +83,27 @@
       </mat-form-field>
 
       <mat-form-field>
-        <textarea matInput placeholder="Extra Info" [(ngModel)]="guest.extra_info"></textarea>
+        <input matInput placeholder="Staying At" [(ngModel)]="guest.staying_at">
       </mat-form-field>
 
       <mat-form-field>
-        <mat-select placeholder="Food choice" [(value)]="guest.meal_choice" [compareWith]="compareFn">
-          <mat-option value="1">Steak</mat-option>
-          <mat-option value="2">Cheese</mat-option>
-          <mat-option value="3">Cake</mat-option>
-        </mat-select>
+        <input matInput placeholder="Dietary Requirements" [(ngModel)]="guest.dietary_requirements">
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="Starter" [(ngModel)]="guest.starter"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="Soup" [(ngModel)]="guest.soup"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="Main Meal" [(ngModel)]="guest.main_meal"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="Dessert" [(ngModel)]="guest.dessert"></textarea>
       </mat-form-field>
 
       <mat-form-field>

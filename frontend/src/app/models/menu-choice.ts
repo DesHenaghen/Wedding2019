@@ -10,4 +10,8 @@ export class MenuChoice {
     this.main = null;
     this.dessert = null;
   }
+
+  allSelected() {
+    return this.starter && this.soup && this.main && this.dessert;
+  }
 }

@@ -153,17 +153,22 @@ export class InvitationComponent implements OnInit {
   }
 
   submitInviteResponse(): void {
-    const attending = +this.attending;
-    const staying_at = (this.staying_at=="postcode")?this.postcode:this.staying_at;
-    this.apiManager.submitInviteResponse(this.guest, attending, this.menuChoice, this.dietary, staying_at)
-      .subscribe(
-        (data: any) => {
-          let snackbarMsg = 'Thanks for your RSVP!';
-          if (attending == Attending.Yes) snackbarMsg += " We look forward to seeing you at the Wedding!";
-          this.router.navigate(['/']);
-          this.snackBar.open(snackbarMsg, 'Ok', {duration: 10000});
-        }
-      );
+    if (this.staying_at && this.menuChoice.allSelected()) {
+      const attending = +this.attending;
+      const staying_at = (this.staying_at == "postcode") ? this.postcode : this.staying_at;
+      this.apiManager.submitInviteResponse(this.guest, attending, this.menuChoice, this.dietary, staying_at)
+        .subscribe(
+          (data: any) => {
+            let snackbarMsg = 'Thanks for your RSVP!';
+            if (attending == Attending.Yes) snackbarMsg += " We look forward to seeing you at the Wedding!";
+            this.router.navigate(['/']);
+            this.snackBar.open(snackbarMsg, 'Ok', {duration: 10000});
+          }
+        );
+    } else {
+      this.snackBar.open("Make sure you've selected your main meal and told us where you're staying the night of the wedding",
+        'Ok', {duration: 5000});
+    }
   }
 
   getMealChoice(type: string) {
