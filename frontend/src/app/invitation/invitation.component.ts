@@ -5,8 +5,8 @@ import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ApiManagerService} from '../services';
-import {MealOption, MenuChoice} from '../models';
-import {MatDialog, MatStepper} from '@angular/material';
+import {Attending, MealOption, MenuChoice} from '../models';
+import {MatSnackBar, MatStepper} from '@angular/material';
 
 @Component({
   selector: 'app-invitation',
@@ -162,12 +162,12 @@ export class InvitationComponent implements OnInit {
       return;
     }
     const attending = +this.attending;
-    const staying_at = (this.staying_at=="postcode")?this.postcode:this.staying_at;
+    const staying_at = (this.staying_at=='postcode')?this.postcode:this.staying_at;
     this.apiManager.submitInviteResponse(this.guest, attending, this.menuChoice, this.dietary, staying_at)
       .subscribe(
         (data: any) => {
           let snackbarMsg = 'Thanks for your RSVP!';
-          if (attending == Attending.Yes) snackbarMsg += " We look forward to seeing you at the Wedding!";
+          if (attending == Attending.Yes) snackbarMsg += ' We look forward to seeing you at the Wedding!';
           this.router.navigate(['/']);
           this.snackBar.open(snackbarMsg, 'Ok', {duration: 10000});
         }
