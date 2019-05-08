@@ -85,7 +85,7 @@ export class InvitationComponent implements OnInit {
         console.log(params);
         this.guest = params;
         if (params.id) {
-          if (params.extra === "true") {
+          if (params.extra === 'true') {
             // fetch plusone details of id
             this.apiManager.getPlusOne(params.id)
               .subscribe((data: any) => {
@@ -153,24 +153,24 @@ export class InvitationComponent implements OnInit {
   }
 
   invitationRSVPvalid() {
-    return this.menuChoice.allSelected() && this.staying_at;
+    return this.attending === '3' || (this.attending === '1' && this.menuChoice.allSelected() && this.staying_at);
   }
 
   submitInviteResponse(): void {
     if (this.invitationRSVPvalid()) {
       const attending = +this.attending;
-      const staying_at = (this.staying_at == "postcode") ? this.postcode : this.staying_at;
+      const staying_at = (this.staying_at == 'postcode') ? this.postcode : this.staying_at;
       this.apiManager.submitInviteResponse(this.guest, attending, this.menuChoice, this.dietary, staying_at)
         .subscribe(
           (data: any) => {
             let snackbarMsg = 'Thanks for your RSVP!';
-            if (attending == Attending.Yes) snackbarMsg += " We look forward to seeing you at the Wedding!";
+            if (attending == Attending.Yes) { snackbarMsg += ' We look forward to seeing you at the Wedding!'; }
             this.router.navigate(['/']);
             this.snackBar.open(snackbarMsg, 'Ok', {duration: 10000});
           }
         );
     } else {
-      this.snackBar.open("Make sure you've selected your main meal and told us where you're staying the night of the wedding",
+      this.snackBar.open('Make sure you\'ve selected your main meal and told us where you\'re staying the night of the wedding',
         'Ok', {duration: 5000});
     }
   }
