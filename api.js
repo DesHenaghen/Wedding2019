@@ -145,14 +145,14 @@ router.post('/updateGuest', (req, res) => {
        });
 });
 
-function sendNegativeInviteResponseConfirmationEmail(data) {
+function sendNegativeInviteResponseConfirmationEmail(data, tableName) {
     fs.readFile(__dirname + '/emails/negativeInviteResponse.html', 'utf8', function (err, template) {
         if (err) {
             return console.log(err);
         }
 
         // console.log(data);
-        client.query('SELECT first_name, contact_email FROM guests WHERE id = $1 limit 1', [data.guest.id], (err, result) => {
+        client.query('SELECT first_name, contact_email FROM '+tableName+' WHERE id = $1 limit 1', [data.guest.id], (err, result) => {
             if (err) {
                 console.error(err.stack);
             } else if (result.rows.length > 0) {
@@ -177,21 +177,21 @@ router.post('/submitInviteResponse', (req, res) => {
             } else {
                 res.send({message: "Updated"});
                 if (attending == 1)
-                    sendMenuConfirmationEmail(req.body);
+                    sendMenuConfirmationEmail(req.body, tableName);
                 else if (attending == 3)
-                    sendNegativeInviteResponseConfirmationEmail(req.body);
+                    sendNegativeInviteResponseConfirmationEmail(req.body, tableName);
             }
         });
 });
 
-function sendMenuConfirmationEmail(data) {
+function sendMenuConfirmationEmail(data, tableName) {
     fs.readFile(__dirname + '/emails/positiveInviteResponse.html', 'utf8', function (err, template) {
         if (err) {
             return console.log(err);
         }
 
         // console.log(data);
-        client.query('SELECT first_name, contact_email FROM guests WHERE id = $1 limit 1', [data.guest.id], (err, result) => {
+        client.query('SELECT first_name, contact_email FROM '+tableName+' WHERE id = $1 limit 1', [data.guest.id], (err, result) => {
             if (err) {
                 console.error(err.stack);
             } else if (result.rows.length > 0) {
